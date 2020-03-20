@@ -1,0 +1,36 @@
+<div class="backborder">
+  <img
+    width="60"
+    alt="Fundoo Logo"
+    src="https://www.google.com/images/icons/product/keep-512.png"
+  />
+  <h1>Signin</h1>
+  Use Your Fundoo Account<br /><br />
+
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>EmailorPhone</mat-label>
+    <input type="text" matInput placeholder="Enter your Name" required />
+    <mat-hint>Enter Email</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput placeholder="Enter your Name" required />
+    <mat-hint>Enter Password</mat-hint>
+  </mat-form-field>
+
+  <nav class="forget">
+    <a routerLink="/forgotPassword" routerLinkActive="active">ForgetPassword</a>
+  </nav>
+</div>
+<div class="backborder">
+  <!-- <button
+    mat-raised-button
+    color="primary"
+    (click)="onlogin()"
+    [disabled]="email.invalid || password.invalid"
+  >
+    Login
+  </button> -->
+  <button mat-button>SignIn</button>
+</div>
