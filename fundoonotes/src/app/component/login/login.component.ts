@@ -40,43 +40,43 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.token = this.route.snapshot.paramMap.get("token");
   }
-  getErrorMessage() {
-    return this.email.hasError("required")
-      ? "You must enter a value"
-      : this.email.hasError("email")
-      ? "Not a valid email"
-      : "";
-  }
-  getErrorPassword() {
-    return this.password.hasError("required")
-      ? "You must enter a value"
-      : this.password.hasError("password")
-      ? "Min 7 Elements"
-      : "";
-  }
-    onlogin() {
-      console.log("Login:" + this.login.emailId);
+  // getErrorMessage() {
+  //   return this.email.hasError("required")
+  //     ? "You must enter a value"
+  //     : this.email.hasError("email")
+  //     ? "Not a valid email"
+  //     : "";
+  // }
+  // getErrorPassword() {
+  //   return this.password.hasError("required")
+  //     ? "You must enter a value"
+  //     : this.password.hasError("password")
+  //     ? "Min 7 Elements"
+  //     : "";
+  // }
+  onlogin() {
+    console.log("Login:" + this.login.emailId);
 
-      this.token = localStorage.getItem("token");
-      this.httpservice
-        .postRequest("login", this.login)
-        .subscribe((response: any) => {
-          if (response.statusCode === 200) {
-            console.log(response);
-            localStorage.setItem("token", response.token);
-            localStorage.setItem("email", response.emailId);
-            this.snackBar.open(
-              "Login Successfull",
-              "undo",
+    this.token = localStorage.getItem("token");
+    this.httpservice
+      .postRequest("login", this.login)
+      .subscribe((response: any) => {
+        if (response.statusCode === 200) {
+          console.log(response);
+          localStorage.setItem("token", response.token);
+          localStorage.setItem("email", response.emailId);
+          this.snackBar.open(
+            "Login Successfull",
+            "undo",
 
-              { duration: 2500 }
-            );
-            this.router.navigate(["/dashboard"]);
-          } else {
-            console.log(response);
-            console.log("Login:" + this.login.emailId);
-            this.snackBar.open("Login Failed", "undo", { duration: 2500 });
-          }
-        });
-    }
+            { duration: 2500 }
+          );
+          this.router.navigate(["/dashboard"]);
+        } else {
+          console.log(response);
+          console.log("Login:" + this.login.emailId);
+          this.snackBar.open("Login Failed", "undo", { duration: 2500 });
+        }
+      });
+  }
 }

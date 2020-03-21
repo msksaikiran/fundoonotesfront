@@ -9,13 +9,13 @@
 
   <mat-form-field appearance="outline" class="input">
     <mat-label>EmailorPhone</mat-label>
-    <input type="text" matInput placeholder="Enter your Name" required />
+    <input type="text" matInput placeholder="Enter your Name" required [formControl]="email" [(ngModel)]="login.emailId"/>
     <mat-hint>Enter Email</mat-hint>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="input">
     <mat-label>Password</mat-label>
-    <input type="password" matInput placeholder="Enter your Name" required />
+    <input type="password" matInput placeholder="Enter your Name" required [formControl]="password" [(ngModel)]="login.password" />
     <mat-hint>Enter Password</mat-hint>
   </mat-form-field>
 
@@ -24,13 +24,12 @@
   </nav>
 </div>
 <div class="backborder">
-  <!-- <button
+   <button
     mat-raised-button
     color="primary"
     (click)="onlogin()"
-    [disabled]="email.invalid || password.invalid"
   >
     Login
-  </button> -->
+  </button> 
   <button mat-button>SignIn</button>
 </div>
