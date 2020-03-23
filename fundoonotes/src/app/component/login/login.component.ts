@@ -3,7 +3,7 @@ import { UserService } from "src/app/service/user.service";
 import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import{Login} from 'src/app/models/login'
+import { Login } from 'src/app/models/login';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ import{Login} from 'src/app/models/login'
 export class LoginComponent implements OnInit {
 
   login: Login = new Login();
-  loginForm:FormGroup;
+ // loginForm:FormGroup;
 
   email = new FormControl(this.login.email, [
     Validators.required,
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
 
             { duration: 25000}
           );
-          //this.router.navigate(["/dashboard"]);
+          this.router.navigate(["/dashboard"]);
         } else {
           console.log(response);
           console.log("Login:" + this.login.email);

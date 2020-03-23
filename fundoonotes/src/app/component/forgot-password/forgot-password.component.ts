@@ -54,10 +54,8 @@ export class ForgotPasswordComponent implements OnInit {
 
             { duration: 25000}
           );
-         // this.router.navigate(["/resetPassword"]);
         } else {
           console.log(response);
-        //  console.log("Login:" + this.login.email);
           this.snackBar.open("Login Failed", "undo", { duration: 2500 });
         }
       });

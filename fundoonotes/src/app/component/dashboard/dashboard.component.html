@@ -1,0 +1,114 @@
+<div class="backcontainer">
+    <div>
+        <mat-toolbar>
+        <mat-toolbar-row>
+          <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+          <!-- <img class="image" src="assets/images/keep-512.png" alt="Keep"> -->
+          <span><mat-label style="font-family: sans-serif; padding-left: 5px;">Reminders</mat-label>
+          </span>
+
+          <div class="searchBar" fxLayout="row" fxLayoutAlign="center center">
+          <button mat-icon-button class="search-icon">
+            <mat-icon>search</mat-icon>
+          </button>
+          <input class="searchInput" placeholder="Search" >
+          <button mat-icon-button class="cancel">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" style="margin-left: 278px" >
+
+          <button mat-icon-button class="refresh">
+            <mat-icon>refresh</mat-icon>
+          </button>
+          <button mat-icon-button class="list">
+            <mat-icon>grid_view</mat-icon>
+          </button>
+          <button mat-icon-button class="settings"  [matMenuTriggerFor]="menu">
+            <mat-icon matTooltip="menu">settings</mat-icon>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+          </button>
+          <button mat-icon-button class="apps" [matMenuTriggerFor]="menu ">
+            <mat-icon matTooltip="appearance">apps</mat-icon>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+          </button>
+          
+            <button mat-button  mat-icon-button
+              (click)="account()" fxShow="true" width="30">
+              <mat-icon> account_circle</mat-icon>
+            </button>
+          
+        </div>
+        </mat-toolbar-row>
+       </mat-toolbar>
+    </div>
+  
+   <div class="hiddenMenu" fxLayout="column" fxLayoutAlign="center start"> 
+    <mat-sidenav-container >
+       <mat-sidenav #snav mode="side" class="matsidenav"> 
+
+         <div class="note">
+          <button mat-button class="notebutton">
+            <div class="icon">
+              <mat-icon>lightbulb_outline</mat-icon>
+            </div>
+            <span > Notes</span>
+          </button>
+      
+          <button mat-button class="remindbutton">
+            <div class="icon">
+              <mat-icon>notifications</mat-icon>
+            </div>
+            <span>Reminder</span>
+          </button>
+        </div>
+
+        <mat-divider></mat-divider>
+        
+        <diV class="label">
+          <mat-label class="labelmat">LABELS</mat-label>
+          <button mat-button class="labelbutton">
+            <div class="icon">
+              <mat-icon>edit</mat-icon>
+            </div>
+            <span >Edit labels</span>
+          </button>
+        </diV>
+  
+        <mat-divider></mat-divider>
+
+        <diV class="note">
+          <button mat-button class="notebutton">
+            <div class="icon">
+              <mat-icon>archive</mat-icon>
+            </div>
+            <span > Archive</span>
+          </button>
+      
+          <button mat-button class="remindbutton">
+            <div class="icon">
+              <mat-icon>delete</mat-icon>
+            </div>
+            <span>Trashed</span>
+          </button>   
+
+        </diV>
+
+        <mat-divider></mat-divider>
+
+       </mat-sidenav>
+
+      <mat-sidenav-content >
+        <router-outlet ></router-outlet>
+     </mat-sidenav-content>
+
+    </mat-sidenav-container>
+    </div>
+  </div> 

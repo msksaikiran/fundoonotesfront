@@ -23,7 +23,7 @@ import { from } from "rxjs";
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { RestPasswordComponent } from './component/rest-password/rest-password.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
-
+import {MatDividerModule} from '@angular/material/divider';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +51,7 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
     MatToolbarModule,
     MatMenuModule,
     //MatNavList,
+    MatDividerModule,
     FlexLayoutModule
   ],
   providers: [],
