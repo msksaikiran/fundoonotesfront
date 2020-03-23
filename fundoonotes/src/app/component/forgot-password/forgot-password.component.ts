@@ -41,7 +41,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   onlogin() {
     console.log(this.emailVerify);
-    //this.token = localStorage.getItem("token");
+    
     this.httpservice
       .postRequest("emailId", this.emailVerify)
       .subscribe((response: any) => {
@@ -49,12 +49,12 @@ export class ForgotPasswordComponent implements OnInit {
           console.log(response);
           
           this.snackBar.open(
-            "Email Verified",
+            "Verification Sent to Email",
             "undo",
 
             { duration: 25000}
           );
-          this.router.navigate(["/resetPassword"]);
+         // this.router.navigate(["/resetPassword"]);
         } else {
           console.log(response);
         //  console.log("Login:" + this.login.email);

@@ -1,4 +1,4 @@
 export class ResetPassword{
-    token: String;
+    //token: String;
     newPassword:string
 }

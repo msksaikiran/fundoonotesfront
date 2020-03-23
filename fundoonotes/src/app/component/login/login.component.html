@@ -27,23 +27,18 @@
       <mat-hint>Enter Password</mat-hint>
     </mat-form-field>
   
-    <nav class="forget">
-      <a routerLink="/forgotPassword" routerLinkActive="active">ForgetPassword</a>
-    </nav>
+    <button mat-raised-button color="primary" fxLayout="row" fxLayoutAlign="center center" style="margin-left: 173px" routerLink="/forgotPassword"
+    class="button">forgotPassword</button>
 
-    
   </div>
-  <div class="backborder">
-    
-     <button
-      mat-raised-button
-      color="primary"
-      (click)="onlogin()"
-    >
-      Login
-    </button> <br>
-    <nav  class="signUp"fxLayout="row" fxLayoutAlign="center" >
-      <a routerLink="/register" routerLinkActive="active">SignUp</a>
-    </nav>
-    <!-- <button mat-button>SignIn</button> -->
+  <div class="backborder" fxLayout="row" fxLayoutAlign="center center">
+    <div style="margin-left:-224px;">
+    <button mat-raised-button color="primary"  routerLink="/register"
+    class="button">Register</button>
+     </div>
   </div> 
+  <div  class="backborder" style="margin-bottom: 10px;" >
+    <button mat-raised-button color="primary" (click)="onlogin()">
+     Login
+   </button> <br> 
+ </div>

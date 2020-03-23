@@ -14,14 +14,13 @@ export class RestPasswordComponent implements OnInit {
   restPassword: ResetPassword = new ResetPassword();
   //loginForm:FormGroup;
 
-  token = new FormControl(this.restPassword.token);
+  //token = new FormControl(this.restPassword.token);
   newPassword = new FormControl(this.restPassword.newPassword, [
     Validators.required,
     Validators.minLength(7)
   ]);
 
-
-
+  emailToken:string;
   constructor(
     private snackBar: MatSnackBar,
     private httpservice: UserService,
@@ -31,15 +30,15 @@ export class RestPasswordComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    //this.token = this.route.snapshot.paramMap.get("token");
+    this.emailToken = this.route.snapshot.paramMap.get("token");
   }
-  getErrorMessage() {
-    return this.token.hasError("required")
-      ? "You must enter a value"
-      : this.token.hasError("token")
-      ? " "
-      : "Not a valid token";
-  }
+  // getErrorMessage() {
+  //   return this.token.hasError("required")
+  //     ? "You must enter a value"
+  //     : this.token.hasError("token")
+  //     ? " "
+  //     : "Not a valid token";
+  // }
   getErrorPassword() {
     return this.newPassword.hasError("required")
       ? "You must enter a value"
@@ -51,11 +50,11 @@ export class RestPasswordComponent implements OnInit {
     console.log(this.restPassword);
    
     this.httpservice
-      .putRequest("forgotPassword", this.restPassword)
+      .putRequest("forgotPassword/"+this.emailToken, this.restPassword)
       .subscribe((response: any) => {
         if (response.token !=null) {
           console.log(response);
-          
+          console.log(this.emailToken);
           this.snackBar.open(
             "Password Rest Sucessfully",
             "undo",
@@ -65,7 +64,7 @@ export class RestPasswordComponent implements OnInit {
           this.router.navigate(["/login"]);
         } else {
           console.log(response);
-          console.log("Login:" + this.restPassword.token);
+          console.log("Login:" + this.emailToken);
           this.snackBar.open("Login Failed", "undo", { duration: 2500 });
         }
       });
