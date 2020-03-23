@@ -1,5 +1,5 @@
-<mat-card class="backborder"  fxLayout="column" fxLayoutAlign="space-evenly center">
-    <div style="align-items: center;">
+<mat-card class="backborder" fxLayout="column" fxLayoutAlign="space-evenly center">
+    <div style="align-items: center;" fxLayout="column" fxLayoutAlign="start center">
       <img
         width="60"
         alt="Angular Logo"
@@ -17,14 +17,14 @@
       </h2>
     </mat-card-subtitle>
 
-    <!-- <div class="field1" fxLayout="row" fxLayoutAlign="end center" >
+    <div class="field1" fxLayout="row" fxLayoutAlign="end center" >
       <mat-form-field appearance="outline" class="input">
         <mat-label>LastName</mat-label>
         <input type="text" matInput placeholder="Enter your LastName" required />
   
         <mat-hint>Enter Name</mat-hint>
       </mat-form-field>
-    </div> -->
+    </div>
 
     <div class="field2" fxLayout="row" fxLayoutAlign="start center" >
       <mat-form-field appearance="outline" class="input">
@@ -48,8 +48,9 @@
       <mat-form-field appearance="outline" class="input">
         <mat-label>mobile</mat-label>
         <span matPrefix> +91&nbsp;</span>
-        <input type="number" matInput placeholder="Enter your phoneNumber" [formControl]="number" [(ngModel)]="user.number"  required/>
-        <mat-error *ngIf="mobile.invalid"> {{getErrorMobile()}}</mat-error> 
+        <input type="text" matInput placeholder="Enter your password" [(ngModel)]="user.number" [formControl]="mobile" required>
+          <mat-error *ngIf="mobile.invalid"> {{phoneNumber()}}</mat-error>
+        <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint>mobile</mat-hint>
       </mat-form-field>
     </div>

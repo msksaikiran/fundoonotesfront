@@ -3,29 +3,25 @@ import { UserService } from "src/app/service/user.service";
 import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import{Login} from 'src/app/models/login'
-
+import{ResetPassword} from 'src/app/models/resetPassword'
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-rest-password',
+  templateUrl: './rest-password.component.html',
+  styleUrls: ['./rest-password.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RestPasswordComponent implements OnInit {
 
-  login: Login = new Login();
-  loginForm:FormGroup;
+  restPassword: ResetPassword = new ResetPassword();
+  //loginForm:FormGroup;
 
-  email = new FormControl(this.login.email, [
-    Validators.required,
-    Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$")
-  ]);
-  password = new FormControl(this.login.password, [
+  token = new FormControl(this.restPassword.token);
+  newPassword = new FormControl(this.restPassword.newPassword, [
     Validators.required,
     Validators.minLength(7)
   ]);
 
-  token: string;
-  
+
+
   constructor(
     private snackBar: MatSnackBar,
     private httpservice: UserService,
@@ -35,42 +31,41 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.token = this.route.snapshot.paramMap.get("token");
+    //this.token = this.route.snapshot.paramMap.get("token");
   }
   getErrorMessage() {
-    return this.email.hasError("required")
+    return this.token.hasError("required")
       ? "You must enter a value"
-      : this.email.hasError("email")
+      : this.token.hasError("token")
       ? " "
-      : "Not a valid email";
+      : "Not a valid token";
   }
   getErrorPassword() {
-    return this.password.hasError("required")
+    return this.newPassword.hasError("required")
       ? "You must enter a value"
-      : this.password.hasError("password")
+      : this.newPassword.hasError("newPassword")
       ? " "
       : "Min 7 Elements";
   }
   onlogin() {
-    console.log(this.login);
-    this.token = localStorage.getItem("token");
+    console.log(this.restPassword);
+   
     this.httpservice
-      .postRequest("login", this.login)
+      .putRequest("forgotPassword", this.restPassword)
       .subscribe((response: any) => {
         if (response.token !=null) {
           console.log(response);
-          localStorage.setItem("token", response.token);
-          localStorage.setItem("email", response.emailId);
+          
           this.snackBar.open(
-            "Login Successfull",
+            "Password Rest Sucessfully",
             "undo",
 
             { duration: 25000}
           );
-          //this.router.navigate(["/dashboard"]);
+          this.router.navigate(["/login"]);
         } else {
           console.log(response);
-          console.log("Login:" + this.login.email);
+          console.log("Login:" + this.restPassword.token);
           this.snackBar.open("Login Failed", "undo", { duration: 2500 });
         }
       });

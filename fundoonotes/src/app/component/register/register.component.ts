@@ -45,14 +45,6 @@ export class RegisterComponent implements OnInit {
       : '';
   }
 
-  getErrorMobile() {
-    return this.mobile.hasError('required')
-      ? 'must required'
-      : this.password.hasError('number')
-      ? ' '
-      : 'number should be 10 digits';
-  }
-
   getErrorPassword() {
     return this.password.hasError('required')
       ? 'You must enter a value'
@@ -61,20 +53,18 @@ export class RegisterComponent implements OnInit {
       : 'Min 7 Elements';
   }
 
+  phoneNumber() {
+    return this.mobile.hasError('required') ? 'must required' : '';
+  }
 
   onRegister() {
     console.log(this.user)
   
     console.log(this.password)
 
-    this.httpservice.postRequest("register", this.user).subscribe(
-      (response: any) => {
-        this.snackBar.open(
-          "Registered Successfully",
-          "undo",
-          { duration: 2500 }
-        )
-        if (response.statusCode === 200) {
+    this.httpservice.postRequest("add-user", this.user)
+    .subscribe((response: any) => {
+        if (response.obj!=null){
           console.log(response);
           this.snackBar.open(
             "Registered Successfully",

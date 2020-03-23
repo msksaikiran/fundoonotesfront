@@ -9,18 +9,6 @@ import { HttpService } from './http.service';
 })
 export class UserService {
 
- // private baseUrl = environment.baseUrluser;
-//  // private Name=new Subject<any>();
-//   private httpOptions={headers:new HttpHeaders({'content-type':'application/json'})};
-//   constructor(private httpService:HttpService) { }
-
-//   loginUser(login:any):any
-//   {
-//     return this.httpService.post(this.baseUrl+"login",login,this.httpOptions);
-//   }
-  
-
-
   baseUrl = environment.baseUrluser;
   constructor(private http: HttpClient) {}
 
@@ -28,11 +16,12 @@ export class UserService {
     return this.http.post(this.baseUrl + url, data);
   }
 
-  // public putRequest(url: any): any {
-  //   return this.http.put(this.baseUrl + url, "", {
-  //     headers: new HttpHeaders().set("jwtToken", localStorage.getItem("token"))
-  //   });
-  // }
+  public putRequest(url: any, data: any): any {
+    return this.http.put(this.baseUrl + url, data);
+    // return this.http.put(this.baseUrl + url, "", {
+    //   headers: new HttpHeaders().set("jwtToken", localStorage.getItem("token"))
+    // });
+  }
 
   public getRequest(url: any): any {
     return this.http.get(this.baseUrl + url);
