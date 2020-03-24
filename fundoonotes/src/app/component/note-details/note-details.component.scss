@@ -1,0 +1,34 @@
+.matcard2{
+    margin-top: 50px;
+    margin-left: -7px;
+    width:225px;
+}
+.appicons{
+    margin-top: 10px;
+}
+.textarea1:empty:before
+{
+    content: attr(data-text);
+    opacity: 0.5;
+    font-size: 14px;
+    width:60px;
+    height:10px;
+}
+
+.matpad2
+{
+  // height: 110px;
+  height: max-content;
+  width: 200px;
+//   padding-left: 100px;
+}
+.matpad3
+{
+    height: max-content;
+    width: 547px;
+    padding-left: 50px;
+
+    // margin-top: 50px;
+    // margin-left: -7px;
+    // width:225px;
+}

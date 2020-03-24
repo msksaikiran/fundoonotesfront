@@ -28,6 +28,8 @@ import { EditlabelComponent } from './component/editlabel/editlabel.component';
 import { NoteupdateComponent } from './component/noteupdate/noteupdate.component';
 import { HttpService } from './service/http.service';
 import { NoteComponent } from './component/note/note.component';
+import { IconComponent } from './component/icon/icon.component';
+import { NoteDetailsComponent } from './component/note-details/note-details.component';
 //import { MatDialogRef } from "@angular/material/dialog";
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { NoteComponent } from './component/note/note.component';
     DashboardComponent,
     EditlabelComponent,
     NoteupdateComponent,
-    NoteComponent
+    NoteComponent,
+    IconComponent,
+    NoteDetailsComponent
   ],
   imports: [
     BrowserModule,

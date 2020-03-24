@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
     this.httpservice
       .postRequest("login", this.login)
       .subscribe((response: any) => {
+        this.snackBar.open("Verifying the user....", "undo", { duration: 25000});
         if (response.token !=null) {
           console.log(response);
           localStorage.setItem("token", response.token);
@@ -67,11 +68,11 @@ export class LoginComponent implements OnInit {
 
             { duration: 25000}
           );
-          this.router.navigate(["/dashboard"]);
+          this.router.navigate(["/dashboard/"+this.token]);
         } else {
           console.log(response);
           console.log("Login:" + this.login.email);
-          this.snackBar.open("Login Failed", "undo", { duration: 2500 });
+          this.snackBar.open("Login Failed", "undo", { duration: 25000});
         }
       });
   }

@@ -33,16 +33,16 @@ export class DashboardComponent implements OnInit {
   
   appName: string;
   open: boolean;
-
+  token: string;
   
   ngOnInit() {
     this.appName = "FundooNote";
-    
+    this.token = this.route.snapshot.paramMap.get("token");
   }
   
   onNotes() {
-    this.appName = "Note";
-    this.router.navigate(['dashboard'])
+    this.appName = "Keep";
+    this.router.navigate(['dashboard/userT/notes/'+this.token])
   }
 
 }

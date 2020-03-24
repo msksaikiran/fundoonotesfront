@@ -35,12 +35,12 @@ const routes: Routes = [
   },
   
     {
-      path:"notes/:token",
+      path:"notes",
       component:NoteComponent
     },
   
   {
-    path:"dashboard",
+    path:"dashboard/:token",
     component: DashboardComponent,
     children: [
       {
