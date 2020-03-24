@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   baseUrlNote: "http://localhost:8083/notes/",
-  baseUrluser: "http://localhost:8083/users/"
-
+  baseUrluser: "http://localhost:8083/users/",
+  baseUrlLabel:"http://localhost:9090/lable/"
 };
 
 /*

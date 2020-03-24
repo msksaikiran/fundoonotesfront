@@ -24,6 +24,11 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
 import { RestPasswordComponent } from './component/rest-password/rest-password.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import {MatDividerModule} from '@angular/material/divider';
+import { EditlabelComponent } from './component/editlabel/editlabel.component';
+import { NoteupdateComponent } from './component/noteupdate/noteupdate.component';
+import { HttpService } from './service/http.service';
+import { NoteComponent } from './component/note/note.component';
+//import { MatDialogRef } from "@angular/material/dialog";
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +36,10 @@ import {MatDividerModule} from '@angular/material/divider';
     RegisterComponent,
     ForgotPasswordComponent,
     RestPasswordComponent,
-    DashboardComponent
+    DashboardComponent,
+    EditlabelComponent,
+    NoteupdateComponent,
+    NoteComponent
   ],
   imports: [
     BrowserModule,
@@ -50,11 +58,18 @@ import {MatDividerModule} from '@angular/material/divider';
     MatSidenavModule,
     MatToolbarModule,
     MatMenuModule,
+  //  MatDialogRef,
     //MatNavList,
     MatDividerModule,
+  //  MatDialogRef,
+    //MAT_DIALOG_DATA,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [HttpService],
+  entryComponents:[
+    NoteupdateComponent,
+    EditlabelComponent,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
-import { UserService } from "src/app/service/user.service";
-import { Login } from 'src/app/models/login';
+import { MatSnackBar ,MatDialog} from '@angular/material';
+import { NoteupdateComponent } from '../noteupdate/noteupdate.component';
+import { EditlabelComponent } from '../editlabel/editlabel.component';
+import { LabelService } from 'src/app/service/label.service';
+import { DataService } from 'src/app/service/data.service';
+import { BehaviorSubject } from 'rxjs';
+import { ViewService } from 'src/app/service/view.service';
+import { NoteService } from 'src/app/service/note.service';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -11,41 +17,32 @@ import { Login } from 'src/app/models/login';
 })
 export class DashboardComponent implements OnInit {
 
-  login: Login = new Login();
+  //constructor() { }
+  //ngOnInit(){}
+
+  
   constructor(
-    private snackBar: MatSnackBar,
-    private httpservice: UserService,
-    public formBuilder: FormBuilder,
+    private snackbar: MatSnackBar,
+    private labelService: LabelService,
+    private noteservice: NoteService,
     private route: ActivatedRoute,
-    private router: Router
-  ) { }
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private dataservice: DataService,
+    private viewservice: ViewService) { }
+  
+  appName: string;
+  open: boolean;
 
+  
   ngOnInit() {
+    this.appName = "FundooNote";
+    
   }
-
-  toggle() {
-    console.log(this.login);
-  //  this.token = localStorage.getItem("token");
-    this.httpservice
-      .postRequest("login",this.login)
-      .subscribe((response: any) => {
-        if (response.token !=null) {
-          console.log(response);
-          localStorage.setItem("token", response.token);
-          localStorage.setItem("email", response.emailId);
-          this.snackBar.open(
-            "Login Successfull",
-            "undo",
-
-            { duration: 25000}
-          );
-          //this.router.navigate(["/dashboard"]);
-        } else {
-          console.log(response);
-        //  console.log("Login:" + this.login.email);
-          this.snackBar.open("Login Failed", "undo", { duration: 2500 });
-        }
-      });
+  
+  onNotes() {
+    this.appName = "Note";
+    this.router.navigate(['dashboard'])
   }
 
 }

@@ -5,12 +5,13 @@ import { RegisterComponent } from './component/register/register.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { RestPasswordComponent } from './component/rest-password/rest-password.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { NoteComponent } from './component/note/note.component';
 
 
 const routes: Routes = [
   {
     path:" ",
-    component: LoginComponent
+    component:LoginComponent
   },
   {
     path:"login",
@@ -31,6 +32,22 @@ const routes: Routes = [
   {
     path:"dashboard",
     component:DashboardComponent
+  },
+  
+    {
+      path:"notes/:token",
+      component:NoteComponent
+    },
+  
+  {
+    path:"dashboard",
+    component: DashboardComponent,
+    children: [
+      {
+        path:"notes/:token",
+        component:NoteComponent
+      }
+    ]
   }
   
 ];

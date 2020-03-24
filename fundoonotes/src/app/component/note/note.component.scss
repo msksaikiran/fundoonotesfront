@@ -1,0 +1,121 @@
+// .note{
+//     margin-left: 24%;
+//     padding-top: 3%;
+//     width: 546px;
+//     height: 25vh;
+//     padding-bottom: 2%;
+
+// }
+.close{
+    //margin-top: -48px;
+    margin-top: -48px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 80%;
+    margin-top: 5%;
+    margin-bottom: 4%;
+   
+}
+.searchBar
+{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 70%;
+    border:none;
+    outline:none;
+    float: left;
+}
+.matcard{
+    display: flex;
+    justify-content: center;
+    width: 36%;
+    border-radius: 12px;
+    height: 3%;
+    background-color: #fffcfc;
+}
+.matcard1{
+    display: block;
+    justify-content: center;
+    width: 35%;
+    border-radius: 1em;
+    height: 10em;
+    padding-bottom: 22px;
+} 
+textarea{
+    border: none;
+    height: 1.2em;
+    margin-bottom: 0px;
+    padding: 16px;
+    font-weight: bolder;
+    outline: none;
+    resize: none;
+}
+input:placeholder-shown{
+    font-size: 20px;
+    font-weight: bolder;
+    font-family: 'Product Sans',Arial,sans-serif;
+  }
+#title::placeholder {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+}
+#desc::placeholder {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+#title{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+}
+#description{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+}
+button{
+    //background-color:whitesmoke;
+     border: none;
+    color: black;
+     text-align: center;
+    text-decoration: none;
+     display: flex;
+     font-size: 16px;
+    margin-left: 90%;
+   font-family: 'Open Sans', sans-serif;
+   font-weight: bold;
+    outline: none;
+   
+ }
+ .icon{
+    padding-top: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    display: flex;
+    
+}
+.archive{
+    padding-left: 153px;
+    margin-left: -386px;
+    margin-top: -28px;
+}
+.personAdd{
+    margin-left: 38px;
+    margin-top: -28px;
+}
+.colorImg{
+    margin-left: -2px;
+    margin-top: -28px;
+}
+.gallery{
+
+    margin-left: -11px;
+    margin-top: -28px
+}
+.archivePin{
+    margin-left: -5px;
+    margin-top: -28px;
+}
