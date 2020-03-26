@@ -13,9 +13,9 @@
           </button>
 
           <input class="searchInput" placeholder="Search" >
-          <button mat-icon-button class="cancel">
+          <!-- <button mat-icon-button class="cancel">
             <mat-icon>clear</mat-icon>
-          </button>
+          </button> -->
         </div>
 
         <div fxLayout="row" fxLayoutAlign="space-evenly center" style="margin-left: 278px" >
@@ -61,7 +61,7 @@
        <mat-sidenav #snav mode="side" class="matsidenav"> 
 
          <div class="note">
-          <button mat-button class="notebutton">
+          <button mat-button class="notebutton" (click)="onNotes()" >
             
             <div class="icon">
               <mat-icon >lightbulb_outline</mat-icon>

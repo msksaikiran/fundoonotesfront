@@ -19,6 +19,7 @@ export class IconComponent implements OnInit {
 
   trash: Trash = new Trash();
   color: Color = new Color();
+  
   constructor(
     private snackbar: MatSnackBar,
     private noteService: NoteService,
