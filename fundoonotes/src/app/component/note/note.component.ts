@@ -61,7 +61,7 @@ title=new FormControl(this.note.title);
         else{
           console.log(Response);
           this.snackbar.open(
-            "note Creation unSuccessfull","undo",
+            "Note Not unSuccessfull","undo",
             {duration:2500}
           )
         }

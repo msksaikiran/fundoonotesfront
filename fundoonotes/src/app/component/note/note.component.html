@@ -1,5 +1,5 @@
 <!-- {{note | json}} -->
-    <div class="container" fxLayout="row"  fxLayoutAlign="center start" >
+    <div class="container" fxLayout="row"  fxLayoutAlign="center center" >
         <mat-card (click)="onOpen()" *ngIf="!open" class="matcard" >
              <input matInput class="searchBar" placeholder="Take a Note..." [formControl]="description"> 
             
@@ -54,4 +54,5 @@
         </mat-card>
         
     </div>
- <app-note-details></app-note-details>  
+
+ <app-note-details></app-note-details> 

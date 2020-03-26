@@ -1,9 +1,9 @@
 <div class=icons fxLayout=layout-wrap>
-    <button mat-icon-button (click)="addalert()" [matMenuTriggerFor]="menu3">
+    <button mat-icon-button (click)="addalert()" >
       <mat-icon class=color> add_alert</mat-icon>
     </button>
   
-    <button class=trash mat-icon-button (click)="personadd()">
+    <button mat-icon-button (click)="personadd()">
       <mat-icon class=color> person_add</mat-icon>
     </button>
   
@@ -11,24 +11,24 @@
       <mat-icon class=color> color_lens</mat-icon>
     </button>
   
-    <mat-menu #menu1="matMenu">
+     <mat-menu #menu1="matMenu">
       <div *ngFor="let colors of  arrayColor" fxLayout="row">
         <div *ngFor="let color of colors">
   
           <button [ngStyle]="{'background-color':color.hexcode}" mat-mini-fab (click)=setColor(color.name)></button>
         </div>
-      </div>
-    </mat-menu>
+      </div> 
+    </mat-menu> 
   
-    <button class=trash mat-icon-button (click)="insertphoto()">
+    <button mat-icon-button (click)="insertphoto()">
       <mat-icon class=color> insert_photo</mat-icon>
     </button>
   
-    <button class=trash mat-icon-button (click)="archive()">
+    <button  mat-icon-button (click)="archive()">
       <mat-icon class=color> archive</mat-icon>
     </button>
   
-    <button class=trash mat-icon-button [matMenuTriggerFor]="menu">
+    <button  mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon class=color> more_vert</mat-icon>
     </button>
   
@@ -36,35 +36,24 @@
   <div>
     <mat-menu #menu="matMenu">
       <div class=button>
-        <button mat-icon-button color="primary" (click)="onDelete()">Delete note</button>
+        <button mat-icon-button color="primary" (click)="onDelete()">Delete</button>
       </div>
   
-      <div class=button>
+      <!-- <div class=button>
         <button mat-menu-item color="primary" [matMenuTriggerFor]="subMenu">Add label</button>
-      </div>
+      </div> -->
     </mat-menu>
   </div>
   
-  <!-- <mat-menu #subMenu="matMenu">
+   <!-- <mat-menu #subMenu="matMenu">
     <div *ngFor="let labels of label" fxLayoutGap="20px" fxLayout="column">
       <mat-checkbox (click)="addlabel(labels)">
         {{labels.lableName}}
       </mat-checkbox>
     </div>
-  </mat-menu>-->
+  </mat-menu> -->
   <div> 
-    <!-- <mat-menu #menu3="matMenu">
-      <span style="margin-left: 10px">Reminder:</span>
-  
-      <mat-form-field style="margin-left: 10px">
-        <input matInput [matDatepicker]="picker" (click)="datePicker()" placeholder="Choose a date"
-          [formControl]=dateControl [(ngModel)]="dateReminder.reminder">
-        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-  
-      </mat-form-field>
-    </mat-menu> -->
+   
   </div>
   
   <div>

@@ -10,7 +10,7 @@ import { NoteComponent } from './component/note/note.component';
 
 const routes: Routes = [
   {
-    path:" ",
+    path:"",
     component:LoginComponent
   },
   {
@@ -41,13 +41,13 @@ const routes: Routes = [
   
   {
     path:"dashboard/:token",
-    component: DashboardComponent,
-    children: [
-      {
-        path:"notes/:token",
-        component:NoteComponent
-      }
-    ]
+    component: DashboardComponent
+    // children: [
+    //   {
+    //     path:"notes/:token",
+    //     component:NoteComponent
+    //   }
+    // ]
   }
   
 ];

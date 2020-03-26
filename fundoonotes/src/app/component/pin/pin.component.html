@@ -1,0 +1,13 @@
+<p>pin works!</p>
+<div class=pin >
+    <button mat-icon-button (click)="pin()" *ngIf="toggle==true" >
+            <mat-icon class=color> <img  style="margin-left: 181px;" src="../../../assets/keep-512.svg"></mat-icon>  
+            
+          </button>
+        </div>
+        <div class=pin >
+            <button mat-icon-button (click)="unpin()" *ngIf="toggle==false" >
+              <mat-icon class=color> <img style="    margin-left: 181px;"   src="../../../assets/keep-512.svg"></mat-icon>  
+            
+                  </button>
+        </div>

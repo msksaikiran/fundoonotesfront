@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit {
   
   onNotes() {
     this.appName = "Keep";
-    this.router.navigate(['dashboard/userT/notes/'+this.token])
+   //this.router.navigate(['dashboard/userT/notes/'+this.token])
   }
 
 }

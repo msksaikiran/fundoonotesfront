@@ -1,5 +1,5 @@
 <div class="backcontainer" fxLayout="column" fxLayoutAlign="center none">
-    <div>
+    <div style=" background-color: whitesmoke;">
         <mat-toolbar>
         <mat-toolbar-row>
           <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
@@ -42,24 +42,27 @@
               <button mat-menu-item>Item 1</button>
               <button mat-menu-item>Item 2</button>
             </mat-menu>
+
           </button>
-          
-            <button mat-button  mat-icon-button
-              (click)="account()" fxShow="true" width="30">
+            <button mat-button  mat-icon-button (click)="account()" fxShow="true" width="30">
               <mat-icon> account_circle</mat-icon>
-            </button>
-          
+            </button>   
         </div>
+       
         </mat-toolbar-row>
+      
        </mat-toolbar>
+      
     </div>
-  
+   
    <div class="hiddenMenu" fxLayout="column" fxLayoutAlign="center start"> 
+    
     <mat-sidenav-container >
        <mat-sidenav #snav mode="side" class="matsidenav"> 
 
          <div class="note">
-          <button mat-button class="notebutton" (click)="onNotes()">
+          <button mat-button class="notebutton">
+            
             <div class="icon">
               <mat-icon >lightbulb_outline</mat-icon>
             </div>
@@ -73,7 +76,7 @@
             <span>Reminder</span>
           </button>
         </div>
-
+      
         <mat-divider></mat-divider>
         
         <div *ngFor="let data of labelsDisplay">
@@ -117,9 +120,12 @@
        </mat-sidenav>
 
       <mat-sidenav-content >
-        <router-outlet ></router-outlet>
+        
+        <router-outlet></router-outlet>
+        <app-note></app-note>
      </mat-sidenav-content>
-
+    
     </mat-sidenav-container>
+      
     </div>
   </div> 

@@ -30,6 +30,7 @@ import { HttpService } from './service/http.service';
 import { NoteComponent } from './component/note/note.component';
 import { IconComponent } from './component/icon/icon.component';
 import { NoteDetailsComponent } from './component/note-details/note-details.component';
+import { PinComponent } from './component/pin/pin.component';
 //import { MatDialogRef } from "@angular/material/dialog";
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NoteDetailsComponent } from './component/note-details/note-details.comp
     NoteupdateComponent,
     NoteComponent,
     IconComponent,
-    NoteDetailsComponent
+    NoteDetailsComponent,
+    PinComponent
   ],
   imports: [
     BrowserModule,
