@@ -7,15 +7,13 @@
           <span><mat-label style="font-family: sans-serif; padding-left: 5px;">{{appName}}</mat-label>
           </span>
 
-          <div class="searchIcon" fxLayout="row" fxLayoutAlign="center center">
+          <div class="searchIcon" fxLayout="row">
           <button mat-icon-button class="search-icon">
             <mat-icon matTooltip="Search" (click)="onsearch()">search</mat-icon>
           </button>
 
           <input class="searchInput" placeholder="Search" >
-          <!-- <button mat-icon-button class="cancel">
-            <mat-icon>clear</mat-icon>
-          </button> -->
+          
         </div>
 
         <div fxLayout="row" fxLayoutAlign="space-evenly center" style="margin-left: 278px" >
@@ -79,17 +77,23 @@
       
         <mat-divider></mat-divider>
         
-        <div *ngFor="let data of labelsDisplay">
+
+        <!-- 
+        <br><br>
+        <div *ngFor="let note of label">
           <button class="showlabel" mat-button>
             <mat-icon matPrefix>label outline</mat-icon>
-            {{data.lableName}}
+            {{note.lableName}}
             <br>
           </button>
-        </div>
-
+        </div> -->
+        <mat-label class="labelmat">LABELS</mat-label> 
+        <br><br>
+        <app-get-label></app-get-label> 
+        <br><br>
         <diV class="label">
-          <mat-label class="labelmat">LABELS</mat-label>
-          <button mat-button class="labelbutton">
+          
+          <button mat-button class="labelbutton" (click)=openDialogLabel()>
             <div class="icon">
               <mat-icon>edit</mat-icon>
             </div>
@@ -119,10 +123,9 @@
 
        </mat-sidenav>
 
-      <mat-sidenav-content >
-        
+      <mat-sidenav-content > 
         <router-outlet></router-outlet>
-        <app-note></app-note>
+         <!-- <app-note></app-note> -->
      </mat-sidenav-content>
     
     </mat-sidenav-container>

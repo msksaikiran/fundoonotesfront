@@ -22,15 +22,14 @@
     display: flex;
     width: 100%; 
     height: 100%; 
+    
   }
   .hiddenMenu{
     height: 100%; 
     width: 100%; 
     overflow: auto;
   }
-  .matsidenav{
-    width: 16%;
-  }
+  
  .mat-sidenav-content{
     justify-content: center;
     overflow: scroll;
@@ -43,7 +42,7 @@
     margin-top: 0px;
     border-color: 1px whitesmoke;
     background-color:whitesmoke;
-    width: 355px;
+    width: 313px;
     justify-content: center !important;
     background-color: transparent;
   }
@@ -118,13 +117,14 @@
   .label{
    
     width: 100%;
-    height: 20%;
+    height: 10%;
   }
   .labelbutton{
     
     width: 100%;
-    height: 50%;
+    height: 100%;
     font-size: medium;
+    margin-top: -12px;
     border-top-right-radius: 2em;
     border-bottom-right-radius: 2em;
   }

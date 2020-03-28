@@ -23,12 +23,13 @@ export class DashboardComponent implements OnInit {
   
   constructor(
     private snackbar: MatSnackBar,
-    private labelService: LabelService,
+    private labelservice: LabelService,
     private noteservice: NoteService,
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
     private dataservice: DataService,
+    public dialog: MatDialog,
     private viewservice: ViewService) { }
   
   appName: string;
@@ -36,13 +37,45 @@ export class DashboardComponent implements OnInit {
   token: string;
   
   ngOnInit() {
+    //this.token = this.route.snapshot.paramMap.get("token");
     this.appName = "FundooNote";
-    this.token = this.route.snapshot.paramMap.get("token");
+    
   }
   
   onNotes() {
+    this.token = localStorage.getItem("token");
+    console.log(this.token)
     this.appName = "Keep";
-   //this.router.navigate(['dashboard/userT/notes/'+this.token])
+    this.router.navigate(['dashboard/notes/' + this.token])
+  }
+  onArchive() {
+    console.log(this.token)
+    this.appName = "Archieve";
+    this.router.navigate(['dashboard/archive/' + this.token])
+  }
+  onTrash() {
+    console.log(this.token)
+    this.appName = "Trash";
+    this.router.navigate(['dashboard/trash/' + this.token])
   }
 
+  openDialogLabel(notes: any) {
+
+    const dialogRef = this.dialog.open(EditlabelComponent);
+  }
+
+  
+  label = [];
+
+  getallabels() {
+    console.log("++++=======>+++++")
+    this.labelservice.getRequest("user/" + localStorage.getItem("token")).subscribe(
+      (Response: any) => {
+            
+        this.label = Response.result;
+        console.log(this.label)
+      }
+
+    )
+  }
 }
