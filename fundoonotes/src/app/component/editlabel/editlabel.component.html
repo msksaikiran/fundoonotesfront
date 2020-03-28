@@ -1,1 +1,14 @@
-<p>editlabel works!</p>
+
+    <mat-card class="matcard2">
+        
+        <textarea  matInput id="title"   type="text" class="input"placeholder="Label" [formControl]=lableName  [(ngModel)]="label.lableName"></textarea>
+        <app-get-label></app-get-label> 
+        <br><br>
+        <mat-divider></mat-divider>
+        <div class="done" fxLayout="column" fxLayoutAlign="end end">
+          <button  mat-raised-button color="primary"(click)="onClose()" >done</button>
+        </div>
+        
+    </mat-card>
+      
+  
