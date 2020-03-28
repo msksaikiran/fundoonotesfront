@@ -1,0 +1,25 @@
+    .matcard2{
+        margin-top: 33px;
+        margin-left: -7px;
+        width:512px;
+        border-radius: 14px;
+        padding-bottom: 50px;
+    }
+    .appicons{
+        margin-top: 10px;
+    }
+    .textarea1:empty:before
+    {
+        content: attr(data-text);
+        opacity: 0.5;
+        font-size: 14px;
+        width:60px;
+        height:10px;
+    }
+    .iconBackborder{
+        margin-top: -57px;
+    }
+    
+    .allnotes{
+        width: 10px;
+    }

@@ -9,6 +9,7 @@ import { NoteService } from 'src/app/service/note.service';
 import { DataService } from 'src/app/service/data.service';
 import { Note } from 'src/app/models/note';
 import { displayNotes } from 'src/app/models/diplayNotes';
+import { NoteupdateComponent } from '../noteupdate/noteupdate.component';
 
 @Component({
   selector: 'app-note-details',
@@ -35,14 +36,14 @@ export class NoteDetailsComponent implements OnInit {
     private noteService: NoteService,
     private data: DataService,
     private route:ActivatedRoute,private router:Router,
-  //  public dialog: MatDialog
-    private formBuilder:FormBuilder,
+     public dialog: MatDialog,
+    private formBuilder:FormBuilder
     
     ) { }
 
-    message:string;
+  message:string;
   token: string;
- 
+  open: boolean;
 
  
   ngOnInit() {
@@ -58,7 +59,10 @@ export class NoteDetailsComponent implements OnInit {
                       console.log(this.direction);
                        
             });  
-    }
+  }
+ 
+    
+  
     getallNotes(){
       this.noteService.getRequest("users/"+this.token).subscribe(
         (Response:any)=>{
@@ -69,20 +73,10 @@ export class NoteDetailsComponent implements OnInit {
         }  
       )
     }
-    // onUpdate(note:any): void {
-    //   console.log("note",note);
-    //   console.log(note)
-    //     const dialogRef = this.dialog.open(NoteupdateComponent, {
-    //    height:'300px',
-    //    width:'300px',
-    //       data: { 
-    //              'title': note.title,
-    //               'description':note.description,
-    //               'noteId':note.noteId
-    //             }
-          
-    //     });
-    //   }
+  onUpdate(note: any): void {
+      const dialogRef = this.dialog.open(NoteupdateComponent, {});
+      
+      }
   
   
 }

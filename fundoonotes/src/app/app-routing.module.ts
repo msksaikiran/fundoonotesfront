@@ -6,8 +6,9 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
 import { RestPasswordComponent } from './component/rest-password/rest-password.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { NoteComponent } from './component/note/note.component';
-
-
+import { ArchiveComponent } from './component/archive/archive.component';
+import { TrashComponent } from './component/trash/trash.component';
+import { EditlabelComponent } from './component/editlabel/editlabel.component';
 const routes: Routes = [
   {
     path:"",
@@ -40,15 +41,28 @@ const routes: Routes = [
     },
   
   {
-    path:"dashboard/:token",
-    component: DashboardComponent
-    // children: [
-    //   {
-    //     path:"notes/:token",
-    //     component:NoteComponent
-    //   }
-    // ]
-  }
+    path: "dashboard",
+    component: DashboardComponent,
+    children: [
+      {
+        path: "archive/:token",
+        component: ArchiveComponent
+      },
+      {
+        path: "notes/:token",
+        component: NoteComponent
+      },
+      {
+        path: "trash/:token",
+        component: TrashComponent
+      }
+    ]
+  },
+      {
+        path:"allLabels",
+        component:EditlabelComponent
+      }
+    
   
 ];
 

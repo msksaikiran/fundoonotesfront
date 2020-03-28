@@ -13,10 +13,6 @@ import { DataService } from 'src/app/service/data.service';
 })
 export class NoteComponent implements OnInit {
 
-  // constructor() { }
-
-  // ngOnInit() {
-  // }
 
 open:boolean;
 note:Note =new Note();

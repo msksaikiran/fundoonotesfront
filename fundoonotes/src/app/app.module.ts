@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
-import { MatInputModule, MatSnackBarModule, MatNavList } from "@angular/material";
+import { MatInputModule, MatSnackBarModule, MatNavList} from "@angular/material";
 import { FormsModule , ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
@@ -31,7 +31,11 @@ import { NoteComponent } from './component/note/note.component';
 import { IconComponent } from './component/icon/icon.component';
 import { NoteDetailsComponent } from './component/note-details/note-details.component';
 import { PinComponent } from './component/pin/pin.component';
-//import { MatDialogRef } from "@angular/material/dialog";
+import { MatDialogModule } from "@angular/material/dialog";
+import { ArchiveComponent } from './component/archive/archive.component';
+import { TrashComponent } from './component/trash/trash.component';
+import { GetLabelComponent } from './component/get-label/get-label.component';
+import { MatCheckboxModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +49,11 @@ import { PinComponent } from './component/pin/pin.component';
     NoteComponent,
     IconComponent,
     NoteDetailsComponent,
-    PinComponent
+    PinComponent,
+    ArchiveComponent,
+    TrashComponent,
+    EditlabelComponent,
+    GetLabelComponent
   ],
   imports: [
     BrowserModule,
@@ -64,10 +72,12 @@ import { PinComponent } from './component/pin/pin.component';
     MatSidenavModule,
     MatToolbarModule,
     MatMenuModule,
-  //  MatDialogRef,
+    MatDialogModule,
+    MatCheckboxModule,
+   // MatDialogRef,
     //MatNavList,
     MatDividerModule,
-  //  MatDialogRef,
+  
     //MAT_DIALOG_DATA,
     FlexLayoutModule
   ],

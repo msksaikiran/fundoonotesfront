@@ -1,0 +1,38 @@
+<div fxLayout="row" fxLayoutAlign="center center"   class="1">
+   
+    <div fxLayout="row wrap"  fxLayout="{{direction}} wrap"    class="allnotes" style="flex-direction: row;  display: flex;" fxLayoutAlign="center center">
+ 
+      <div *ngFor="let note of notes">
+   
+       <div *ngIf="note.isTrashed==1" >  
+
+        <div class="notearea" (click)="onUpdate(note)" >
+
+         <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2" >
+           
+             <form>
+                <app-pin></app-pin>   
+                 
+                   <div>
+                      {{note.title}}
+                   </div>
+                   <br>
+                   <div>
+                      {{note.description}}
+                   </div>
+                 
+                <!-- <app-label-note [labelInfo]=note></app-label-note> -->
+                <div class=appicons fxLayoutAlign="center center">
+                </div> 
+             </form> 
+          </mat-card>
+         
+        </div> 
+
+        <div class="iconBackborder">
+        <!-- <app-icon [noteInfo]=note></app-icon> -->
+        </div>
+
+    </div>
+ </div>  
+ </div>

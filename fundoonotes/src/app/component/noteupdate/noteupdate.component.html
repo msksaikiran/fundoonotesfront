@@ -1,1 +1,26 @@
-<p>noteupdate works!</p>
+<mat-card class="matcard2">
+  <form>
+
+     <div data-text="Take a Note"  class="textarea1" >
+            <textarea  matInput id="title"   type="text" class="input" placeholder="Title" ></textarea>
+     </div>
+
+        <br>
+
+     <div data-text="Take a Note" contenteditable="true" class="textarea1"  >
+          <textarea  matInput id="description"   type="text" class="input" placeholder="Description" ></textarea>
+      </div>
+
+   </form>
+<app-icon></app-icon>
+</mat-card>
+ <div fxLayout="column" fxLayoutAlign="end end"  style="margin-left: 252px;margin-bottom: -15px;">
+
+     <button class=close mat-button (click)="onClose()" > close</button>
+
+  </div> 
+     
+     
+      
+  
+    

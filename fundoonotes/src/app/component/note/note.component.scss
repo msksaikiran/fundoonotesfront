@@ -18,11 +18,12 @@
 .searchBar
 {
     display: flex;
+    -webkit-box-pack: center;
     justify-content: center;
-   // height: 100%;
-    width: 70%;
-    border:none;
-    outline:none;
+    width: 55%;
+    margin-left: -150px;
+    border: none;
+    outline: none;
     float: left;
 }
 .matcard{

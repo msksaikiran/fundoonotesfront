@@ -13,7 +13,7 @@ import { Login } from 'src/app/models/login';
 export class LoginComponent implements OnInit {
 
   login: Login = new Login();
- // loginForm:FormGroup;
+ 
 
   email = new FormControl(this.login.email, [
     Validators.required,
@@ -61,14 +61,13 @@ export class LoginComponent implements OnInit {
         if (response.token !=null) {
           console.log(response);
           localStorage.setItem("token", response.token);
-          localStorage.setItem("email", response.emailId);
           this.snackBar.open(
             "Login Successfull",
             "undo",
 
             { duration: 25000}
           );
-          this.router.navigate(["/dashboard/"+this.token]);
+          this.router.navigate(["/dashboard/notes/"+this.token]);
         } else {
           console.log(response);
           console.log("Login:" + this.login.email);
