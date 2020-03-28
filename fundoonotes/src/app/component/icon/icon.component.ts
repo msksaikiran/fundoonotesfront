@@ -7,6 +7,7 @@ import { NoteService } from 'src/app/service/note.service';
 import { DataService } from 'src/app/service/data.service';
 import { Trash } from 'src/app/models/trash';
 import { Color } from 'src/app/models/setcolor';
+import { Label } from 'src/app/models/label';
 
 @Component({
   selector: 'app-icon',
@@ -19,7 +20,7 @@ export class IconComponent implements OnInit {
 
   trash: Trash = new Trash();
   color: Color = new Color();
-  
+  label: Label = new Label();
   constructor(
     private snackbar: MatSnackBar,
     private noteService: NoteService,
@@ -71,7 +72,8 @@ export class IconComponent implements OnInit {
     console.log(color)
     console.log("----------------")
     this.color.nid = this.noteInfo.nid;
-    this.color.colour=this.noteInfo.colour;
+   
+    
     console.log(this.color);
     this.noteService.putRequest("color/" + this.token, color).subscribe(
       (Response: any) => {
@@ -100,7 +102,7 @@ export class IconComponent implements OnInit {
     console.log(this.noteInfo.nid);
     this.trash.nid = this.noteInfo.nid;
     console.log(this.trash);
-    this.noteService.putRequest("trash/" + this.token,this.trash).subscribe(
+    this.noteService.putRequest("trash/" + this.token, this.trash).subscribe(
       (Response: any) => {
 
         if (Response.statusCode === 200) {
@@ -122,6 +124,34 @@ export class IconComponent implements OnInit {
         }
       }
     )
-  } 
+  }
 
+
+  archive() {
+    this.trash.nid = this.noteInfo.nid;
+    console.log(this.trash);
+    this.noteService.putRequest("archieve/" + this.token, this.trash).subscribe(
+      (Response: any) => {
+        console.log(this.noteInfo.noteId)
+        if (Response.statusCode === 200) {
+          console.log(this.noteInfo)
+          this.dataService.changeMessage('trash')
+          console.log(Response);
+          this.snackbar.open(
+            "Note archive successfull ", "undo",
+            { duration: 2500 }
+          )
+        }
+
+        else {
+          console.log(Response);
+          this.snackbar.open(
+            "Note Archive unSuccessfull", "undo",
+            { duration: 2500 }
+          )
+        }
+      }
+    )
+
+  }
 }

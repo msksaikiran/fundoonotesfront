@@ -1,4 +1,4 @@
-<div class=icons fxLayout=layout-wrap>
+<div class=icons fxLayout=layout-wrap fxLayout="row"  fxLayoutAlign="start center">
     <button mat-icon-button (click)="addalert()" >
       <mat-icon class=color> add_alert</mat-icon>
     </button>
@@ -35,7 +35,7 @@
   </div>
   <div>
     <mat-menu #menu="matMenu">
-      <div class=button>
+      <div class=button style="text-align: center">
         <button mat-icon-button color="primary" (click)="onDelete()">Delete</button>
       </div>
   
@@ -45,10 +45,11 @@
     </mat-menu>
   </div>
   
-   <!-- <mat-menu #subMenu="matMenu">
+  <!-- <mat-menu #subMenu="matMenu">
+    <textarea id="label"   [formControl] ="label"  [(ngModel)]="label.lableName" matInput type="text" class="input" placeholder="lableName" ></textarea>
     <div *ngFor="let labels of label" fxLayoutGap="20px" fxLayout="column">
       <mat-checkbox (click)="addlabel(labels)">
-        {{labels.lableName}}
+        {{label.lableName}}
       </mat-checkbox>
     </div>
   </mat-menu> -->
@@ -56,4 +57,4 @@
    
   </div>
   
-  <div>
+<div>
