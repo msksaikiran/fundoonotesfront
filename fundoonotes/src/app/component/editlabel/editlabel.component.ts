@@ -5,6 +5,7 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { DataService } from 'src/app/service/data.service';
 import { MatSnackBar } from '@angular/material';
 import { Label } from 'src/app/models/label';
+import { LabelId } from 'src/app/models/labelid';
 
 @Component({
   selector: 'app-editlabel',
@@ -16,9 +17,10 @@ export class EditlabelComponent implements OnInit {
   //label=[];
   label:Label = new Label();
   labels:any[];
-  
+  lid: LabelId = new LabelId();
   message:string;
-  lableName =new FormControl(this.label.lableName);
+  lableName = new FormControl(this.label.lableName);
+  
   constructor(
     private snackbar: MatSnackBar,
     private labelservice: LabelService,
@@ -83,4 +85,56 @@ export class EditlabelComponent implements OnInit {
     )
   }
 
+  update(label:any){
+  
+    // console.log(label )
+    // this.labelservice.putRequest("update?lableId="+label.la,label).subscribe(
+    //   (Response:any)=>{
+    //     if(Response.statusCode===200){
+    //       this.dataService.changeMessage("Update labels")
+    //       console.log(Response)
+
+    //       this.snackbar.open(
+    //         "Label Updates Successfull","undo",
+    //         {duration:2500}
+    //       )
+    //     }
+    //     else{
+    //       this.snackbar.open(
+    //         "Label Update UnSuccessfull","undo",
+    //         {duration:2500}
+    //       )
+    //     }
+    //   }
+      
+    // )
+
+  }
+  delete(label:any) {
+   // console.log(label)
+    this.lid.lId = label.lId;
+    console.log(this.lid)
+    this.labelservice.deleteRequest("delete/"+localStorage.getItem("token"),this.lid).subscribe(
+      (Response:any)=>{
+        if(Response.statusCode===200){
+          this.dataService.changeMessage("Delet labels")
+          console.log(Response)
+
+          this.snackbar.open(
+            "Label Delete successfull","undo",
+            {duration:2500}
+          )
+        }
+        else{
+          this.snackbar.open(
+            "Label Delete Unsuccessfull","undo",
+            {duration:2500}
+          )
+        }
+      }
+      
+
+    )
+  }
+  
 }

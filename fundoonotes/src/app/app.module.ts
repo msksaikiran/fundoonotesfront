@@ -30,13 +30,14 @@ import { HttpService } from './service/http.service';
 import { NoteComponent } from './component/note/note.component';
 import { IconComponent } from './component/icon/icon.component';
 import { NoteDetailsComponent } from './component/note-details/note-details.component';
-import { PinComponent } from './component/pin/pin.component';
 import { MatDialogModule } from "@angular/material/dialog";
 import { ArchiveComponent } from './component/archive/archive.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { GetLabelComponent } from './component/get-label/get-label.component';
 import { MatCheckboxModule } from '@angular/material';
 import { UnpinComponent } from './component/unpin/unpin.component';
+import { LabelNoteComponent } from './component/label-note/label-note.component';
+import { MatChipsModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,12 +51,12 @@ import { UnpinComponent } from './component/unpin/unpin.component';
     NoteComponent,
     IconComponent,
     NoteDetailsComponent,
-    PinComponent,
     ArchiveComponent,
     TrashComponent,
     EditlabelComponent,
     GetLabelComponent,
-    UnpinComponent
+    UnpinComponent,
+    LabelNoteComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +79,7 @@ import { UnpinComponent } from './component/unpin/unpin.component';
     MatCheckboxModule,
    // MatDialogRef,
     //MatNavList,
+    MatChipsModule,
     MatDividerModule,
   
     //MAT_DIALOG_DATA,

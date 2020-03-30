@@ -1,7 +1,7 @@
-import { displayNotes } from './diplayNotes';
+import { DisplayNotes } from './diplayNotes';
 
 describe('Note', () => {
   it('should create an instance', () => {
-    expect(new displayNotes()).toBeTruthy();
+    expect(new DisplayNotes()).toBeTruthy();
   });
 });

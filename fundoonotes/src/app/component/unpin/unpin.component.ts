@@ -1,14 +1,13 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { User } from 'src/app/models/user'
-import { MatSnackBar,MatDialog } from '@angular/material';
+import { MatSnackBar,MatDialog, MatDialogConfig } from '@angular/material';
 import { HttpService } from 'src/app/service/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewService } from 'src/app/service/view.service';
 import { NoteService } from 'src/app/service/note.service';
 import { DataService } from 'src/app/service/data.service';
 import { Note } from 'src/app/models/note';
-import { displayNotes } from 'src/app/models/diplayNotes';
 import { NoteupdateComponent } from '../noteupdate/noteupdate.component';
 import { Trash } from 'src/app/models/trash';
 
@@ -55,9 +54,49 @@ export class UnpinComponent implements OnInit {
       )
     }
   
-  onUpdate(note: any): void {
-      const dialogRef = this.dialog.open(NoteupdateComponent);
-      
-  }
+    onUpdate(note: any): void {
+    
+      console.log(note);
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.data =
+      {
+        'title': note.title,
+        'description': note.description,
+        'nid': note.nid,
+        'color':note.colour
+      };
+      let dialogRef = this.dialog.open(NoteupdateComponent, dialogConfig);
+    }
   
+  unpin(note:any) {
+    console.log("unpin")
+   // this.toggle=true;
+    this.trash.nid = note.nid;
+    console.log(this.trash);
+    this.token=localStorage.getItem("token");
+    this.noteService.putRequest("unpin/" + this.token, this.trash).subscribe(
+      (Response: any) => {
+       // console.log(this.noteunpin.noteId)
+        if (Response.statusCode === 200) {
+         // console.log(this.noteid)
+         //this.toggle=false;
+          this.data.changeMessage('trash')
+          console.log(Response);
+          this.snackbar.open(
+            "Note unpin successfull ", "undo",
+            { duration: 2500 }
+          )
+        }
+
+        else {
+          console.log(Response);
+          this.snackbar.open(
+            "Note unpin unSuccessfull", "undo",
+            { duration: 2500 }
+          )
+        }
+      }
+    )
+
+  }
 }

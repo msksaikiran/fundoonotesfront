@@ -26,6 +26,7 @@ export class GetLabelComponent implements OnInit {
     )
    
   }
+  
   getallabels(){
     this.labelservice.getRequest("user/"+localStorage.getItem("token")).subscribe(
           (Response:any)=>{
@@ -36,53 +37,5 @@ export class GetLabelComponent implements OnInit {
 
     )
   }
-  update(label:any){
   
-    console.log(label
-       )
-    // this.labelservice.putRequest("update?lableId="+label.la,label).subscribe(
-    //   (Response:any)=>{
-    //     if(Response.statusCode===200){
-    //       this.dataservice.changeMessage("Update labels")
-    //       console.log(Response)
-
-    //       this.snackbar.open(
-    //         "Label Updates Successfull","undo",
-    //         {duration:2500}
-    //       )
-    //     }
-    //     else{
-    //       this.snackbar.open(
-    //         "Label Update UnSuccessfull","undo",
-    //         {duration:2500}
-    //       )
-    //     }
-    //   }
-      
-    // )
-
-  }
-  delete(label){
-  //   this.labelservice.deleteRequest("delete?labelId="+label.labelId).subscribe(
-  //     (Response:any)=>{
-  //       if(Response.statusCode===200){
-  //         this.dataservice.changeMessage("Delet labels")
-  //         console.log(Response)
-
-  //         this.snackbar.open(
-  //           "Label Delete successfull","undo",
-  //           {duration:2500}
-  //         )
-  //       }
-  //       else{
-  //         this.snackbar.open(
-  //           "Label Delete Unsuccessfull","undo",
-  //           {duration:2500}
-  //         )
-  //       }
-  //     }
-      
-
-  //   )
-   }
 }

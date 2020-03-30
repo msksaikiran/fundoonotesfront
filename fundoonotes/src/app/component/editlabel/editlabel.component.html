@@ -2,25 +2,24 @@
     <mat-card class="matcard2">
         
         <textarea  matInput id="title"   type="text" class="input"placeholder="Label" [formControl]=lableName  [(ngModel)]="label.lableName"></textarea>
-         <!-- <app-get-label></app-get-label>  -->
+        
          <br><br>
           <div class=button *ngFor="let label of labels">
           <div fxLayout="row" fxLayoutAlign="center center">  
 
          <div fxFlex=30>
-          <button mat-icon-button (click)="delete(labels)">
+          <button mat-icon-button (click)="delete(label)">
               <mat-icon> delete</mat-icon>
           </button>
       </div> 
 
      <button mat-button class="labelbutton" (click)="onTrash()">
-        
         {{label.lableName}}
     </button> 
     
 
      <div fxFlex=30 style="padding-left: 45px;">
-      <button mat-icon-button (click)="update(labels)" >
+      <button mat-icon-button (click)="update(label)" >
           <mat-icon> edit</mat-icon>
       </button>
     </div> 

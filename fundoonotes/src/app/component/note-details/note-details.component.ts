@@ -1,16 +1,17 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { User } from 'src/app/models/user'
-import { MatSnackBar,MatDialog } from '@angular/material';
+import { MatSnackBar,MatDialog, MatDialogConfig } from '@angular/material';
 import { HttpService } from 'src/app/service/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewService } from 'src/app/service/view.service';
 import { NoteService } from 'src/app/service/note.service';
 import { DataService } from 'src/app/service/data.service';
 import { Note } from 'src/app/models/note';
-import { displayNotes } from 'src/app/models/diplayNotes';
+
 import { NoteupdateComponent } from '../noteupdate/noteupdate.component';
 import { Trash } from 'src/app/models/trash';
+import { not } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-note-details',
@@ -33,7 +34,7 @@ export class NoteDetailsComponent implements OnInit {
   toggle: boolean = false;
 
  // @Input() noteInfo: any;
-   @Input() noteid: any;
+  // @Input() noteid: any;
   // @Input() noteunpin: any;
   trash: Trash = new Trash();
 
@@ -66,6 +67,8 @@ export class NoteDetailsComponent implements OnInit {
                        
             });  
   }
+
+ 
  
   getallNotes() {
     this.token=localStorage.getItem("token");
@@ -80,9 +83,49 @@ export class NoteDetailsComponent implements OnInit {
     }
   
   onUpdate(note: any): void {
-      const dialogRef = this.dialog.open(NoteupdateComponent);
-      
-      }
+    
+    console.log(note);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data =
+    {
+      'title': note.title,
+      'description': note.description,
+      'nid': note.nid,
+      'color':note.colour
+    };
+    let dialogRef = this.dialog.open(NoteupdateComponent, dialogConfig);
+  }
   
+  pin(note:any) {
+        console.log("pin")
+       
+        this.trash.nid = note.nid;
+        console.log(this.trash);
+        this.token=localStorage.getItem("token");
+        this.noteService.putRequest("pin/" + this.token, this.trash).subscribe(
+          (Response: any) => {
+            
+            if (Response.statusCode === 200) {
+              
+              this.toggle=false;
+              this.data.changeMessage('trash')
+              console.log(Response);
+              this.snackbar.open(
+                "Note pin successfull ", "undo",
+                { duration: 2500 }
+              )
+            }
+    
+            else {
+              console.log(Response);
+              this.snackbar.open(
+                "Note pin unSuccessfull", "undo",
+                { duration: 2500 }
+              )
+            }
+          }
+        )
+    
+      }
 }
 

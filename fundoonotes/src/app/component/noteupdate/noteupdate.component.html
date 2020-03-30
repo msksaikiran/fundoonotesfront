@@ -1,25 +1,25 @@
-<mat-card class="matcard2">
+
+<mat-card class="matcard2" [ngStyle]="{'background-color':note.color}">
   <form>
 
-     <div data-text="Take a Note"  class="textarea1" >
-            <textarea  matInput id="title"   type="text" class="input" placeholder="Title" ></textarea>
-     </div>
-
-        <br>
-
-     <div data-text="Take a Note" contenteditable="true" class="textarea1"  >
-          <textarea  matInput id="description"   type="text" class="input" placeholder="Description" ></textarea>
-      </div>
+   <div fxLayout="row"  fxLayoutAlign="center center">
+   <textarea matInput  type="text" placeholder="Edit Title" class="input" [ngStyle]="{'background-color':note.color}" [formControl]="title" [(ngModel)]="note.title" ></textarea>
+    </div>
+        <br><br>
+   <div fxLayout="row"  fxLayoutAlign="center center">
+    <textarea  matInput   type="text" class="input" placeholder="Description"  [ngStyle]="{'background-color':note.color}" [formControl]="description" [(ngModel)]="note.description"></textarea>
+    </div>
 
    </form>
-<app-icon></app-icon>
+   <br>
+   <app-icon></app-icon>
 </mat-card>
+
  <div fxLayout="column" fxLayoutAlign="end end"  style="margin-left: 252px;margin-bottom: -15px;">
 
      <button class=close mat-button (click)="onClose()" > close</button>
 
-  </div> 
-     
+  </div>   
      
       
   

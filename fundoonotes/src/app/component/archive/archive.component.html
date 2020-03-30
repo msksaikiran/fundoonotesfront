@@ -11,8 +11,14 @@
             <div (click)="onUpdate(note)" >
 
              <form>
-               <app-pin [noteid]=note></app-pin>  
+
+               <button mat-icon-button (click)="pin(note)"  class="button" *ngIf="!toggle">
+                  <mat-icon class=color> 
+                      <img   src="assets/images/unpin-image.png" >
+                  </mat-icon>  
                  
+               </button> 
+               <div  (click)="onUpdate(note)" > 
                    <div>
                       {{note.title}}
                    </div>
@@ -20,10 +26,9 @@
                    <div>
                       {{note.description}}
                    </div>
-                 
+              </div> 
                 <!-- <app-label-note [labelInfo]=note></app-label-note> -->
-                <div class=appicons fxLayoutAlign="center center">
-                </div> 
+                 
              </form> 
             </div> 
           </mat-card>

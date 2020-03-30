@@ -8,6 +8,8 @@ import { DataService } from 'src/app/service/data.service';
 import { Trash } from 'src/app/models/trash';
 import { Color } from 'src/app/models/setcolor';
 import { Label } from 'src/app/models/label';
+import { LabelService } from 'src/app/service/label.service';
+import { LabelNote } from 'src/app/models/labelNote';
 
 @Component({
   selector: 'app-icon',
@@ -21,6 +23,7 @@ export class IconComponent implements OnInit {
   trash: Trash = new Trash();
   color: Color = new Color();
   label: Label = new Label();
+  labelNote: LabelNote = new LabelNote();
 
   constructor(
     private snackbar: MatSnackBar,
@@ -28,11 +31,13 @@ export class IconComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
+    private labelservice:LabelService,
     private dataService: DataService) { }
     
   token: string;
   ngOnInit() {
     //this.token = this.route.snapshot.paramMap.get("token");
+    this.getallabels();
   }
 
   colorlens() {
@@ -68,6 +73,7 @@ export class IconComponent implements OnInit {
     ],
 
   ]
+
   setColor(color: any) {
 
     console.log(color)
@@ -157,4 +163,58 @@ export class IconComponent implements OnInit {
     )
 
   }
+
+  getallabels(){
+    this.labelservice.getRequest("user/"+localStorage.getItem("token")).subscribe(
+          (Response:any)=>{
+            
+        this.label = Response.result;
+        console.log("=============|||||")
+            console.log(this.label)
+          }
+
+    )
+  }
+
+  addlabel(labels:any){
+    console.log(labels);
+    console.log(labels.lId);
+    
+    console.log(this.noteInfo.nid);
+    this.labelNote.lId = labels.lId;
+    this.labelNote.nId = this.noteInfo.nid;
+    console.log("LabelNote Obj");
+    console.log(this.labelNote);
+    if(labels.lableName!=null){
+     // console.log(this.label.lableName)
+      this.labelservice.postRequest("addlabels/"+localStorage.getItem("token"),this.labelNote).subscribe(
+        (Response:any)=>{
+          
+          if(Response.statusCode===200){
+           // this.dataService.changeMessage("lable")
+            console.log(Response);
+            this.snackbar.open(
+              "Lable Creation Successfull","undo",
+              {duration:2500}
+            )
+          }
+          else{
+            console.log(Response);
+            console.log(this.label)
+            this.snackbar.open(
+              "label Creation unSuccessfull","undo",
+              {duration:2500}
+            )
+          }
+        }
+      )
+      }
+    else{
+      console.log(this.label)
+      this.snackbar.open( "Lable should not be null","undo",
+      {duration:2500})
+    }
+  
+    }
+  
 }

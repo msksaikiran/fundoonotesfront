@@ -2,12 +2,10 @@
    
 <div   fxLayout="{{direction}} wrap" class="allnotes" style="flex-direction: row;  display: flex;" fxLayoutAlign="center center" >
      
-      <app-unpin></app-unpin>
+       <app-unpin></app-unpin> 
      
-
      <div style="margin-right: 445px; margin-top: 12px;margin-bottom: -14px;">
         OTHERS
-
      </div>
      
  <div *ngFor="let note of notes">
@@ -16,30 +14,29 @@
 
        <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2">
            
-             <app-pin [noteid]=note></app-pin>  
-            
-             
-          <div  (click)="onUpdate(note)" >
-         
+             <button mat-icon-button (click)="pin(note)"  class="button">
+               <mat-icon class=color> 
+                   <img   src="assets/images/unpin-image.png" >
+               </mat-icon>   
+            </button>  
+            <div  (click)="onUpdate(note)" >
              <form>
                    <div>
-                      {{note.title}}
+                   {{note.title}} 
                    </div>
                    <br>
                    <div>
-                      {{note.description}}
+                   {{note.description}}
                    </div>
                  
-                <!-- <app-label-note [labelInfo]=note></app-label-note> -->
+                   <br>
+                 <app-label-note [labelInfo]=note></app-label-note> 
                
              </form> 
-
             </div> 
-
           </mat-card>
          
         <div class="iconBackborder">
-
         <app-icon [noteInfo]=note></app-icon>
         </div>
     </div>

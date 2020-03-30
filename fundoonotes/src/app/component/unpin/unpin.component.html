@@ -1,6 +1,4 @@
- <div style="margin-left: 10px;
- margin-bottom: -13px;
- margin-top: 25px;">
+ <div style="margin-left: 10px; margin-bottom: -13px;margin-top: 25px;">
     PINNED
  </div>
  <div *ngFor="let note of notes">
@@ -9,7 +7,12 @@
       
        <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2">
 
-           <app-pin [noteid]=note></app-pin>  
+           <!-- <app-pin [noteid]=note></app-pin>   -->
+         <button mat-icon-button (click)="unpin(note)"  class="button" >
+            <mat-icon class=color> 
+                <img   src="assets/images/pin-image.png" >
+            </mat-icon>   
+         </button>  
 
        <div  (click)="onUpdate(note)" >
     
@@ -23,7 +26,7 @@
                    {{note.description}}
                 </div>
               
-             <!-- <app-label-note [labelInfo]=note></app-label-note> -->
+             <app-label-note [labelInfo]=note></app-label-note> 
             
           </form> 
 

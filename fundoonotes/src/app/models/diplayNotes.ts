@@ -1,4 +1,4 @@
-export class displayNotes{
+export class DisplayNotes{
     nid: number;
     title:string;
     description:string;

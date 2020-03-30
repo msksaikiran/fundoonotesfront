@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { MatSnackBar, MatDialog, MatDialogConfig } from '@angular/material';
 import { NoteService } from 'src/app/service/note.service';
 import { DataService } from 'src/app/service/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+import { Trash } from 'src/app/models/trash';
+import { NoteupdateComponent } from '../noteupdate/noteupdate.component';
 
 @Component({
   selector: 'app-archive',
@@ -12,6 +14,7 @@ import { FormBuilder } from '@angular/forms';
 })
 export class ArchiveComponent implements OnInit {
 
+  trash: Trash = new Trash();
   notes:[];
  
   constructor(private snackbar:MatSnackBar,private noteService: NoteService,private dataservice: DataService,
@@ -38,4 +41,47 @@ export class ArchiveComponent implements OnInit {
     )
   }
 
+  onUpdate(note: any): void {
+    
+    console.log(note);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data =
+    {
+      'title': note.title,
+      'description': note.description,
+      'nid': note.nid,
+      'color':note.colour
+    };
+    let dialogRef = this.dialog.open(NoteupdateComponent, dialogConfig);
+  }
+  
+  pin(note:any) {
+    console.log("pin")
+    this.trash.nid = note.nid;
+    console.log(this.trash);
+    this.token=localStorage.getItem("token");
+    this.noteService.putRequest("pin/" + this.token, this.trash).subscribe(
+      (Response: any) => {
+        //console.log(this.noteunpin.noteId)
+        if (Response.statusCode === 200) {
+          
+          this.dataservice.changeMessage('trash')
+          console.log(Response);
+          this.snackbar.open(
+            "Note pin successfull ", "undo",
+            { duration: 2500 }
+          )
+        }
+
+        else {
+          console.log(Response);
+          this.snackbar.open(
+            "Note pin unSuccessfull", "undo",
+            { duration: 2500 }
+          )
+        }
+      }
+    )
+
+  }
 }
