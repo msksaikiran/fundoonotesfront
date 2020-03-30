@@ -20,7 +20,8 @@ export class TrashComponent implements OnInit {
   token: string;
   ngOnInit() {
     this.dataservice.currentMessage.subscribe(
-      message=>{;this.message=message,this.   getallNotes()   
+      message => {
+        ; this.message = message, this.getallNotes()   
       }
     )
   }

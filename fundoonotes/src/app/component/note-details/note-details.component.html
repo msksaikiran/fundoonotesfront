@@ -1,24 +1,27 @@
  <div fxLayout="row" fxLayoutAlign="center center"   class="1">
    
-    <div   fxLayout="{{direction}} wrap" class="allnotes" style="flex-direction: row;  display: flex;" fxLayoutAlign="center center" >
- 
-      <div *ngFor="let note of notes">
-   
-       <div *ngIf="note.isArchieved==0 && note.isTrashed==0 && note.isPinned==0">  
+<div   fxLayout="{{direction}} wrap" class="allnotes" style="flex-direction: row;  display: flex;" fxLayoutAlign="center center" >
+     
+      <app-unpin></app-unpin>
+     
 
-         <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2">
+     <div style="margin-right: 445px; margin-top: 12px;margin-bottom: -14px;">
+        OTHERS
 
-            <button mat-icon-button (click)="pin()"  style="margin-left: 481px;margin-top: -11px;">
-               <mat-icon class=color> 
-                   <img   src="assets/images/unpin-image.png" >
-               </mat-icon>   
-            </button>
+     </div>
+     
+ <div *ngFor="let note of notes">
 
-            <div  (click)="onUpdate(note)" >
+    <div *ngIf="note.isArchieved==0 && note.isTrashed==0 && note.isPinned==0">  
+
+       <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2">
+           
+             <app-pin [noteid]=note></app-pin>  
+            
+             
+          <div  (click)="onUpdate(note)" >
          
              <form>
-               
-               
                    <div>
                       {{note.title}}
                    </div>
@@ -28,18 +31,17 @@
                    </div>
                  
                 <!-- <app-label-note [labelInfo]=note></app-label-note> -->
-                <div class=appicons fxLayoutAlign="center center">
-                </div> 
+               
              </form> 
 
             </div> 
 
           </mat-card>
          
-        
         <div class="iconBackborder">
+
         <app-icon [noteInfo]=note></app-icon>
-    </div>
+        </div>
     </div>
  </div>  
  </div>

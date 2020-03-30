@@ -2,13 +2,36 @@
     <mat-card class="matcard2">
         
         <textarea  matInput id="title"   type="text" class="input"placeholder="Label" [formControl]=lableName  [(ngModel)]="label.lableName"></textarea>
-        <app-get-label></app-get-label> 
-        <br><br>
-        <mat-divider></mat-divider>
+         <!-- <app-get-label></app-get-label>  -->
+         <br><br>
+          <div class=button *ngFor="let label of labels">
+          <div fxLayout="row" fxLayoutAlign="center center">  
+
+         <div fxFlex=30>
+          <button mat-icon-button (click)="delete(labels)">
+              <mat-icon> delete</mat-icon>
+          </button>
+      </div> 
+
+     <button mat-button class="labelbutton" (click)="onTrash()">
+        
+        {{label.lableName}}
+    </button> 
+    
+
+     <div fxFlex=30 style="padding-left: 45px;">
+      <button mat-icon-button (click)="update(labels)" >
+          <mat-icon> edit</mat-icon>
+      </button>
+    </div> 
+   </div>
+ </div> 
+ 
+ <mat-divider></mat-divider> 
         <div class="done" fxLayout="column" fxLayoutAlign="end end">
           <button  mat-raised-button color="primary"(click)="onClose()" >done</button>
         </div>
         
-    </mat-card>
+ </mat-card>
       
   

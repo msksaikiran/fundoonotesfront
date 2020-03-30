@@ -6,20 +6,12 @@
    
        <div *ngIf="note.isArchieved==1" >  
 
-       
-
          <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2" >
-
-            <button mat-icon-button (click)="pin()"  style="margin-left: 481px;margin-top: -11px;">
-               <mat-icon class=color> 
-                   <img   src="assets/images/unpin-image.png" >
-               </mat-icon>   
-            </button>
 
             <div (click)="onUpdate(note)" >
 
              <form>
-                <app-pin></app-pin>   
+               <app-pin [noteid]=note></app-pin>  
                  
                    <div>
                       {{note.title}}

@@ -1,17 +1,6 @@
 <div class=button *ngFor="let labels of label">
     <div fxLayout="row" fxFlex=100>
-        <!-- <div fxFlex=30>
-            <button mat-icon-button (click)="delete(labels)">
-                <mat-icon> delete</mat-icon>
-            </button>
-        </div> -->
-        <!-- <div *ngFor="let data of label">
-            <button style="margin-top: 38px;" mat-button>
-              <mat-icon matPrefix>label outline</mat-icon>
-              {{data.lableName}}
-             
-            </button>
-          </div> -->
+        
          
               <button mat-button class="labelbutton" (click)="onTrash()">
                 <div class="icon">
@@ -20,12 +9,6 @@
                 {{labels.lableName}}
             </button>
 
-           <!-- <input matInput placeholder="LabelName"    [(ngModel)]="labels.lableName"> -->
         
-        <!-- <div fxFlex=30>
-            <button mat-icon-button (click)="update(labels)">
-                <mat-icon> edit</mat-icon>
-            </button>
-        </div> -->
     </div>
   </div>

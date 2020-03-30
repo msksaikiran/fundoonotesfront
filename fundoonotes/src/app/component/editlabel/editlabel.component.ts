@@ -13,8 +13,10 @@ import { Label } from 'src/app/models/label';
 })
 export class EditlabelComponent implements OnInit {
 
+  //label=[];
   label:Label = new Label();
   labels:any[];
+  
   message:string;
   lableName =new FormControl(this.label.lableName);
   constructor(
@@ -26,7 +28,10 @@ export class EditlabelComponent implements OnInit {
     private dataService: DataService, ) { }
 
   ngOnInit() {
-    
+    this.dataService.currentMessage.subscribe(
+      message=>{;this.message=message,this. getallabels()   
+      }
+    )
   }
   
   onClose(){
@@ -67,5 +72,15 @@ export class EditlabelComponent implements OnInit {
 
   }
 
+  getallabels(){
+    this.labelservice.getRequest("user/"+localStorage.getItem("token")).subscribe(
+          (Response:any)=>{
+            
+            this.labels=Response.result;
+            console.log(this.labels)
+          }
+
+    )
+  }
 
 }

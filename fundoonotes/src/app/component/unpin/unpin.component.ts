@@ -13,30 +13,17 @@ import { NoteupdateComponent } from '../noteupdate/noteupdate.component';
 import { Trash } from 'src/app/models/trash';
 
 @Component({
-  selector: 'app-note-details',
-  templateUrl: './note-details.component.html',
-  styleUrls: ['./note-details.component.scss']
+  selector: 'app-unpin',
+  templateUrl: './unpin.component.html',
+  styleUrls: ['./unpin.component.scss']
 })
-export class NoteDetailsComponent implements OnInit {
+export class UnpinComponent implements OnInit {
 
-  // constructor() { }
-
-  // ngOnInit() {
-  // }
-
-  //nt:displayNotes
-  notes:[];
-  data1: any[];
-  wrap:string ="wrap";
-  direction:string="row";
-  view: any;
-  toggle: boolean = false;
-
- // @Input() noteInfo: any;
-   @Input() noteid: any;
-  // @Input() noteunpin: any;
   trash: Trash = new Trash();
-
+  @Input() noteid: any;
+  
+  //toggle: boolean = true;
+  
   constructor(private snackbar: MatSnackBar,
     private viewservice: ViewService,
     private noteService: NoteService,
@@ -46,27 +33,16 @@ export class NoteDetailsComponent implements OnInit {
     private formBuilder:FormBuilder
     
     ) { }
-
-  message:string;
+  notes:[];
   token: string;
-  open: boolean;
-
- 
-  ngOnInit() {
   
-      this.data.currentMessage.subscribe(
-        message => {this.message = message,this.getallNotes()});
-
-        this.viewservice.getView().subscribe(
-          (res) => {
-                      this.view = res;
-                      this.direction = this.view.data;
-                      
-                      console.log(this.direction);
-                       
-            });  
+  ngOnInit()
+  {
+    
+       this.data.currentMessage.subscribe(
+         message => { ; this.getallNotes() });
   }
- 
+
   getallNotes() {
     this.token=localStorage.getItem("token");
       this.noteService.getRequest("users/"+this.token).subscribe(
@@ -82,7 +58,6 @@ export class NoteDetailsComponent implements OnInit {
   onUpdate(note: any): void {
       const dialogRef = this.dialog.open(NoteupdateComponent);
       
-      }
+  }
   
 }
-

@@ -36,6 +36,7 @@ import { ArchiveComponent } from './component/archive/archive.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { GetLabelComponent } from './component/get-label/get-label.component';
 import { MatCheckboxModule } from '@angular/material';
+import { UnpinComponent } from './component/unpin/unpin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +54,8 @@ import { MatCheckboxModule } from '@angular/material';
     ArchiveComponent,
     TrashComponent,
     EditlabelComponent,
-    GetLabelComponent
+    GetLabelComponent,
+    UnpinComponent
   ],
   imports: [
     BrowserModule,

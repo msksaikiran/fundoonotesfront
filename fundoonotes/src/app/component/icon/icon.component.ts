@@ -21,6 +21,7 @@ export class IconComponent implements OnInit {
   trash: Trash = new Trash();
   color: Color = new Color();
   label: Label = new Label();
+
   constructor(
     private snackbar: MatSnackBar,
     private noteService: NoteService,
@@ -31,7 +32,7 @@ export class IconComponent implements OnInit {
     
   token: string;
   ngOnInit() {
-    this.token = this.route.snapshot.paramMap.get("token");
+    //this.token = this.route.snapshot.paramMap.get("token");
   }
 
   colorlens() {
@@ -102,6 +103,7 @@ export class IconComponent implements OnInit {
     console.log(this.noteInfo.nid);
     this.trash.nid = this.noteInfo.nid;
     console.log(this.trash);
+    this.token=localStorage.getItem("token")
     this.noteService.putRequest("trash/" + this.token, this.trash).subscribe(
       (Response: any) => {
 
@@ -130,6 +132,7 @@ export class IconComponent implements OnInit {
   archive() {
     this.trash.nid = this.noteInfo.nid;
     console.log(this.trash);
+    this.token=localStorage.getItem("token")
     this.noteService.putRequest("archieve/" + this.token, this.trash).subscribe(
       (Response: any) => {
         console.log(this.noteInfo.noteId)

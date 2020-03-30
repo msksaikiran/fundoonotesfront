@@ -1,0 +1,38 @@
+ <div style="margin-left: 10px;
+ margin-bottom: -13px;
+ margin-top: 25px;">
+    PINNED
+ </div>
+ <div *ngFor="let note of notes">
+        
+    <div *ngIf="note.isPinned==1">
+      
+       <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2">
+
+           <app-pin [noteid]=note></app-pin>  
+
+       <div  (click)="onUpdate(note)" >
+    
+          <form>
+         
+                <div>
+                   {{note.title}}
+                </div>
+                <br>
+                <div>
+                   {{note.description}}
+                </div>
+              
+             <!-- <app-label-note [labelInfo]=note></app-label-note> -->
+            
+          </form> 
+
+         </div> 
+
+       </mat-card>
+       <div class="iconBackborder">
+        <app-icon [noteInfo]=note></app-icon>
+        </div>
+
+    </div>
+ </div>
