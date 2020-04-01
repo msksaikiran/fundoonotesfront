@@ -38,6 +38,7 @@ import { MatCheckboxModule } from '@angular/material';
 import { UnpinComponent } from './component/unpin/unpin.component';
 import { LabelNoteComponent } from './component/label-note/label-note.component';
 import { MatChipsModule } from '@angular/material';
+import { LabelNotesdetailsComponent } from './component/label-notesdetails/label-notesdetails.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,8 @@ import { MatChipsModule } from '@angular/material';
     EditlabelComponent,
     GetLabelComponent,
     UnpinComponent,
-    LabelNoteComponent
+    LabelNoteComponent,
+    LabelNotesdetailsComponent
   ],
   imports: [
     BrowserModule,

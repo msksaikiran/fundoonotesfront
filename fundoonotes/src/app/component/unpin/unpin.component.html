@@ -1,19 +1,15 @@
- <div style="margin-left: 10px; margin-bottom: -13px;margin-top: 25px;">
-    PINNED
- </div>
+ <div fxLayout="row" fxLayoutAlign="center center"   class="1">
+   
+   <div  fxLayout="{{direction}} wrap" fxLayoutGap="10px" fxLayout.xs="row" fxLayoutAlign="center center"> 
+
  <div *ngFor="let note of notes">
         
     <div *ngIf="note.isPinned==1">
-      
+      <span>
        <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2">
 
-           <!-- <app-pin [noteid]=note></app-pin>   -->
-         <button mat-icon-button (click)="unpin(note)"  class="button" >
-            <mat-icon class=color> 
-                <img   src="assets/images/pin-image.png" >
-            </mat-icon>   
-         </button>  
-
+          
+      <br>
        <div  (click)="onUpdate(note)" >
     
           <form>
@@ -33,9 +29,23 @@
          </div> 
 
        </mat-card>
-       <div class="iconBackborder">
-        <app-icon [noteInfo]=note></app-icon>
+       <address>
+         <div class="button"  fxLayout="column" fxLayoutAlign="start end">
+            <button mat-icon-button (click)="unpin(note)"  class="button" >
+               <mat-icon class=color> 
+                   <img   src="assets/images/pin-image.png" >
+               </mat-icon>   
+            </button>  
         </div>
+         <div class="iconBackborder">
+             <app-icon [noteInfo]=note></app-icon>
+         </div>
+       </address>
+         </span>
 
     </div>
  </div>
+ </div>
+ </div>
+
+

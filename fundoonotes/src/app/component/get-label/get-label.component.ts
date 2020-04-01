@@ -38,4 +38,9 @@ export class GetLabelComponent implements OnInit {
     )
   }
   
+  labelDetails(labels: any) {
+    localStorage.setItem("labelNote", labels.lId);
+    this.router.navigate(['dashboard/labelNotes']);
+
+   }
 }

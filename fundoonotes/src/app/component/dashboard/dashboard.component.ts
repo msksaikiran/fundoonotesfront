@@ -54,11 +54,33 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['dashboard/trash'])
   }
 
+  account() {
+    localStorage.clear;
+    this.router.navigate(['login'])
+  }
+
+  refresh() {
+    this.dataservice.changeMessage("refresh");
+  }
   openDialogLabel(notes: any) {
 
     const dialogRef = this.dialog.open(EditlabelComponent);
   }
 
+  list: boolean = true;
+  grid: boolean = false;
+
+  changeView() {
+    if (this.list) {
+      this.grid = true;
+      this.list = false;
+    }
+    else {
+      this.list = true;
+      this.grid = false;
+    }
+    this.viewservice.getView();
+  }
   
   label = [];
 
@@ -72,4 +94,6 @@ export class DashboardComponent implements OnInit {
 
     )
   }
+
+ 
 }

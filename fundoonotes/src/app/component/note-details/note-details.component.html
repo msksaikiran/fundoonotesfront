@@ -1,25 +1,18 @@
+
  <div fxLayout="row" fxLayoutAlign="center center"   class="1">
    
-<div   fxLayout="{{direction}} wrap" class="allnotes" style="flex-direction: row;  display: flex;" fxLayoutAlign="center center" >
-     
-       <app-unpin></app-unpin> 
-     
-     <div style="margin-right: 445px; margin-top: 12px;margin-bottom: -14px;">
-        OTHERS
-     </div>
-     
+ <div  fxLayout="{{direction}} wrap" fxLayoutGap="10px" fxLayout.xs="row" fxLayoutAlign="center center"> 
+   <app-unpin></app-unpin>  
+     <!-- <div style="margin-top: 10px;">  OTHERS  </div> -->
  <div *ngFor="let note of notes">
 
     <div *ngIf="note.isArchieved==0 && note.isTrashed==0 && note.isPinned==0">  
 
       <span>
+        
        <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2">
-           
-             <button mat-icon-button (click)="pin(note)"  class="button">
-               <mat-icon class=color> 
-                   <img   src="assets/images/unpin-image.png" >
-               </mat-icon>   
-            </button>  
+              <br><br><br>
+
             <div  (click)="onUpdate(note)" >
              <form>
                    <div>
@@ -35,14 +28,22 @@
                
              </form> 
             </div> 
+            
           </mat-card>
-       </span>
-
-     
-        <div class="iconBackborder">
-        <app-icon [noteInfo]=note></app-icon>
-        </div>
-      
+       
+          <address>
+            <div class="button">
+              <button mat-icon-button (click)="pin(note)"  >
+                 <mat-icon class=color> 
+                     <img   src="assets/images/unpin-image.png" >
+                 </mat-icon>   
+              </button>
+           </div>
+                <div class="iconBackborder">
+                <app-icon [noteInfo]=note></app-icon>
+                </div>
+              </address>
+   </span>
     </div>
  </div>  
  </div>

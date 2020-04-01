@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { Trash } from 'src/app/models/trash';
 import { NoteupdateComponent } from '../noteupdate/noteupdate.component';
+import { ViewService } from 'src/app/service/view.service';
 
 @Component({
   selector: 'app-archive',
@@ -16,9 +17,12 @@ export class ArchiveComponent implements OnInit {
 
   trash: Trash = new Trash();
   notes:[];
- 
+  wrap:string ="wrap";
+  direction:string="row";
+  view: any;
+
   constructor(private snackbar:MatSnackBar,private noteService: NoteService,private dataservice: DataService,
-    private route:ActivatedRoute,private router:Router,private formBuilder:FormBuilder,
+    private route:ActivatedRoute,private router:Router,private formBuilder:FormBuilder,private viewservice: ViewService,
     public dialog: MatDialog) { }
 
   message:string;
@@ -28,6 +32,16 @@ export class ArchiveComponent implements OnInit {
       message=>{;this.message=message,this.   getallNotes()   
       }
     )
+
+    this.viewservice.getView().subscribe(
+      (res) => {
+                  this.view = res;
+                  this.direction = this.view.data;
+                  console.log("direction..................."+this.view.data)
+                  console.log(this.direction);
+                   
+      });  
+    
   }
   getallNotes() {
     this.token = localStorage.getItem("token");

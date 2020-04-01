@@ -25,14 +25,14 @@ export class IconComponent implements OnInit {
   color: Color = new Color();
   label: Label = new Label();
   labelNote: LabelNote = new LabelNote();
-  checkboxlabel=[];
+  checkboxlabel = [];
   constructor(
     private snackbar: MatSnackBar,
     private noteService: NoteService,
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private labelservice:LabelService,
+    private labelservice: LabelService,
     private dataService: DataService) { }
     
   token: string;
@@ -41,7 +41,7 @@ export class IconComponent implements OnInit {
     
     // this.getallabels();
     this.dataService.currentMessage.subscribe(
-      message => {this.message = message,this.getallabels()});
+      message => { this.message = message, this.getallabels() });
 
   }
 
@@ -114,7 +114,7 @@ export class IconComponent implements OnInit {
     console.log(this.noteInfo.nid);
     this.trash.nid = this.noteInfo.nid;
     console.log(this.trash);
-    this.token=localStorage.getItem("token")
+    this.token = localStorage.getItem("token")
     this.noteService.putRequest("trash/" + this.token, this.trash).subscribe(
       (Response: any) => {
 
@@ -143,7 +143,7 @@ export class IconComponent implements OnInit {
   archive() {
     this.trash.nid = this.noteInfo.nid;
     console.log(this.trash);
-    this.token=localStorage.getItem("token")
+    this.token = localStorage.getItem("token")
     this.noteService.putRequest("archieve/" + this.token, this.trash).subscribe(
       (Response: any) => {
         console.log(this.noteInfo.noteId)
@@ -171,9 +171,9 @@ export class IconComponent implements OnInit {
 
   labeln: string;
   ln = [];
-  getallabels(){
-    this.labelservice.getRequest("user/"+localStorage.getItem("token")).subscribe(
-          (Response:any)=>{
+  getallabels() {
+    this.labelservice.getRequest("user/" + localStorage.getItem("token")).subscribe(
+      (Response: any) => {
           
         this.checkboxlabel = Response.result;
         
@@ -187,13 +187,13 @@ export class IconComponent implements OnInit {
         //   // }  
         // });
         
-          }
+      }
 
     )
   }
   
   
-  enable: boolean;
+  enable: boolean = true;
   addlabel(labels: any) {
     
     console.log(labels);
@@ -208,40 +208,30 @@ export class IconComponent implements OnInit {
     this.noteInfo.label.forEach(ele => {
       if (ele.lId == labels.lId) {
         this.enable = false;
-      }  
+        console.log(this.label)
+        this.dataService.changeMessage("lable")
+        this.snackbar.open("Lable already Exist", "undo",
+          { duration: 2500 })
+      
+      }
     });
     
-    if(this.enable){
+    if (this.enable) {
      
-      this.labelservice.postRequest("addlabels/"+localStorage.getItem("token"),this.labelNote).subscribe(
-        (Response:any)=>{
+      this.labelservice.postRequest("addlabels/" + localStorage.getItem("token"), this.labelNote).subscribe(
+        (Response: any) => {
           
-          if(Response.statusCode===200){
-           this.dataService.changeMessage("lable")
+         
+          
+          if (Response.statusCode === 200) {
+            this.dataService.changeMessage("lable")
+            
             console.log(Response);
-            this.snackbar.open(
-              "Lable Creation Successfull","undo",
-              {duration:2500}
-            )
+            this.snackbar.open("Lable Creation Successfull", "undo", { duration: 2500 })
           }
-          else{
-            console.log(Response);
-            console.log(this.label)
-            this.snackbar.open(
-              "label Creation unSuccessfull","undo",
-              {duration:2500}
-            )
-          }
-        }
-      )
-      }
-    else{
-      console.log(this.label)
-      this.enable = true;
-      this.snackbar.open( "Lable already Exist","undo",
-      {duration:2500})
+         
+        })
+      
     }
-  
-    }
-  
+  }
 }

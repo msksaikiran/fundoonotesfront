@@ -18,13 +18,22 @@
 
         <div fxLayout="row" fxLayoutAlign="space-evenly center" style="margin-left: 278px" >
 
-          <button mat-icon-button class="refresh">
+          <button mat-icon-button class="refresh" (click)="refresh()">
             <mat-icon matTooltip="refresh">refresh</mat-icon>
           </button>
 
-          <button mat-icon-button class="list">
+          <!-- <button mat-icon-button class="list">
             <mat-icon>grid_view</mat-icon>
-          </button>
+          </button> -->
+          <div class="list">
+            <button mat-icon-button  *ngIf="list" (click)="changeView()" fxShow="true" fxHide.lt-sm="true">
+              <mat-icon class="icon">grid_view</mat-icon>
+            </button>
+      
+            <button mat-icon-button  *ngIf="grid" (click)="changeView()" fxShow="true" fxHide.lt-sm="true">
+              <mat-icon class="icon">view_module</mat-icon>
+            </button>
+          </div>
 
           <button mat-icon-button class="settings"  [matMenuTriggerFor]="menu">
             <mat-icon matTooltip="menu">settings</mat-icon>
@@ -40,17 +49,26 @@
               <button mat-menu-item>Item 1</button>
               <button mat-menu-item>Item 2</button>
             </mat-menu>
-
           </button>
-            <button mat-button  mat-icon-button (click)="account()" fxShow="true" width="30">
+
+            <button   mat-icon-button  fxShow="true" width="30" [matMenuTriggerFor]="account">
               <mat-icon> account_circle</mat-icon>
             </button>   
+
+             <mat-menu #account="matMenu">
+                <button mat-menu-item  (click)="account()">LogOut</button>
+                <button mat-menu-item>Upload Profile</button>
+              </mat-menu> 
+
         </div>
        
         </mat-toolbar-row>
       
        </mat-toolbar>
       
+       
+
+
     </div>
    
    <div class="hiddenMenu" fxLayout="column" fxLayoutAlign="center start"> 

@@ -32,12 +32,24 @@ export class UnpinComponent implements OnInit {
     ) { }
   notes:[];
   token: string;
+  wrap:string ="wrap";
+  direction:string="row";
+  view: any;
   
   ngOnInit()
   {
     
        this.data.currentMessage.subscribe(
          message => { ; this.getallNotes() });
+    
+         this.viewservice.getView().subscribe(
+          (res) => {
+                      this.view = res;
+                      this.direction = this.view.data;
+                      console.log("direction..................."+this.view.data)
+                      console.log(this.direction);
+                       
+            });  
   }
 
   getallNotes() {
@@ -67,8 +79,6 @@ export class UnpinComponent implements OnInit {
     }
   
   unpin(note:any) {
-    
-   
     this.trash.nid = note.nid;
     console.log(this.trash);
     this.token=localStorage.getItem("token");
