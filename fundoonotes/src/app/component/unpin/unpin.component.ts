@@ -21,8 +21,6 @@ export class UnpinComponent implements OnInit {
   trash: Trash = new Trash();
   @Input() noteid: any;
   
-  //toggle: boolean = true;
-  
   constructor(private snackbar: MatSnackBar,
     private viewservice: ViewService,
     private noteService: NoteService,
@@ -69,17 +67,16 @@ export class UnpinComponent implements OnInit {
     }
   
   unpin(note:any) {
-    console.log("unpin")
-   // this.toggle=true;
+    
+   
     this.trash.nid = note.nid;
     console.log(this.trash);
     this.token=localStorage.getItem("token");
     this.noteService.putRequest("unpin/" + this.token, this.trash).subscribe(
       (Response: any) => {
-       // console.log(this.noteunpin.noteId)
+      
         if (Response.statusCode === 200) {
-         // console.log(this.noteid)
-         //this.toggle=false;
+         
           this.data.changeMessage('trash')
           console.log(Response);
           this.snackbar.open(

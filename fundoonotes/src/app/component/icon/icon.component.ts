@@ -19,12 +19,13 @@ import { LabelNote } from 'src/app/models/labelNote';
 export class IconComponent implements OnInit {
 
   @Input() noteInfo: any;
+  //@Input() labelInfo: any;
 
   trash: Trash = new Trash();
   color: Color = new Color();
   label: Label = new Label();
   labelNote: LabelNote = new LabelNote();
-
+  checkboxlabel=[];
   constructor(
     private snackbar: MatSnackBar,
     private noteService: NoteService,
@@ -35,9 +36,13 @@ export class IconComponent implements OnInit {
     private dataService: DataService) { }
     
   token: string;
+  message: string;
   ngOnInit() {
-    //this.token = this.route.snapshot.paramMap.get("token");
-    this.getallabels();
+    
+    // this.getallabels();
+    this.dataService.currentMessage.subscribe(
+      message => {this.message = message,this.getallabels()});
+
   }
 
   colorlens() {
@@ -55,20 +60,20 @@ export class IconComponent implements OnInit {
       },
 
       {
-        name: "red", hexcode: "#ff0000"
+        name: "Cornsilk", hexcode: "#FFF8DC"
       },
 
     ],
     [
       {
-        name: "green", hexcode: " #008000 "
+        name: "LightGreen", hexcode: " #90EE90"
       },
       {
-        name: "orange", hexcode: " #FFA500 "
+        name: "Pink", hexcode: "#FFC0CB "
       }
       ,
       {
-        name: "yellow", hexcode: "#ffff00"
+        name: "LightYellow", hexcode: "#FFFFE0"
       }
     ],
 
@@ -77,7 +82,7 @@ export class IconComponent implements OnInit {
   setColor(color: any) {
 
     console.log(color)
-    console.log("----------------")
+    
     this.color.nid = this.noteInfo.nid;
    
     
@@ -164,34 +169,55 @@ export class IconComponent implements OnInit {
 
   }
 
+  labeln: string;
+  ln = [];
   getallabels(){
     this.labelservice.getRequest("user/"+localStorage.getItem("token")).subscribe(
           (Response:any)=>{
-            
-        this.label = Response.result;
-        console.log("=============|||||")
-            console.log(this.label)
+          
+        this.checkboxlabel = Response.result;
+        
+        // console.log(Response.result.lId)
+        // console.log(this.checkboxlabel)
+        // this.ln = localStorage.getItem("labobj");
+        // this.ln = this.labeln;
+        // this.checkboxlabel.forEach(ele => {
+        //   // if (ele.lId == this.labelInfo.lId) {
+        //      console.log("labels are same..............."+ this.labeln)
+        //   // }  
+        // });
+        
           }
 
     )
   }
-
-  addlabel(labels:any){
+  
+  
+  enable: boolean;
+  addlabel(labels: any) {
+    
     console.log(labels);
     console.log(labels.lId);
-    
-    console.log(this.noteInfo.nid);
     this.labelNote.lId = labels.lId;
     this.labelNote.nId = this.noteInfo.nid;
-    console.log("LabelNote Obj");
+
+    console.log("LabelNote Obj..");
     console.log(this.labelNote);
-    if(labels.lableName!=null){
-     // console.log(this.label.lableName)
+
+    console.log("NoteInfo label  data......")
+    this.noteInfo.label.forEach(ele => {
+      if (ele.lId == labels.lId) {
+        this.enable = false;
+      }  
+    });
+    
+    if(this.enable){
+     
       this.labelservice.postRequest("addlabels/"+localStorage.getItem("token"),this.labelNote).subscribe(
         (Response:any)=>{
           
           if(Response.statusCode===200){
-           // this.dataService.changeMessage("lable")
+           this.dataService.changeMessage("lable")
             console.log(Response);
             this.snackbar.open(
               "Lable Creation Successfull","undo",
@@ -211,7 +237,8 @@ export class IconComponent implements OnInit {
       }
     else{
       console.log(this.label)
-      this.snackbar.open( "Lable should not be null","undo",
+      this.enable = true;
+      this.snackbar.open( "Lable already Exist","undo",
       {duration:2500})
     }
   

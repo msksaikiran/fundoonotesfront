@@ -12,5 +12,5 @@ constructor() { }
 
 changeMessage(message: string) {
   this.messageSource.next(message)
-}
+  }
 }

@@ -45,15 +45,15 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {
-        path: "archive/:token",
+        path: "archive",
         component: ArchiveComponent
       },
       {
-        path: "notes/:token",
+        path: "notes",
         component: NoteComponent
       },
       {
-        path: "trash/:token",
+        path: "trash",
         component: TrashComponent
       }
     ]

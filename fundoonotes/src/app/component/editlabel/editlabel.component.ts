@@ -85,6 +85,33 @@ export class EditlabelComponent implements OnInit {
     )
   }
 
+  delete(label:any) {
+   // console.log(label)
+    this.lid.lId = label.lId;
+    console.log(this.lid)
+    this.labelservice.postRequest("delete/"+localStorage.getItem("token"),this.lid).subscribe(
+      (Response:any)=>{
+        if(Response.statusCode===200){
+          this.dataService.changeMessage("Delet labels")
+          console.log(Response)
+
+          this.snackbar.open(
+            "Label Delete successfull","undo",
+            {duration:2500}
+          )
+        }
+        else{
+          this.snackbar.open(
+            "Label Delete Unsuccessfull","undo",
+            {duration:2500}
+          )
+        }
+      }
+      
+
+    )
+  }
+  
   update(label:any){
   
     // console.log(label )
@@ -110,31 +137,4 @@ export class EditlabelComponent implements OnInit {
     // )
 
   }
-  delete(label:any) {
-   // console.log(label)
-    this.lid.lId = label.lId;
-    console.log(this.lid)
-    this.labelservice.deleteRequest("delete/"+localStorage.getItem("token"),this.lid).subscribe(
-      (Response:any)=>{
-        if(Response.statusCode===200){
-          this.dataService.changeMessage("Delet labels")
-          console.log(Response)
-
-          this.snackbar.open(
-            "Label Delete successfull","undo",
-            {duration:2500}
-          )
-        }
-        else{
-          this.snackbar.open(
-            "Label Delete Unsuccessfull","undo",
-            {duration:2500}
-          )
-        }
-      }
-      
-
-    )
-  }
-  
 }

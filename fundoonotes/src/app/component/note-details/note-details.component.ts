@@ -33,9 +33,6 @@ export class NoteDetailsComponent implements OnInit {
   view: any;
   toggle: boolean = false;
 
- // @Input() noteInfo: any;
-  // @Input() noteid: any;
-  // @Input() noteunpin: any;
   trash: Trash = new Trash();
 
   constructor(private snackbar: MatSnackBar,
@@ -62,7 +59,7 @@ export class NoteDetailsComponent implements OnInit {
           (res) => {
                       this.view = res;
                       this.direction = this.view.data;
-                      
+                      console.log("direction..................."+this.view.data)
                       console.log(this.direction);
                        
             });  
@@ -94,6 +91,7 @@ export class NoteDetailsComponent implements OnInit {
       'color':note.colour
     };
     let dialogRef = this.dialog.open(NoteupdateComponent, dialogConfig);
+  
   }
   
   pin(note:any) {

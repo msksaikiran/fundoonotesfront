@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
 
             { duration: 25000}
           );
-          this.router.navigate(["/dashboard/notes/"+this.token]);
+          this.router.navigate(["/dashboard/notes/"]);
         } else {
           console.log(response);
           console.log("Login:" + this.login.email);

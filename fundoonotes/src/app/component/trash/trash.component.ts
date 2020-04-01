@@ -32,7 +32,7 @@ export class TrashComponent implements OnInit {
       (Response:any)=>{
         
         this.notes=Response.notes;
-        console.log("Archieve=========>",this.notes)
+        console.log("Archieve====>",this.notes)
       }
     )
   }

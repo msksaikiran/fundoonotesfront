@@ -17,10 +17,6 @@ import { NoteService } from 'src/app/service/note.service';
 })
 export class DashboardComponent implements OnInit {
 
-  //constructor() { }
-  //ngOnInit(){}
-
-  
   constructor(
     private snackbar: MatSnackBar,
     private labelservice: LabelService,
@@ -37,26 +33,25 @@ export class DashboardComponent implements OnInit {
   token: string;
   
   ngOnInit() {
-    //this.token = this.route.snapshot.paramMap.get("token");
     this.appName = "FundooNote";
     
   }
   
   onNotes() {
     this.token = localStorage.getItem("token");
-    console.log(this.token)
+    
     this.appName = "Keep";
-    this.router.navigate(['dashboard/notes/' + this.token])
+    this.router.navigate(['dashboard/notes'])
   }
   onArchive() {
-    console.log(this.token)
+   
     this.appName = "Archieve";
-    this.router.navigate(['dashboard/archive/' + this.token])
+    this.router.navigate(['dashboard/archive'])
   }
   onTrash() {
-    console.log(this.token)
+   
     this.appName = "Trash";
-    this.router.navigate(['dashboard/trash/' + this.token])
+    this.router.navigate(['dashboard/trash'])
   }
 
   openDialogLabel(notes: any) {
@@ -68,7 +63,6 @@ export class DashboardComponent implements OnInit {
   label = [];
 
   getallabels() {
-    console.log("++++=======>+++++")
     this.labelservice.getRequest("user/" + localStorage.getItem("token")).subscribe(
       (Response: any) => {
             

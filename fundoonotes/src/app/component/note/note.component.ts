@@ -20,7 +20,7 @@ notes:any[];
 
 title=new FormControl(this.note.title);
  description=new FormControl(this.note.description)
-  token: string;
+  //token: string;
   constructor(
     private snackbar: MatSnackBar,
     private noteService: NoteService,
@@ -30,7 +30,7 @@ title=new FormControl(this.note.title);
     private dataservice: DataService) { }
 
   ngOnInit() {
-    this.token = this.route.snapshot.paramMap.get("token");
+    
      }
   
   onOpen(){
@@ -41,7 +41,7 @@ title=new FormControl(this.note.title);
     this.open=false;
       console.log(this.note);
       if(this.note.title!=null&&this.note.description!=null){
-      this.noteService.postRequest("users/"+this.token,this.note).subscribe(
+      this.noteService.postRequest("users/"+localStorage.getItem("token"),this.note).subscribe(
       
       (Response:any)=>{
         

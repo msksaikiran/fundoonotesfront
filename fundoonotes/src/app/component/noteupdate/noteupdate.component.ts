@@ -21,7 +21,7 @@ export class NoteupdateComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    datas: DataService,
+    private datas: DataService,
     @Inject(MAT_DIALOG_DATA) public data: any)
   {
      this.note = data;
@@ -50,7 +50,7 @@ export class NoteupdateComponent implements OnInit {
       (Response:any)=>{
         
         if(Response.statusCode===200){
-          //this.data.changeMessage("notecom")
+          this.datas.changeMessage("notedetails")
           console.log(Response);
           this.snackbar.open(
             "Note Updation Successfull","undo",

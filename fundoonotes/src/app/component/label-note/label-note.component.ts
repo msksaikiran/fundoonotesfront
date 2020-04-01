@@ -29,13 +29,14 @@ export class LabelNoteComponent implements OnInit {
 
   getallabels(){
     
-    
       this.noteService.getRequest("notes/"+this.labelInfo.nid).subscribe(
-        (Response:any)=>{
-          console.log("&&&&&&&&&&&&&&&&&++++++++++++++=================");
+        (Response: any) => {
+          console.log("label Note geeting...");
+         
           this.label=Response.notes.label;
           console.log(this.label)
-          
+          let myobj = this.label;
+          localStorage.setItem("labobj", JSON.stringify(myobj));
         }  
       ) 
   }

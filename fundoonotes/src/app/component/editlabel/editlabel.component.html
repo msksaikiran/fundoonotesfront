@@ -1,7 +1,8 @@
 
     <mat-card class="matcard2">
-        
-        <textarea  matInput id="title"   type="text" class="input"placeholder="Label" [formControl]=lableName  [(ngModel)]="label.lableName"></textarea>
+        Edit Labels
+        <br><br>
+        <input  matInput  type="text" class="input"placeholder="Create aNew Label" [formControl]=lableName  [(ngModel)]="label.lableName">
         
          <br><br>
           <div class=button *ngFor="let label of labels">
@@ -18,7 +19,7 @@
     </button> 
     
 
-     <div fxFlex=30 style="padding-left: 45px;">
+     <div fxFlex=30 >
       <button mat-icon-button (click)="update(label)" >
           <mat-icon> edit</mat-icon>
       </button>

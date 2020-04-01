@@ -46,15 +46,20 @@
   </div>
   
   <mat-menu #subMenu="matMenu">
-    Labelnote
-    <br>
-    <mat-card style="margin-bottom: -8px;">
-    <input  type="text" style="border: none;" placeholder="Enter lableName" >
-    <br>
-    <div *ngFor="let labels of label" fxLayoutGap="20px" fxLayout="column" >
+    <div style="margin-left:10px;">
+     Labelnote
+    </div>
+    <mat-card style="margin-bottom: -8px;margin-left: -11px;">
+    <input matInput [(ngModel)]="label.lableName" type="text" style="border: none;" placeholder="Enter lableName" >
+    <br><br>
+    <!-- <div *ngFor="let labels of checkboxlabel" fxLayoutGap="20px" fxLayout="column" >
+      <mat-icon style="color: blue;">check_box</mat-icon> {{labels.lableName}}
+    </div> -->
+    <div *ngFor="let labels of checkboxlabel" fxLayoutGap="20px" fxLayout="column" >
       <mat-checkbox (click)="addlabel(labels)">
         {{labels.lableName}}
       </mat-checkbox>
+      
     </div>
   </mat-card>
   </mat-menu>
