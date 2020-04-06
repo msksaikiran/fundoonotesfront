@@ -1,17 +1,16 @@
  <div fxLayout="row" fxLayoutAlign="center center"   class="1">
    
-   <div  fxLayout="{{direction}} wrap" fxLayoutGap="10px" fxLayout.xs="row" fxLayoutAlign="center center"> 
-
+   <div  fxLayout="{{direction}} wrap" fxLayout.xs="row" fxLayoutAlign="center center"> 
+ 
  <div *ngFor="let note of notes">
         
     <div *ngIf="note.isPinned==1">
       <span>
-       <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2">
+       <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2"
+       [ngClass]=" direction =='row' ? 'matpad2':'matpad3' ">
 
-          
-      <br>
        <div  (click)="onUpdate(note)" >
-    
+         <br>
           <form>
          
                 <div>

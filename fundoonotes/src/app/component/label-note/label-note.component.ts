@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { DataService } from 'src/app/service/data.service';
 import { NoteService } from 'src/app/service/note.service';
+import { LabelNote } from 'src/app/models/labelNote';
 
 @Component({
   selector: 'app-label-note',
@@ -27,18 +28,50 @@ export class LabelNoteComponent implements OnInit {
     )
   }
 
+  reminder = [];
+ 
   getallabels(){
     
       this.noteService.getRequest("notes/"+this.labelInfo.nid).subscribe(
         (Response: any) => {
-          console.log("label Note geeting...");
-         
+          console.log("label Note geeting...#####*********");
+          console.log(Response.notes.reminder);
+          this. reminder = Response.notes.reminder;
+         // console.log(this.dateTime)
           this.label=Response.notes.label;
           console.log(this.label)
-          let myobj = this.label;
-          localStorage.setItem("labobj", JSON.stringify(myobj));
+          // let myobj = this.label;
+          // localStorage.setItem("labobj", JSON.stringify(myobj));
+          
+          console.log(this.labelInfo.reminder)
         }  
       ) 
   }
 
-}
+  labelNote: LabelNote = new LabelNote();
+  onDelete(labels:any) {
+    
+    console.log(labels);
+    console.log(labels.lId);
+    this.labelNote.lId = labels.lId;
+    this.labelNote.nId = this.labelInfo.nid;
+
+    console.log("LabelNote Obj.......................");
+    console.log(this.labelNote);
+  
+    console.log(this.labelInfo)
+      this.labelservice.postRequest("removelabels/"+localStorage.getItem("token"), this.labelNote).subscribe(
+        (Response: any) => {
+    
+          if (Response.statusCode === 200) {
+            this.dataservice.changeMessage("lable")
+            
+            console.log(Response);
+            this.snackbar.open("Lable Creation Successfull", "undo", { duration: 2500 })
+          }
+         
+        })
+      
+    }
+  }
+

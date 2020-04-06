@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,ChangeDetectionStrategy } from '@angular/core';
 import { UserService } from "src/app/service/user.service";
 import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,19 +10,46 @@ import { Color } from 'src/app/models/setcolor';
 import { Label } from 'src/app/models/label';
 import { LabelService } from 'src/app/service/label.service';
 import { LabelNote } from 'src/app/models/labelNote';
+import { DateReminder } from 'src/app/models/dateReminder';
+// import { MatDatepickerModule } from '@angular/material/datepicker';
+
+import * as _moment from 'moment';
+import { DateTimeAdapter, OWL_DATE_TIME_FORMATS, OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
+import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
+
+const moment = (_moment as any).default ? (_moment as any).default : _moment;
+
+export const MY_CUSTOM_FORMATS = {
+  parseInput: 'LL LT',
+  fullPickerInput: 'LL LT',
+  datePickerInput: 'LL',
+  timePickerInput: 'LT',
+  monthYearLabel: 'MMM YYYY',
+  dateA11yLabel: 'LL',
+  monthYearA11yLabel: 'MMMM YYYY',
+};
 
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
-  styleUrls: ['./icon.component.scss']
+  styleUrls: ['./icon.component.scss',],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        // `MomentDateTimeAdapter` can be automatically provided by importing
+        // `OwlMomentDateTimeModule` in your applications root module. We provide it at the component level
+        // here, due to limitations of our example generation script.
+        {provide: DateTimeAdapter, useClass: MomentDateTimeAdapter, deps: [OWL_DATE_TIME_LOCALE]},
+
+        {provide: OWL_DATE_TIME_FORMATS, useValue: MY_CUSTOM_FORMATS},
+    ],
 })
 export class IconComponent implements OnInit {
-
+  public dateTime = new moment();
   @Input() noteInfo: any;
   //@Input() labelInfo: any;
 
   trash: Trash = new Trash();
-  color: Color = new Color();
+  colour: Color = new Color();
   label: Label = new Label();
   labelNote: LabelNote = new LabelNote();
   checkboxlabel = [];
@@ -83,11 +110,11 @@ export class IconComponent implements OnInit {
 
     console.log(color)
     
-    this.color.nid = this.noteInfo.nid;
-   
+    this.colour.nid = this.noteInfo.nid;
+    this.colour.colour = color;
     
-    console.log(this.color);
-    this.noteService.putRequest("color/" + this.token, color).subscribe(
+    console.log(this.colour);
+    this.noteService.putRequest("color/" + localStorage.getItem("token"), this.colour).subscribe(
       (Response: any) => {
         if (Response.statusCode === 200) {
           this.dataService.changeMessage('color')
@@ -220,9 +247,7 @@ export class IconComponent implements OnInit {
      
       this.labelservice.postRequest("addlabels/" + localStorage.getItem("token"), this.labelNote).subscribe(
         (Response: any) => {
-          
-         
-          
+    
           if (Response.statusCode === 200) {
             this.dataService.changeMessage("lable")
             
@@ -234,4 +259,37 @@ export class IconComponent implements OnInit {
       
     }
   }
+
+  dateReminder: DateReminder = new DateReminder();
+  dateControl=new FormControl(this.dateReminder.remainder);
+  lables: []
+  
+
+  datePicker() {
+    console.log("**************************************")
+    console.log(this.dateTime._d)
+    this.dateReminder.remainder = this.dateTime._d;
+    this.dateReminder.nid = this.noteInfo.nid;
+    console.log(this.dateReminder)
+   this.noteService.postRequest("addremainder/"+localStorage.getItem("token"),this.dateReminder).subscribe(
+    (Response:any)=>{
+      if(Response.statusCode===200)
+      {
+        console.log(Response)
+        this.snackbar.open(
+          "Reminder Successfull","",
+          {duration:2500}
+        )
+      }
+      else{
+       console.log(Response)
+       this.snackbar.open(
+         "Reminder UnSuccessfull","",
+         {duration:2500}
+       )
+      }
+    }
+  )
+  }
+  
 }

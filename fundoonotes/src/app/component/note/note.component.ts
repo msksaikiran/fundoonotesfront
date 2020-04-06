@@ -40,7 +40,7 @@ title=new FormControl(this.note.title);
   onClose(){
     this.open=false;
       console.log(this.note);
-      if(this.note.title!=null&&this.note.description!=null){
+     
       this.noteService.postRequest("users/"+localStorage.getItem("token"),this.note).subscribe(
       
       (Response:any)=>{
@@ -64,15 +64,15 @@ title=new FormControl(this.note.title);
       }
     )
   }
-  else
-{
-  console.log(Response);
-  this.snackbar.open(
-    "note Creation unSuccessfull","undo",
-    {duration:2500}
-  )
+//   else
+// {
+//   console.log(Response);
+//   this.snackbar.open(
+//     "note Creation ","undo",
+//     {duration:2500}
+//   )
 
-}
-}
+// }
+// }
 
 }

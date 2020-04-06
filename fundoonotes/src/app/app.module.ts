@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,7 +14,6 @@ import { MatButtonModule } from "@angular/material/button";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import {MatListModule} from '@angular/material/list';
-//import { MatNavl} from "@angular/material/";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatMenuModule } from "@angular/material/menu";
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -39,6 +37,11 @@ import { UnpinComponent } from './component/unpin/unpin.component';
 import { LabelNoteComponent } from './component/label-note/label-note.component';
 import { MatChipsModule } from '@angular/material';
 import { LabelNotesdetailsComponent } from './component/label-notesdetails/label-notesdetails.component';
+import { MatDatepickerModule, MatNativeDateModule } from '@angular/material/';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+//import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from 'ngx-mat-datetime-picker';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +68,8 @@ import { LabelNotesdetailsComponent } from './component/label-notesdetails/label
     AppRoutingModule,
     BrowserAnimationsModule,
     MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
@@ -79,11 +84,13 @@ import { LabelNotesdetailsComponent } from './component/label-notesdetails/label
     MatMenuModule,
     MatDialogModule,
     MatCheckboxModule,
-   // MatDialogRef,
-    //MatNavList,
     MatChipsModule,
     MatDividerModule,
-  
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    NgxMaterialTimepickerModule,
+    // NgxMatDatetimePickerModule,
+    // NgxMatTimepickerModule, 
     //MAT_DIALOG_DATA,
     FlexLayoutModule
   ],
