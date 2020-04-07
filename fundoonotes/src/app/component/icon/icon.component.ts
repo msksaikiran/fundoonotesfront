@@ -222,7 +222,7 @@ export class IconComponent implements OnInit {
   
   enable: boolean = true;
   addlabel(labels: any) {
-    
+      
     console.log(labels);
     console.log(labels.lId);
     this.labelNote.lId = labels.lId;
@@ -262,20 +262,20 @@ export class IconComponent implements OnInit {
 
   dateReminder: DateReminder = new DateReminder();
   dateControl=new FormControl(this.dateReminder.remainder);
-  lables: []
+
   
 
   datePicker() {
-    console.log("**************************************")
     console.log(this.dateTime._d)
     this.dateReminder.remainder = this.dateTime._d;
     this.dateReminder.nid = this.noteInfo.nid;
     console.log(this.dateReminder)
-   this.noteService.postRequest("addremainder/"+localStorage.getItem("token"),this.dateReminder).subscribe(
+    this.noteService.postRequest("addremainder/"+localStorage.getItem("token"),this.dateReminder).subscribe(
     (Response:any)=>{
       if(Response.statusCode===200)
       {
         console.log(Response)
+        this.dataService.changeMessage("addRemainder")
         this.snackbar.open(
           "Reminder Successfull","",
           {duration:2500}

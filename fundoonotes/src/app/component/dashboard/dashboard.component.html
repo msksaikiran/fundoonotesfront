@@ -51,13 +51,14 @@
             </mat-menu>
           </button>
 
-            <button   mat-icon-button  fxShow="true" width="30" [matMenuTriggerFor]="account">
-              <mat-icon> account_circle</mat-icon>
+            <button   mat-icon-button  fxShow="true" width="30" [matMenuTriggerFor]="menu3" >
+              <img class="image2" src={{image}} > 
+             
             </button>   
 
-             <mat-menu #account="matMenu">
+             <mat-menu #menu3="matMenu">
                 <button mat-menu-item  (click)="account()">LogOut</button>
-                <button mat-menu-item>Upload Profile</button>
+                <button mat-menu-item  (click)="Profile()">Upload Profile</button>
               </mat-menu> 
 
         </div>

@@ -5,6 +5,8 @@ import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NoteService} from "src/app/service/note.service";
 import { DataService } from 'src/app/service/data.service';
+import { environment } from 'src/environments/environment';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-note',
@@ -26,17 +28,28 @@ title=new FormControl(this.note.title);
     private noteService: NoteService,
     private route: ActivatedRoute,
     private router: Router,
+    private httpservice: UserService,
     private formBuilder: FormBuilder,
     private dataservice: DataService) { }
 
   ngOnInit() {
-    
+    this.profile();
      }
   
   onOpen(){
     this.open=true;
     
   }
+  baseUrl = environment.baseProfileUrl;
+  profile() {
+    this.httpservice.postRequest("getimageurl/"+localStorage.getItem("token"),"")
+      .subscribe((response: any) => {
+        console.log(response.obj.profile)
+        localStorage.setItem("image",this.baseUrl+response.obj.profile);
+      });
+     
+  }
+  
   onClose(){
     this.open=false;
       console.log(this.note);
@@ -64,15 +77,4 @@ title=new FormControl(this.note.title);
       }
     )
   }
-//   else
-// {
-//   console.log(Response);
-//   this.snackbar.open(
-//     "note Creation ","undo",
-//     {duration:2500}
-//   )
-
-// }
-// }
-
 }

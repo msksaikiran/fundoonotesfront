@@ -6,18 +6,21 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { DataService } from 'src/app/service/data.service';
 import { NoteService } from 'src/app/service/note.service';
 import { LabelNote } from 'src/app/models/labelNote';
+import { Trash } from 'src/app/models/trash';
+
 
 @Component({
   selector: 'app-label-note',
   templateUrl: './label-note.component.html',
-  styleUrls: ['./label-note.component.scss']
+  styleUrls: ['./label-note.component.scss'],
 })
 export class LabelNoteComponent implements OnInit {
 
   @Input() labelInfo: any;
   label = [];
   message: string
-  
+  todayDate: Date = new Date();
+  noteId: Trash = new Trash();
   constructor( private snackbar:MatSnackBar,private labelservice:LabelService,private route:ActivatedRoute,private router:Router,
     private formBuilder:FormBuilder, private dataservice:DataService,private noteService: NoteService) { }
   ngOnInit() {
@@ -28,22 +31,21 @@ export class LabelNoteComponent implements OnInit {
     )
   }
 
-  reminder = [];
+  reminder: String;
  
   getallabels(){
     
       this.noteService.getRequest("notes/"+this.labelInfo.nid).subscribe(
         (Response: any) => {
-          console.log("label Note geeting...#####*********");
+          console.log("label Note geeting...");
           console.log(Response.notes.reminder);
-          this. reminder = Response.notes.reminder;
-         // console.log(this.dateTime)
+         
+          // Adding reminder to chip
+          this.reminder = Response.notes.reminder;
+        // Adding Label to chip
           this.label=Response.notes.label;
           console.log(this.label)
-          // let myobj = this.label;
-          // localStorage.setItem("labobj", JSON.stringify(myobj));
           
-          console.log(this.labelInfo.reminder)
         }  
       ) 
   }
@@ -55,9 +57,6 @@ export class LabelNoteComponent implements OnInit {
     console.log(labels.lId);
     this.labelNote.lId = labels.lId;
     this.labelNote.nId = this.labelInfo.nid;
-
-    console.log("LabelNote Obj.......................");
-    console.log(this.labelNote);
   
     console.log(this.labelInfo)
       this.labelservice.postRequest("removelabels/"+localStorage.getItem("token"), this.labelNote).subscribe(
@@ -72,6 +71,27 @@ export class LabelNoteComponent implements OnInit {
          
         })
       
-    }
+  }
+  
+ 
+  onDeleteRem() {
+    
+    this.noteId.nid= this.labelInfo.nid;
+  
+    console.log(this.labelInfo.nid)
+      this.noteService.putRequest("removeRemainder/"+localStorage.getItem("token"),this.noteId).subscribe(
+        (Response: any) => {
+    
+          if (Response.statusCode === 200) {
+            this.dataservice.changeMessage("lable")
+            
+            console.log(Response);
+            this.snackbar.open("Lable Creation Successfull", "undo", { duration: 2500 })
+          }
+         
+        })
+      
+  }
+  
   }
 

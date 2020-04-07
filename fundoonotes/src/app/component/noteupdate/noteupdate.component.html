@@ -3,15 +3,15 @@
   <form>
 
    <div fxLayout="row"  fxLayoutAlign="center center">
-   <textarea matInput  type="text" placeholder="Edit Title" class="input" [ngStyle]="{'background-color':note.color}" [formControl]="title" [(ngModel)]="note.title" ></textarea>
+   <input matInput  type="text" placeholder="Edit Title" class="input" [ngStyle]="{'background-color':note.color}" [formControl]="title" [(ngModel)]="note.title" >
     </div>
         <br><br>
    <div fxLayout="row"  fxLayoutAlign="center center">
-    <textarea  matInput   type="text" class="input" placeholder="Description"  [ngStyle]="{'background-color':note.color}" [formControl]="description" [(ngModel)]="note.description"></textarea>
+    <input matInput   type="text" class="input" placeholder="Description"  [ngStyle]="{'background-color':note.color}" [formControl]="description" [(ngModel)]="note.description">
     </div>
 
    </form>
-   <br>
+   <br><br>
    <app-icon></app-icon>
 </mat-card>
 

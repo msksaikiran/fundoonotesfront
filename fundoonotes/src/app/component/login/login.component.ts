@@ -4,6 +4,10 @@ import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { Login } from 'src/app/models/login';
+import { environment } from 'src/environments/environment';
+import { HttpErrorResponse } from '@angular/common/http';
+import { CATCH_ERROR_VAR } from '@angular/compiler/src/output/output_ast';
+//import { profile } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +39,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.token = this.route.snapshot.paramMap.get("token");
+   
   }
   getErrorMessage() {
     return this.email.hasError("required")
@@ -51,29 +55,25 @@ export class LoginComponent implements OnInit {
       ? " "
       : "Min 7 Elements";
   }
+  
+ 
   onlogin() {
     console.log(this.login);
-    this.token = localStorage.getItem("token");
-    this.httpservice
-      .postRequest("login", this.login)
-      .subscribe((response: any) => {
-        this.snackBar.open("Verifying the user....", "undo", { duration: 25000});
-        if (response.token !=null) {
-          console.log(response);
-          localStorage.setItem("token", response.token);
-          this.snackBar.open(
-            "Login Successfull",
-            "undo",
-
-            { duration: 25000}
-          );
-          this.router.navigate(["/dashboard/notes/"]);
-        } else {
-          console.log(response);
-          console.log("Login:" + this.login.email);
-          this.snackBar.open("Login Failed", "undo", { duration: 25000});
-        }
-      });
+    this.httpservice.postRequest("login", this.login).subscribe((response: any) => {
+        
+     console.log(response.HttpErrorResponse) 
+      if (response.token != null) {
+        localStorage.setItem("token", response.token);
+        this.snackBar.open("Login Successfull", "undo", { duration: 2500 });
+        this.router.navigate(["/dashboard/notes/"]);
+      } else {
+        console.log(response);
+        console.log("Login:" + this.login.email);
+        this.snackBar.open("Login Failed", "undo", { duration: 25000 });
+      }
+    });
   }
 
+  
+  
 }

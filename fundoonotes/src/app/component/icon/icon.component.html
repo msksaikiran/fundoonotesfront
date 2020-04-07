@@ -72,20 +72,11 @@
     <div>
       <mat-menu #menu3="matMenu">
         <span style="margin-left: 10px">Reminder:</span>
-        <!-- <mat-form-field style="margin-left: 10px">
-          <mat-label>Choose a date</mat-label>
-          <input matInput [matDatepicker]="picker"  [formControl]=dateControl [(ngModel)]="dateReminder.reminder" (click)="datePicker()">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <!-- <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker> 
-        </mat-form-field>  -->
         <br>
-
       <label class="example-input-wrapper">
-        <input placeholder="Date Time:"
-               [(ngModel)]="dateTime" (click)="datePicker()"
-               [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
+        <input placeholder="Date Time:" [(ngModel)]="dateTime" [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
         <owl-date-time #dt></owl-date-time>
+        <button mat-icon-button color="primary" (click)="datePicker()">Save</button>
     </label>
       </mat-menu>
     </div>

@@ -9,6 +9,7 @@ import { DataService } from 'src/app/service/data.service';
 import { BehaviorSubject } from 'rxjs';
 import { ViewService } from 'src/app/service/view.service';
 import { NoteService } from 'src/app/service/note.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,10 +17,13 @@ import { NoteService } from 'src/app/service/note.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  snackBar: any;
 
+  
   constructor(
     private snackbar: MatSnackBar,
     private labelservice: LabelService,
+    private httpservice: UserService,
     private noteservice: NoteService,
     private route: ActivatedRoute,
     private router: Router,
@@ -31,10 +35,11 @@ export class DashboardComponent implements OnInit {
   appName: string;
   open: boolean;
   token: string;
-  
+  image: string;
+
   ngOnInit() {
     this.appName = "FundooNote";
-    
+    this.image = localStorage.getItem("image");
   }
   
   onNotes() {
@@ -55,9 +60,10 @@ export class DashboardComponent implements OnInit {
   }
 
   account() {
-    localStorage.clear;
+    localStorage.clear();
     this.router.navigate(['login'])
   }
+
 
   refresh() {
     this.dataservice.changeMessage("refresh");
@@ -95,5 +101,25 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  Profile() {
+    this.httpservice.postRequest("uploadProfile/"+localStorage.getItem("token"),"").subscribe((response: any) => {
+        
+      if (response.token !=null) {
+        console.log(response);
+        //localStorage.setItem("token", response.token);
+        this.snackBar.open(
+          "Login Successfull",
+          "undo",
+
+          { duration: 25000}
+        );
+        //this.router.navigate(["/dashboard/notes/"]);
+      } else {
+        console.log(response);
+        //console.log("Login:" + this.login.email);
+        this.snackBar.open("Login Failed", "undo", { duration: 25000});
+      }
+    });
+  }
  
 }

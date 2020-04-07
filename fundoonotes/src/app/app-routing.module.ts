@@ -32,16 +32,6 @@ const routes: Routes = [
     component:RestPasswordComponent
   },
   {
-    path:"dashboard",
-    component:DashboardComponent
-  },
-  
-    {
-      path:"notes",
-      component:NoteComponent
-    },
-  
-  {
     path: "dashboard",
     component: DashboardComponent,
     children: [
