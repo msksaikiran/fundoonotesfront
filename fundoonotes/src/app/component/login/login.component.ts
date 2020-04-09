@@ -59,9 +59,8 @@ export class LoginComponent implements OnInit {
  
   onlogin() {
     console.log(this.login);
-    this.httpservice.postRequest("login", this.login).subscribe((response: any) => {
-        
-     console.log(response.HttpErrorResponse) 
+    this.httpservice.postRequest("login", this.login).subscribe((response: any) => {   
+     //console.log(response.HttpErrorResponse) 
       if (response.token != null) {
         localStorage.setItem("token", response.token);
         this.snackBar.open("Login Successfull", "undo", { duration: 2500 });

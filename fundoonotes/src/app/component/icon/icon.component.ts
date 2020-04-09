@@ -11,7 +11,6 @@ import { Label } from 'src/app/models/label';
 import { LabelService } from 'src/app/service/label.service';
 import { LabelNote } from 'src/app/models/labelNote';
 import { DateReminder } from 'src/app/models/dateReminder';
-// import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import * as _moment from 'moment';
 import { DateTimeAdapter, OWL_DATE_TIME_FORMATS, OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
@@ -46,8 +45,7 @@ export const MY_CUSTOM_FORMATS = {
 export class IconComponent implements OnInit {
   public dateTime = new moment();
   @Input() noteInfo: any;
-  //@Input() labelInfo: any;
-
+ 
   trash: Trash = new Trash();
   colour: Color = new Color();
   label: Label = new Label();
@@ -79,7 +77,7 @@ export class IconComponent implements OnInit {
   arrayColor = [
     [
       {
-        name: "white", hexcode: " #ffffff "
+        name: "whitesmoke", hexcode: " whitesmoke "
       }
       ,
       {

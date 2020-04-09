@@ -20,12 +20,6 @@ import { not } from '@angular/compiler/src/output/output_ast';
 })
 export class NoteDetailsComponent implements OnInit {
 
-  // constructor() { }
-
-  // ngOnInit() {
-  // }
-
-  //nt:displayNotes
   notes:[];
   data1: any[];
   wrap:string ="wrap";

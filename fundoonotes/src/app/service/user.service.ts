@@ -8,6 +8,9 @@ import { HttpService } from './http.service';
   providedIn: 'root'
 })
 export class UserService {
+  post(arg0: string, formData: FormData) {
+    throw new Error("Method not implemented.");
+  }
 
   baseUrl = environment.baseUrluser;
   
@@ -16,12 +19,10 @@ export class UserService {
   public postRequest(url: any, data: any): any {
     return this.http.post(this.baseUrl + url, data);
   }
-
   public putRequest(url: any, data: any): any {
     return this.http.put(this.baseUrl + url, data);
   
   }
-
   public getRequest(url: any): any {
     return this.http.get(this.baseUrl + url);
   }

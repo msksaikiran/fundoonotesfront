@@ -40,8 +40,8 @@ import { LabelNotesdetailsComponent } from './component/label-notesdetails/label
 import { MatDatepickerModule, MatNativeDateModule } from '@angular/material/';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-import { CustomDatePipePipe } from './component/custom-date-pipe.pipe';
-
+import { SearchnotePipe } from './pipes/searchnote.pipe';
+import { FileUploadModule } from 'ng2-file-upload';
 //import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from 'ngx-mat-datetime-picker';
 
 @NgModule({
@@ -64,7 +64,8 @@ import { CustomDatePipePipe } from './component/custom-date-pipe.pipe';
     UnpinComponent,
     LabelNoteComponent,
     LabelNotesdetailsComponent,
-    CustomDatePipePipe,
+    SearchnotePipe,
+  
     
   ],
   imports: [
@@ -93,9 +94,7 @@ import { CustomDatePipePipe } from './component/custom-date-pipe.pipe';
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     NgxMaterialTimepickerModule,
-    // NgxMatDatetimePickerModule,
-    // NgxMatTimepickerModule, 
-    //MAT_DIALOG_DATA,
+    FileUploadModule,
     FlexLayoutModule
   ],
   providers: [HttpService],

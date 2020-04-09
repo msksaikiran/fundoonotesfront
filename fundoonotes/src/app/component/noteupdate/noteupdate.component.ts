@@ -23,6 +23,7 @@ export class NoteupdateComponent implements OnInit {
     private formBuilder: FormBuilder,
     private datas: DataService,
     @Inject(MAT_DIALOG_DATA) public data: any)
+  
   {
      this.note = data;
   }
@@ -33,7 +34,7 @@ export class NoteupdateComponent implements OnInit {
  noteId = this.data.nid;
 
   ngOnInit() {
-    console.log(this.data)
+   // console.log(this.data)
   }
 
   

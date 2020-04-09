@@ -12,7 +12,7 @@
             <mat-icon matTooltip="Search" (click)="onsearch()">search</mat-icon>
           </button>
 
-          <input class="searchInput" placeholder="Search" >
+          <input class="searchInput" placeholder="Search.." >
           
         </div>
 
@@ -22,9 +22,6 @@
             <mat-icon matTooltip="refresh">refresh</mat-icon>
           </button>
 
-          <!-- <button mat-icon-button class="list">
-            <mat-icon>grid_view</mat-icon>
-          </button> -->
           <div class="list">
             <button mat-icon-button  *ngIf="list" (click)="changeView()" fxShow="true" fxHide.lt-sm="true">
               <mat-icon class="icon">grid_view</mat-icon>
@@ -53,12 +50,21 @@
 
             <button   mat-icon-button  fxShow="true" width="30" [matMenuTriggerFor]="menu3" >
               <img class="image2" src={{image}} > 
-             
             </button>   
 
              <mat-menu #menu3="matMenu">
-                <button mat-menu-item  (click)="account()">LogOut</button>
-                <button mat-menu-item  (click)="Profile()">Upload Profile</button>
+               <div  fxLayout="column" fxLayoutAlign="center center" >
+              <img class="image3" src={{image}} > <br>
+               
+              <form (ngSubmit)="upload()" [formGroup]="form">
+                <input ng-model="file_upload" name="file" type="file" (change)="fileChange($event)" #fileInput>
+                <!-- <button type="submit">Submit</button> -->
+                <button mat-menu-item  type="submit" style="text-align: center;">Upload </button>
+            </form> 
+               
+               
+                    <button mat-menu-item  (click)="account()" style="text-align: center;">LogOut</button>
+                  </div>
               </mat-menu> 
 
         </div>
@@ -66,10 +72,6 @@
         </mat-toolbar-row>
       
        </mat-toolbar>
-      
-       
-
-
     </div>
    
    <div class="hiddenMenu" fxLayout="column" fxLayoutAlign="center start"> 

@@ -26,7 +26,8 @@ export class LabelNoteComponent implements OnInit {
   ngOnInit() {
     this.dataservice.currentMessage.subscribe(
       message => {
-        console.log(this.labelInfo); this.message = message, this.getallabels()
+        console.log(this.labelInfo);
+        this.message = message, this.getallabels()
       }
     )
   }

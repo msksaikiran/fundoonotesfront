@@ -8,6 +8,7 @@
 
         <div class="notearea" (click)="onUpdate(note)" >
 
+        
          <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2" >
            
              <form>
@@ -20,13 +21,21 @@
                    <div>
                       {{note.description}}
                    </div>
-                 
-                <!-- <app-label-note [labelInfo]=note></app-label-note> -->
+                 <br>
+         
+          <button mat-icon-button  (click)="refresh()">
+            <mat-icon matTooltip="refresh">restore_from_trash</mat-icon>
+          </button>
+          
+          <button mat-icon-button class="refresh" (click)="refresh()">
+            <mat-icon matTooltip="refresh">delete_forever</mat-icon>
+          </button>
+          
                 <div class=appicons fxLayoutAlign="center center">
                 </div> 
              </form> 
           </mat-card>
-         
+        
         </div> 
 
         <div class="iconBackborder">
