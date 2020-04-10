@@ -7,6 +7,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LabelService {
+  putRequest(arg0: string, label: any) {
+    throw new Error("Method not implemented.");
+  }
 
   baseurl = environment.baseUrlLabel;
 

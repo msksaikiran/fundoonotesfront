@@ -11,7 +11,6 @@ import { Label } from 'src/app/models/label';
 import { LabelService } from 'src/app/service/label.service';
 import { LabelNote } from 'src/app/models/labelNote';
 import { DateReminder } from 'src/app/models/dateReminder';
-
 import * as _moment from 'moment';
 import { DateTimeAdapter, OWL_DATE_TIME_FORMATS, OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';

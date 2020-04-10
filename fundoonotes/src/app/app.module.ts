@@ -42,6 +42,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { SearchnotePipe } from './pipes/searchnote.pipe';
 import { FileUploadModule } from 'ng2-file-upload';
+import { SearchnotesComponent } from './component/searchnotes/searchnotes.component';
 //import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from 'ngx-mat-datetime-picker';
 
 @NgModule({
@@ -65,6 +66,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     LabelNoteComponent,
     LabelNotesdetailsComponent,
     SearchnotePipe,
+    SearchnotesComponent,
   
     
   ],

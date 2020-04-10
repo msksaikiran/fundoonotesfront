@@ -17,7 +17,7 @@ export class NoteService {
     return this.http.get(this.baseurl + url);
   }
   public putRequest(url: any,data:any): any {
-    return this.http.put(this.baseurl + url,data);
+    return this.http.put(this.baseurl + url, data);
   }
   public deleteRequest(url: any,data:any): any {
     return this.http.delete(this.baseurl + url,data);

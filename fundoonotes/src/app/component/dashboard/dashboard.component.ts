@@ -12,7 +12,8 @@ import { NoteService } from 'src/app/service/note.service';
 import { UserService } from 'src/app/service/user.service';
 import { FileUploader } from 'ng2-file-upload';
 import { HttpClient } from '@angular/common/http';
-const uploadAPI = "http://localhost:8083/users/uploadProfile/"+localStorage.getItem("token");
+import { Note } from 'src/app/models/note';
+//const uploadAPI = "http://localhost:8083/users/uploadProfile/"+localStorage.getItem("token");
 
 @Component({
   selector: 'app-dashboard',
@@ -46,7 +47,7 @@ file: File;
   //fileData: File = null;
   //form: FormGroup;
   //title = 'ng8fileuploadexample';
-  public uploader: FileUploader = new FileUploader({ url: uploadAPI, itemAlias: 'file' });
+ // public uploader: FileUploader = new FileUploader({ url: uploadAPI, itemAlias: 'file' });
   
   ngOnInit() {
     this.appName = "FundooNote";
@@ -71,6 +72,7 @@ file: File;
       // Fill file variable with the file content
       this.file = event.target.files[0];
     }
+    
   }
 
   // Upload the file to the API
@@ -80,14 +82,17 @@ file: File;
     // Add file content to prepare the request
     body.append("file", this.file);
     // Launch post request
-    this.httpservice.postRequest("uploadProfile/"+localStorage.getItem("token"),body)
-    .subscribe(
-      // Admire results
-      (data) => {console.log(data)},
-      // Or errors :-(
-      error => console.log(error),
-      // tell us if it's finished
-      () => { console.log("completed") }
+    this.httpservice.postRequest("uploadProfile/" + localStorage.getItem("token"), body)
+      .subscribe(
+        
+        // Admire results
+        (data) => { console.log(data) },
+        
+        // Or errors :-(
+        error => console.log(error),
+        // tell us if it's finished
+        () => { console.log("completed") }
+        
     );
   }
 
@@ -108,7 +113,20 @@ file: File;
     this.appName = "Trash";
     this.router.navigate(['dashboard/trash'])
   }
-
+  myInput = new FormControl();
+  private obtainNotes = new BehaviorSubject([]);
+  currentMessage = this.obtainNotes.asObservable();
+  onsearch() {
+   console.log(this.myInput.value)
+    this.appName = "Search";
+    this.noteservice.getRequest("searchTitle?title="+this.myInput.value).subscribe(
+      (response:any)=>{this.obtainNotes.next(response)
+        console.log(response)
+      this.router.navigate(['dashboard/search'])
+    }
+    )
+    //this.router.navigate(['dashboard/search'])
+  }
   account() {
     localStorage.clear();
     this.router.navigate(['login'])
@@ -149,8 +167,5 @@ file: File;
       }
 
     )
-  }
-
-
- 
+  } 
 }

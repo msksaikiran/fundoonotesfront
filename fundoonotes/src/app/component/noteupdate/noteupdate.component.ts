@@ -47,11 +47,10 @@ export class NoteupdateComponent implements OnInit {
     console.log(this.updateNote);
     this.noteService.putRequest("update/"+localStorage.getItem("token"),this.updateNote).subscribe(
       
-
       (Response:any)=>{
         
         if(Response.statusCode===200){
-          this.datas.changeMessage("notedetails")
+          this.datas.changeMessage("noteUpdate")
           console.log(Response);
           this.snackbar.open(
             "Note Updation Successfull","undo",

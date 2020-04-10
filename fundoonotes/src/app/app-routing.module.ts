@@ -10,6 +10,7 @@ import { ArchiveComponent } from './component/archive/archive.component';
 import { TrashComponent } from './component/trash/trash.component';
 import { EditlabelComponent } from './component/editlabel/editlabel.component';
 import { LabelNotesdetailsComponent } from './component/label-notesdetails/label-notesdetails.component';
+import { SearchnotesComponent } from './component/searchnotes/searchnotes.component';
 const routes: Routes = [
   {
     path:"",
@@ -50,6 +51,10 @@ const routes: Routes = [
       {
         path: "labelNotes",
         component: LabelNotesdetailsComponent
+      },
+      {
+        path: "search",
+        component:SearchnotesComponent
       }
     ]
   },

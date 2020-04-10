@@ -114,27 +114,27 @@ export class EditlabelComponent implements OnInit {
   
   update(label:any){
   
-    // console.log(label )
-    // this.labelservice.putRequest("update?lableId="+label.la,label).subscribe(
-    //   (Response:any)=>{
-    //     if(Response.statusCode===200){
-    //       this.dataService.changeMessage("Update labels")
-    //       console.log(Response)
+  //   console.log(label )
+  //   this.labelservice.putRequest("update?lableId="+label.la,label).subscribe(
+  //     (Response:any)=>{
+  //       if(Response.statusCode===200){
+  //         this.dataService.changeMessage("Update labels")
+  //         console.log(Response)
 
-    //       this.snackbar.open(
-    //         "Label Updates Successfull","undo",
-    //         {duration:2500}
-    //       )
-    //     }
-    //     else{
-    //       this.snackbar.open(
-    //         "Label Update UnSuccessfull","undo",
-    //         {duration:2500}
-    //       )
-    //     }
-    //   }
+  //         this.snackbar.open(
+  //           "Label Updates Successfull","undo",
+  //           {duration:2500}
+  //         )
+  //       }
+  //       else{
+  //         this.snackbar.open(
+  //           "Label Update UnSuccessfull","undo",
+  //           {duration:2500}
+  //         )
+  //       }
+  //     }
       
-    // )
+  //   // )
 
-  }
+   }
 }

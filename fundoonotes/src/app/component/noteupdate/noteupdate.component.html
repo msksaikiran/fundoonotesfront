@@ -9,9 +9,9 @@
    <div fxLayout="row"  fxLayoutAlign="center center">
     <input matInput   type="text" class="input" placeholder="Description"  [ngStyle]="{'background-color':note.color}" [formControl]="description" [(ngModel)]="note.description">
     </div>
-
+    <br><br>
+    <app-label-note [labelInfo]=note></app-label-note> 
    </form>
-   <br><br>
    <app-icon></app-icon>
 </mat-card>
 

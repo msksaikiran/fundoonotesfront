@@ -6,14 +6,12 @@
    
        <div *ngIf="note.isTrashed==1" >  
 
-        <div class="notearea" (click)="onUpdate(note)" >
+        <div class="notearea">
 
         
          <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2" >
            
-             <form>
-                <!-- <app-pin></app-pin>    -->
-                 
+             <form> 
                    <div>
                       {{note.title}}
                    </div>
@@ -23,11 +21,11 @@
                    </div>
                  <br>
          
-          <button mat-icon-button  (click)="refresh()">
-            <mat-icon matTooltip="refresh">restore_from_trash</mat-icon>
+          <button mat-icon-button  (click)="restore(note)">
+            <mat-icon matTooltip="refresh" >restore_from_trash</mat-icon>
           </button>
           
-          <button mat-icon-button class="refresh" (click)="refresh()">
+          <button mat-icon-button class="refresh" (click)="delete(note)">
             <mat-icon matTooltip="refresh">delete_forever</mat-icon>
           </button>
           

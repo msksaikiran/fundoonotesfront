@@ -85,7 +85,7 @@ export class NoteDetailsComponent implements OnInit {
       'color':note.colour
     };
     let dialogRef = this.dialog.open(NoteupdateComponent, dialogConfig);
-  
+    
   }
   
   pin(note:any) {

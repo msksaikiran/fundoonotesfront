@@ -1,33 +1,30 @@
+<!-- <h3 style="font-style: italic;">Your Search Result....</h3> -->
 
-<app-unpin></app-unpin>  
 <br>
  <div fxLayout="row" fxLayoutAlign="center center"  class="1">
    
- <div  fxLayout="{{direction}} wrap" fxLayoutGap="10px" fxLayout.xs="row" fxLayoutAlign="center center"> 
+ <div  fxLayout="{{direction}} wrap" fxLayoutGap="5px" fxLayout.xs="row" fxLayoutAlign="center center"> 
    
-     <!-- <div style="margin-top: 10px;">  OTHERS  </div> -->
- <div *ngFor="let note of notes">
+  <div *ngFor="let noteone of data">
 
-    <div *ngIf="note.isArchieved==0 && note.isTrashed==0 && note.isPinned==0">  
-
+   
       <span>
         
-       <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2"
-       [ngClass]=" direction =='row' ? 'matpad2':'matpad3' ">
+       <mat-card [ngStyle]="{'background-color':noteone.colour}" class="matcard2">
               <br>
 
-            <div  (click)="onUpdate(note)" >
+            <div  (click)="onUpdate(noteone)" >
              <form>
                    <div>
-                   {{note.title}} 
+                   {{noteone.title}}
                    </div>
                    <br>
                    <div>
-                   {{note.description}}
+                   {{noteone.description}}
                    </div>
                  
                    <br>
-                 <app-label-note [labelInfo]=note></app-label-note> 
+                 <app-label-note [labelInfo]=noteone></app-label-note> 
                
              </form> 
             </div> 
@@ -44,11 +41,11 @@
             </div>
             
             <div class="iconBackborder">
-                <app-icon [noteInfo]=note></app-icon>
+                <app-icon [noteInfo]=noteone></app-icon>
              </div>
         </address>
    </span>
-    </div>
+    
  </div>  
  </div>
- 
+  

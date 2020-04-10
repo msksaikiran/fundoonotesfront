@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { NoteService } from 'src/app/service/note.service';
 import { DataService } from 'src/app/service/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+import { Trash } from 'src/app/models/trash';
 @Component({
   selector: 'app-trash',
   templateUrl: './trash.component.html',
@@ -36,5 +37,62 @@ export class TrashComponent implements OnInit {
       }
     )
   }
+  //@Input() noteInfo: any;
+  trash: Trash = new Trash();
+  restore(note:any) {
+    console.log(note.nid);
+    this.trash.nid = note.nid;
+    console.log(this.trash);
+    this.token = localStorage.getItem("token")
+    this.noteService.putRequest("restore/" + this.token, this.trash).subscribe(
+      (Response: any) => {
 
+        if (Response.statusCode === 200) {
+          this.dataservice.changeMessage('trash')
+          
+          console.log(Response);
+          this.snackbar.open(
+            "Note Trash", "undo",
+            { duration: 2500 }
+          )
+        }
+
+        else {
+          console.log(Response);
+          this.snackbar.open(
+            "note unSuccessfull", "undo",
+            { duration: 2500 }
+          )
+        }
+      }
+    )
+  }
+  delete(note:any) {
+    console.log(note.nid);
+    this.trash.nid = note.nid;
+    console.log(this.trash);
+    this.token = localStorage.getItem("token")
+    this.noteService.postRequest("permenantDelete/" + this.token, this.trash).subscribe(
+      (Response: any) => {
+
+        if (Response.statusCode === 200) {
+          this.dataservice.changeMessage('trash')
+          
+          console.log(Response);
+          this.snackbar.open(
+            "Note Trash", "undo",
+            { duration: 2500 }
+          )
+        }
+
+        else {
+          console.log(Response);
+          this.snackbar.open(
+            "note unSuccessfull", "undo",
+            { duration: 2500 }
+          )
+        }
+      }
+    )
+  }
 }
