@@ -11,6 +11,8 @@ import { TrashComponent } from './component/trash/trash.component';
 import { EditlabelComponent } from './component/editlabel/editlabel.component';
 import { LabelNotesdetailsComponent } from './component/label-notesdetails/label-notesdetails.component';
 import { SearchnotesComponent } from './component/searchnotes/searchnotes.component';
+import { ImageuploadComponent } from './component/imageupload/imageupload.component';
+import { NoteDetailsComponent } from './component/note-details/note-details.component';
 const routes: Routes = [
   {
     path:"",
@@ -33,6 +35,10 @@ const routes: Routes = [
     component:RestPasswordComponent
   },
   {
+    path:"upload",
+    component:ImageuploadComponent
+  },
+  {
     path: "dashboard",
     component: DashboardComponent,
     children: [
@@ -42,7 +48,7 @@ const routes: Routes = [
       },
       {
         path: "notes",
-        component: NoteComponent
+        component: NoteDetailsComponent
       },
       {
         path: "trash",

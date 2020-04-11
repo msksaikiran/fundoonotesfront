@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { User } from 'src/app/models/user'
 import { MatSnackBar } from '@angular/material';
-import { HttpService } from 'src/app/service/http.service';
+// import { HttpService } from 'src/app/service/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/service/user.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class RegisterComponent implements OnInit {
   mobile = new FormControl(this.user.number, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]);
 
   constructor(private snackBar: MatSnackBar,
-    private httpservice: HttpService,
+     private httpservice: UserService,
     public formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router) { }

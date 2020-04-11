@@ -24,7 +24,7 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { EditlabelComponent } from './component/editlabel/editlabel.component';
 import { NoteupdateComponent } from './component/noteupdate/noteupdate.component';
-import { HttpService } from './service/http.service';
+// import { HttpService } from './service/http.service';
 import { NoteComponent } from './component/note/note.component';
 import { IconComponent } from './component/icon/icon.component';
 import { NoteDetailsComponent } from './component/note-details/note-details.component';
@@ -43,6 +43,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { SearchnotePipe } from './pipes/searchnote.pipe';
 import { FileUploadModule } from 'ng2-file-upload';
 import { SearchnotesComponent } from './component/searchnotes/searchnotes.component';
+import { ImageuploadComponent } from './component/imageupload/imageupload.component';
 //import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from 'ngx-mat-datetime-picker';
 
 @NgModule({
@@ -67,6 +68,7 @@ import { SearchnotesComponent } from './component/searchnotes/searchnotes.compon
     LabelNotesdetailsComponent,
     SearchnotePipe,
     SearchnotesComponent,
+    ImageuploadComponent,
   
     
   ],
@@ -99,7 +101,7 @@ import { SearchnotesComponent } from './component/searchnotes/searchnotes.compon
     FileUploadModule,
     FlexLayoutModule
   ],
-  providers: [HttpService],
+  //providers: [HttpService],
   entryComponents:[
     NoteupdateComponent,
     EditlabelComponent,

@@ -33,21 +33,12 @@ title=new FormControl(this.note.title);
     private dataservice: DataService) { }
 
   ngOnInit() {
-    this.profile();
+   
      }
   
   onOpen(){
     this.open=true;
     
-  }
-  baseUrl = environment.baseProfileUrl;
-  profile() {
-    this.httpservice.postRequest("getimageurl/"+localStorage.getItem("token"),"")
-      .subscribe((response: any) => {
-        console.log(response.obj.profile)
-        localStorage.setItem("image",this.baseUrl+response.obj.profile);
-      });
-     
   }
   
   onClose(){

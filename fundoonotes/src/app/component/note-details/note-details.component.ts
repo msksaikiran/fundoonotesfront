@@ -2,7 +2,7 @@ import { Component, OnInit,Input } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { User } from 'src/app/models/user'
 import { MatSnackBar,MatDialog, MatDialogConfig } from '@angular/material';
-import { HttpService } from 'src/app/service/http.service';
+// import { HttpService } from 'src/app/service/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewService } from 'src/app/service/view.service';
 import { NoteService } from 'src/app/service/note.service';
@@ -12,6 +12,8 @@ import { Note } from 'src/app/models/note';
 import { NoteupdateComponent } from '../noteupdate/noteupdate.component';
 import { Trash } from 'src/app/models/trash';
 import { not } from '@angular/compiler/src/output/output_ast';
+import { environment } from 'src/environments/environment';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-note-details',
@@ -34,7 +36,8 @@ export class NoteDetailsComponent implements OnInit {
     private noteService: NoteService,
     private data: DataService,
     private route:ActivatedRoute,private router:Router,
-     public dialog: MatDialog,
+    public dialog: MatDialog,
+    private httpservice: UserService,
     private formBuilder:FormBuilder
     
     ) { }
@@ -45,10 +48,10 @@ export class NoteDetailsComponent implements OnInit {
 
  
   ngOnInit() {
-  
+     
       this.data.currentMessage.subscribe(
         message => {this.message = message,this.getallNotes()});
-
+            
         this.viewservice.getView().subscribe(
           (res) => {
                       this.view = res;
@@ -59,8 +62,6 @@ export class NoteDetailsComponent implements OnInit {
             });  
   }
 
- 
- 
   getallNotes() {
     this.token=localStorage.getItem("token");
       this.noteService.getRequest("users/"+this.token).subscribe(

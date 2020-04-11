@@ -2,7 +2,6 @@ import { Component, OnInit,Input } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { User } from 'src/app/models/user'
 import { MatSnackBar,MatDialog, MatDialogConfig } from '@angular/material';
-import { HttpService } from 'src/app/service/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewService } from 'src/app/service/view.service';
 import { NoteService } from 'src/app/service/note.service';

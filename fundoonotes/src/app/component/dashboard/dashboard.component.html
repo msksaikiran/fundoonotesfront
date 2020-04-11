@@ -52,18 +52,18 @@
               <img class="image2" src={{image}} > 
             </button>   
 
-             <mat-menu #menu3="matMenu">
-               <div  fxLayout="column" fxLayoutAlign="center center" >
-              <img class="image3" src={{image}} > <br>
-               
-              <form (ngSubmit)="upload()" [formGroup]="form">
-                <input ng-model="file_upload" name="file" type="file" (change)="fileChange($event)" #fileInput>
-                <!-- <button type="submit">Submit</button> -->
-                <button mat-menu-item  type="submit" style="text-align: center;">Upload </button>
-            </form> 
-               
-               
-                    <button mat-menu-item  (click)="account()" style="text-align: center;">LogOut</button>
+             <mat-menu #menu3="matMenu" >
+               <div  fxLayout="column" fxLayoutAlign="center center" style="width: 278px;height: 272px;">
+                <br>
+              <img class="image3" src={{image}} (click)="images()"> <br>
+              <mat-icon class="iconcam">add_a_photo</mat-icon>  
+                       
+                    <br><br>
+                    MorramShetty SaiKiran
+                         <br>
+                     <input type="text"  placeholder="msaikiran201@gmail.com" style="border: none;">
+                     <br>
+                    <button mat-menu-item  (click)="account()" style="text-align: center;margin-bottom: -35px;">LogOut</button>
                   </div>
               </mat-menu> 
 

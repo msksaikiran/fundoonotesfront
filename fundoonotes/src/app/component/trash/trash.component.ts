@@ -74,7 +74,7 @@ export class TrashComponent implements OnInit {
     this.token = localStorage.getItem("token")
     this.noteService.postRequest("permenantDelete/" + this.token, this.trash).subscribe(
       (Response: any) => {
-
+         console.log(Response.statusCode+"**********")
         if (Response.statusCode === 200) {
           this.dataservice.changeMessage('trash')
           
@@ -84,11 +84,10 @@ export class TrashComponent implements OnInit {
             { duration: 2500 }
           )
         }
-
-        else {
-          console.log(Response);
+        else if(Response.status === 500) {
+          console.log(Response.console.error());
           this.snackbar.open(
-            "note unSuccessfull", "undo",
+            "note not Trash", "undo",
             { duration: 2500 }
           )
         }
