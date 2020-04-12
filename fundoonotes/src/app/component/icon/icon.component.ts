@@ -121,16 +121,19 @@ export class IconComponent implements OnInit {
             "Note Color", "",
             { duration: 2500 }
           )
-        }
-        else {
+        }else {
           console.log(Response)
           this.snackbar.open(
             "Note Color Unsuccessfull", "",
             { duration: 2500 }
           )
         }
-      }
-    )
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500});
+      });
 
   }
   
@@ -159,8 +162,12 @@ export class IconComponent implements OnInit {
             { duration: 2500 }
           )
         }
-      }
-    )
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500});
+      });
   }
 
 
@@ -179,17 +186,19 @@ export class IconComponent implements OnInit {
             "Note archive successfull ", "undo",
             { duration: 2500 }
           )
-        }
-
-        else {
+        }else {
           console.log(Response);
           this.snackbar.open(
             "Note Archive unSuccessfull", "undo",
             { duration: 2500 }
           )
         }
-      }
-    )
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500});
+      });
 
   }
 
@@ -241,7 +250,6 @@ export class IconComponent implements OnInit {
     });
     
     if (this.enable) {
-     
       this.labelservice.postRequest("addlabels/" + localStorage.getItem("token"), this.labelNote).subscribe(
         (Response: any) => {
     
@@ -252,15 +260,17 @@ export class IconComponent implements OnInit {
             this.snackbar.open("Lable Creation Successfull", "undo", { duration: 2500 })
           }
          
-        })
-      
+        },
+        (error: any) => {
+          console.error(error);
+          console.log(error.error.message);
+          this.snackbar.open(error.error.message, "undo", { duration: 2500});
+        });
     }
   }
 
   dateReminder: DateReminder = new DateReminder();
   dateControl=new FormControl(this.dateReminder.remainder);
-
-  
 
   datePicker() {
     console.log(this.dateTime._d)
@@ -277,16 +287,19 @@ export class IconComponent implements OnInit {
           "Reminder Successfull","",
           {duration:2500}
         )
-      }
-      else{
+      }else{
        console.log(Response)
        this.snackbar.open(
          "Reminder UnSuccessfull","",
          {duration:2500}
        )
       }
-    }
-  )
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500});
+      });
   }
   
 }

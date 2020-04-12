@@ -47,8 +47,12 @@ export class LabelNoteComponent implements OnInit {
           this.label=Response.notes.label;
           console.log(this.label)
           
-        }  
-      ) 
+        },
+        (error: any) => {
+          console.error(error);
+          console.log(error.error.message);
+          this.snackbar.open(error.error.message, "undo", { duration: 2500});
+        });
   }
 
   labelNote: LabelNote = new LabelNote();
@@ -69,8 +73,12 @@ export class LabelNoteComponent implements OnInit {
             console.log(Response);
             this.snackbar.open("Lable Creation Successfull", "undo", { duration: 2500 })
           }
-         
-        })
+        },
+        (error: any) => {
+          console.error(error);
+          console.log(error.error.message);
+          this.snackbar.open(error.error.message, "undo", { duration: 2500});
+        });
       
   }
   
@@ -90,7 +98,12 @@ export class LabelNoteComponent implements OnInit {
             this.snackbar.open("Lable Creation Successfull", "undo", { duration: 2500 })
           }
          
-        })
+        },
+        (error: any) => {
+          console.error(error);
+          console.log(error.error.message);
+          this.snackbar.open(error.error.message, "undo", { duration: 2500});
+        });
       
   }
   

@@ -42,7 +42,4 @@ export class SearchnotesComponent implements OnInit {
     let dialogRef = this.dialog.open(NoteupdateComponent, dialogConfig);
   
   }
-
-
- 
 }

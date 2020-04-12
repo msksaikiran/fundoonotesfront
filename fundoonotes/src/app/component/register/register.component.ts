@@ -64,26 +64,24 @@ export class RegisterComponent implements OnInit {
     console.log(this.password)
 
     this.httpservice.postRequest("add-user", this.user)
-    .subscribe((response: any) => {
-        if (response.obj!=null){
+      .subscribe(
+
+    (response: any) => {
+        if (response.obj != null) {
           console.log(response);
-          this.snackBar.open(
-            "Registered Successfully",
-            "undo",
-            { duration: 2500 }
-          )
+          this.snackBar.open("Registered Successfully", "undo", { duration: 2500 })
           this.router.navigate(['/login'])
         } else {
           console.log(response);
-          this.snackBar.open(
-            "Registration Failed",
-            "undo",
-            { duration: 2500 }
-          )
+          this.snackBar.open(response.message, "undo", { duration: 2500 })
         }
-
-      }
-    )
+        },
+        
+      (error: any) => {
+          console.error(error);
+          console.log(error.error.message);
+          this.snackBar.open(error.error.message, "undo", { duration: 25000 });
+        });
   }
 
 

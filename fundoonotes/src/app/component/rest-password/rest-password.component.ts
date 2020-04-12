@@ -55,18 +55,18 @@ export class RestPasswordComponent implements OnInit {
         if (response.token !=null) {
           console.log(response);
           console.log(this.emailToken);
-          this.snackBar.open(
-            "Password Rest Sucessfully",
-            "undo",
-
-            { duration: 25000}
-          );
+          this.snackBar.open( "Password Rest Sucessfully", "undo",{ duration: 25000});
           this.router.navigate(["/login"]);
         } else {
           console.log(response);
           console.log("Login:" + this.emailToken);
           this.snackBar.open("Login Failed", "undo", { duration: 2500 });
         }
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackBar.open(error.error.message, "undo", { duration: 25000 });
       });
   }
 

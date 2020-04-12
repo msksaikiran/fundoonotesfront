@@ -51,8 +51,12 @@ export class ArchiveComponent implements OnInit {
         
         this.notes=Response.notes;
         console.log("Archieve=========>",this.notes)
-      }
-    )
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500});
+      });
   }
 
   onUpdate(note: any): void {
@@ -85,17 +89,18 @@ export class ArchiveComponent implements OnInit {
             "Note pin successfull ", "undo",
             { duration: 2500 }
           )
-        }
-
-        else {
+        } else {
           console.log(Response);
           this.snackbar.open(
             "Note pin unSuccessfull", "undo",
             { duration: 2500 }
           )
         }
-      }
-    )
-
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 25000 });
+      });
   }
 }

@@ -136,8 +136,12 @@ file: File;
             
         this.label = Response.result;
         console.log(this.label)
-      }
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500});
+      });
 
-    )
   } 
 }

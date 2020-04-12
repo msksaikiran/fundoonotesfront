@@ -70,8 +70,12 @@ export class NoteDetailsComponent implements OnInit {
           this.notes=Response;
           console.log(this.notes)
           
-        }  
-      )
+        },
+        (error: any) => {
+          console.error(error);
+          console.log(error.error.message);
+          this.snackbar.open(error.error.message, "undo", { duration: 2500});
+        });
     }
   
   onUpdate(note: any): void {
@@ -116,8 +120,13 @@ export class NoteDetailsComponent implements OnInit {
                 { duration: 2500 }
               )
             }
-          }
-        )
+          },
+          (error: any) => {
+            console.error(error);
+            console.log(error.error.message);
+            this.snackbar.open(error.error.message, "undo", { duration: 25000 });
+          });
+        
     
       }
 }

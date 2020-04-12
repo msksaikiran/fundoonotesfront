@@ -76,21 +76,25 @@ export class EditlabelComponent implements OnInit {
 
   getallabels(){
     this.labelservice.getRequest("user/"+localStorage.getItem("token")).subscribe(
-          (Response:any)=>{
+  (Response:any)=>{
             
             this.labels=Response.result;
             console.log(this.labels)
-          }
-
-    )
+      },
+  (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500});
+      });
   }
 
   delete(label:any) {
    // console.log(label)
     this.lid.lId = label.lId;
     console.log(this.lid)
-    this.labelservice.postRequest("delete/"+localStorage.getItem("token"),this.lid).subscribe(
-      (Response:any)=>{
+    this.labelservice.postRequest("delete/" + localStorage.getItem("token"), this.lid).subscribe(
+      
+  (Response:any)=>{
         if(Response.statusCode===200){
           this.dataService.changeMessage("Delet labels")
           console.log(Response)
@@ -99,17 +103,18 @@ export class EditlabelComponent implements OnInit {
             "Label Delete successfull","undo",
             {duration:2500}
           )
-        }
-        else{
+        }else{
           this.snackbar.open(
             "Label Delete Unsuccessfull","undo",
             {duration:2500}
           )
         }
-      }
-      
-
-    )
+      },
+  (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 25000 });
+      });
   }
   
   update(label:any){

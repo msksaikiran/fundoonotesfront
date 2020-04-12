@@ -56,16 +56,18 @@ export class NoteupdateComponent implements OnInit {
             "Note Updation Successfull","undo",
             {duration:2500}
           )
-        }
-
-        else{
+        }else{
           console.log(Response);
           this.snackbar.open(
             "note Updation unSuccessfull","undo",
             {duration:2500}
           )
         }
-      }
-    )
+      },
+    (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 25000 });
+      });
   }
 }

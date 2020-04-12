@@ -15,7 +15,7 @@
     <mat-form-field appearance="outline" class="input">
       <mat-label>EmailorPhone</mat-label>
       
-      <input type="text" matInput placeholder="Enter your Name" required  [formControl]="email" [(ngModel)]="login.email"/>
+      <input type="text" matInput placeholder="Enter your Name" required id="email" [formControl]="email" [(ngModel)]="login.email"/>
       <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
       <mat-hint>Enter Email</mat-hint>
     </mat-form-field>

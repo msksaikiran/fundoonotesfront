@@ -59,18 +59,27 @@ export class LoginComponent implements OnInit {
  
   onlogin() {
     console.log(this.login);
-    this.httpservice.postRequest("login", this.login).subscribe((response: any) => {   
-     //console.log(response.HttpErrorResponse) 
-      if (response.token != null) {
-        localStorage.setItem("token", response.token);
-        this.snackBar.open("Login Successfull", "undo", { duration: 2500 });
-        this.router.navigate(["/dashboard/notes/"]);
-      } else {
-        console.log(response);
-        console.log("Login:" + this.login.email);
-        this.snackBar.open("Login Failed", "undo", { duration: 25000 });
-      }
-    });
+    this.httpservice.postRequest("login", this.login).subscribe(
+      (response: any) => {
+        //console.log(response.HttpErrorResponse) 
+        if (response.token != null) {
+          localStorage.setItem("token", response.token);
+          this.snackBar.open("Login Successfull", "undo", { duration: 2500 });
+          this.router.navigate(["/dashboard/notes/"]);
+        } else {
+          console.log(response);
+          console.log("Login:" + this.login.email);
+          this.snackBar.open("Login Failed", "undo", { duration: 25000 });
+        }
+      },
+      
+      (error: any) => {
+        
+        console.error(error);
+        console.log(error.error.message);
+        this.snackBar.open(error.error.message, "undo", { duration: 25000 });
+      });
+      
   }
 
   

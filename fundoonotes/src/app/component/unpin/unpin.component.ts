@@ -1,12 +1,10 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
-import { User } from 'src/app/models/user'
 import { MatSnackBar,MatDialog, MatDialogConfig } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewService } from 'src/app/service/view.service';
 import { NoteService } from 'src/app/service/note.service';
 import { DataService } from 'src/app/service/data.service';
-import { Note } from 'src/app/models/note';
 import { NoteupdateComponent } from '../noteupdate/noteupdate.component';
 import { Trash } from 'src/app/models/trash';
 
@@ -59,8 +57,12 @@ export class UnpinComponent implements OnInit {
           this.notes=Response;
           console.log(this.notes)
           
-        }  
-      )
+        },
+        (error: any) => {
+          console.error(error);
+          console.log(error.error.message);
+          this.snackbar.open(error.error.message, "undo", { duration: 2500});
+        });
     }
   
     onUpdate(note: any): void {
@@ -92,17 +94,18 @@ export class UnpinComponent implements OnInit {
             "Note unpin successfull ", "undo",
             { duration: 2500 }
           )
-        }
-
-        else {
+        }else {
           console.log(Response);
           this.snackbar.open(
             "Note unpin unSuccessfull", "undo",
             { duration: 2500 }
           )
         }
-      }
-    )
-
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500});
+      });
   }
 }

@@ -29,18 +29,20 @@ export class GetLabelComponent implements OnInit {
   
   getallabels(){
     this.labelservice.getRequest("user/"+localStorage.getItem("token")).subscribe(
-          (Response:any)=>{
+    (Response:any)=>{
             
             this.label=Response.result;
             console.log(this.label)
-          }
-
-    )
+      },
+    (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500});
+      });
   }
   
   labelDetails(labels: any) {
     localStorage.setItem("labelNote", labels.lId);
     this.router.navigate(['dashboard/labelNotes']);
-
    }
 }

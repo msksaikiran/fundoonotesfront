@@ -47,8 +47,13 @@ export class LabelNotesdetailsComponent implements OnInit {
       (Response: any) => {
        
         this.label = Response.result;
-      }
-    )
+                },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500});
+      });
+    
     //this.dataservice.changeMessage("labelNotes");
    }
 }
