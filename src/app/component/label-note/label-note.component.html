@@ -1,0 +1,15 @@
+<mat-chip-list >
+    <mat-chip class="chip" *ngFor="let labels of label">
+      <div *ngIf="labels!=null">
+        {{labels.lableName}}
+      </div>
+      <mat-icon matChipRemove (click)="onDelete(labels)">cancel</mat-icon>
+  </mat-chip>
+  <div *ngIf="reminder!=null">
+   <mat-chip>
+    {{reminder | date:'MMMM d'}},
+    {{reminder | date:'shortTime'}}
+    <mat-icon matChipRemove (click)="onDeleteRem()">cancel</mat-icon>
+  </mat-chip> 
+</div>
+</mat-chip-list>

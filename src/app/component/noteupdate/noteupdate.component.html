@@ -1,0 +1,26 @@
+
+<mat-card class="matcard2" [ngStyle]="{'background-color':note.color}">
+  <form>
+
+   <div fxLayout="row"  fxLayoutAlign="center center">
+   <input matInput  type="text" placeholder="Edit Title" class="input" [ngStyle]="{'background-color':note.color}" [formControl]="title" [(ngModel)]="note.title" >
+    </div>
+        <br><br>
+   <div fxLayout="row"  fxLayoutAlign="center center">
+    <input matInput   type="text" class="input" placeholder="Description"  [ngStyle]="{'background-color':note.color}" [formControl]="description" [(ngModel)]="note.description">
+    </div>
+    <br><br>
+    <app-label-note [labelInfo]=note></app-label-note> 
+   </form>
+   <app-icon></app-icon>
+</mat-card>
+
+ <div fxLayout="column" fxLayoutAlign="end end"  style="margin-left: 252px;margin-bottom: -15px;">
+
+     <button class=close mat-button (click)="onClose()" > close</button>
+
+  </div>   
+     
+      
+  
+    

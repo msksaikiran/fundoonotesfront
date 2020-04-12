@@ -1,0 +1,48 @@
+.matcard2{
+    
+    margin-top: 50px;
+    margin-left: 7px;
+    width: 284px;
+    border-radius: 14px;
+    padding-bottom: 50px;
+    padding-top: 13px;
+
+}
+
+.matpad2
+{
+  height: max-content;
+  width: 284px;
+  margin-left: 14px;
+}
+ 
+
+.matpad3
+{
+    height: max-content;
+    width: 547px;
+   
+}
+
+  .iconBackborder{  
+    margin-top: 42px;
+    margin-left: 14px;
+   }
+
+
+.button{
+   // margin-left: 481px;
+   margin-top: -86px;
+   margin-left: 132px;
+  }
+  
+  address {
+    visibility: hidden;
+    display: block;
+
+  }
+  
+span :hover+address
+{
+     visibility: visible;
+} 

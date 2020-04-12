@@ -1,0 +1,34 @@
+.matcard2{
+    margin-left: -7px;
+    width: 515px;
+    margin: 39px;
+    border-radius: 14px;
+    padding-bottom: 0px;
+}
+.appicons{
+    margin-top: 10px;
+}
+.textarea1:empty:before
+{
+    content: attr(data-text);
+    opacity: 0.5;
+    font-size: 14px;
+    width:60px;
+    height:10px;
+}
+.iconBackborder{
+    margin-top: -57px;
+}
+
+.allnotes{
+    width: 20px;
+}
+// address {
+//     visibility: hidden;
+//     display: block;
+
+//   }
+// span :hover+address
+// {
+//      visibility: visible;
+// } 
