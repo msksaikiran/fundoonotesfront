@@ -1,0 +1,50 @@
+ <div fxLayout="row" fxLayoutAlign="center center"   class="1">
+   
+   <div  fxLayout="{{direction}} wrap" fxLayout.xs="row" fxLayoutAlign="center center"> 
+ 
+ <div *ngFor="let note of notes">
+        
+    <div *ngIf="note.isPinned==1&&note.isTrashed==0">
+      <span>
+       <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2"
+       [ngClass]=" direction =='row' ? 'matpad2':'matpad3' ">
+
+       <div  (click)="onUpdate(note)" >
+         <br>
+          <form>
+         
+                <div>
+                   {{note.title}}
+                </div>
+                <br>
+                <div>
+                   {{note.description}}
+                </div>
+                <br>
+             <app-label-note [labelInfo]=note></app-label-note> 
+            
+          </form> 
+
+         </div> 
+
+       </mat-card>
+       <address>
+         <div class="button"  fxLayout="column" fxLayoutAlign="start end">
+            <button mat-icon-button (click)="unpin(note)"  class="button" >
+               <mat-icon class=color> 
+                   <img   src="assets/images/pin-image.png" >
+               </mat-icon>   
+            </button>  
+        </div>
+         <div class="iconBackborder">
+             <app-icon [noteInfo]=note></app-icon>
+         </div>
+       </address>
+         </span>
+
+    </div>
+ </div>
+ </div>
+ </div>
+
+

@@ -1,0 +1,86 @@
+
+<div style="border-radius: 5px;" fxLayout=layout-wrap fxLayout="row"  fxLayoutAlign="start center">
+
+    <button mat-icon-button [matMenuTriggerFor]="menu3">
+      <mat-icon class=color> add_alert</mat-icon>
+    </button>
+  
+    <button mat-icon-button (click)="personadd()">
+      <mat-icon class=color> person_add</mat-icon>
+    </button>
+  
+    <button mat-icon-button (click)="colorlens()" [matMenuTriggerFor]="menu1">
+      <mat-icon class=color> color_lens</mat-icon>
+    </button>
+  
+     <mat-menu #menu1="matMenu" >
+      <div *ngFor="let colors of  arrayColor" fxLayout="row" style="border-radius: 62px;margin-left: 8px;">
+        <div *ngFor="let color of colors">
+  
+          <button [ngStyle]="{'background-color':color.hexcode}" style="width:32px;height: 30px;border-radius: 11px;border: none;" (click)=setColor(color.name)></button>
+        </div>
+      </div> 
+    </mat-menu> 
+  
+    <button mat-icon-button (click)="insertphoto()">
+      <mat-icon class=color> insert_photo</mat-icon>
+    </button>
+  
+    <button  mat-icon-button (click)="archive()">
+      <mat-icon class=color> archive</mat-icon>
+    </button>
+  
+    <button  mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon class=color> more_vert</mat-icon>
+    </button>
+  
+  </div>
+  <div>
+    <mat-menu #menu="matMenu">
+      <div class=button style="text-align: center">
+        <button mat-icon-button color="primary" (click)="onDelete()">Delete</button>
+      </div>
+  
+      <div class=button>
+        <button mat-menu-item color="primary" [matMenuTriggerFor]="subMenu">Add label</button>
+      </div>
+    </mat-menu>
+  </div>
+  
+  <mat-menu #subMenu="matMenu">
+    <div style="margin-left:10px;">
+     Labelnote
+    </div>
+    <mat-card style="margin-bottom: -8px;margin-left: -11px;">
+    <input matInput [(ngModel)]="label.lableName" type="text" style="border: none;" placeholder="Enter lableName" >
+    <br><br>
+    <!-- <div *ngFor="let labels of checkboxlabel" fxLayoutGap="20px" fxLayout="column" >
+      <mat-icon style="color: blue;">check_box</mat-icon> {{labels.lableName}}
+    </div> -->
+    <div *ngFor="let labels of checkboxlabel" fxLayoutGap="20px" fxLayout="column" >
+      <mat-checkbox (click)="addlabel(labels)">
+        {{labels.lableName}}
+      </mat-checkbox>
+      
+    </div>
+  </mat-card>
+  </mat-menu>
+  <div> 
+   
+    <div>
+      <mat-menu #menu3="matMenu">
+        <span style="margin-left: 10px">Reminder:</span>
+        <br>
+        
+      <label class="example-input-wrapper">
+        <input placeholder="Date Time:" [(ngModel)]="dateTime" [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
+        <owl-date-time #dt></owl-date-time>
+        <button mat-icon-button color="primary" (click)="datePicker()">Save</button>
+      </label>
+
+      </mat-menu>
+    </div>
+
+  </div>
+  
+<div>

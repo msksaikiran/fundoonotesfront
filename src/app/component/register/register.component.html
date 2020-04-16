@@ -1,0 +1,82 @@
+<mat-card class="backborder" fxLayout="column" fxLayoutAlign="space-evenly center">
+    <div style="align-items: center;" fxLayout="column" fxLayoutAlign="start center">
+      <img
+        width="60"
+        alt="Angular Logo"
+        src="https://www.google.com/images/icons/product/keep-512.png"
+      />
+    </div>
+    <mat-card-title>
+      <h1>
+        Fundoo
+      </h1>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <h2>
+        Registration
+      </h2>
+    </mat-card-subtitle>
+
+    <div class="field1" fxLayout="row" fxLayoutAlign="end center" >
+      <mat-form-field appearance="outline" class="input">
+        <mat-label>LastName</mat-label>
+        <input type="text" matInput placeholder="Enter your LastName" required />
+  
+        <mat-hint>Enter Name</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="field2" fxLayout="row" fxLayoutAlign="start center" >
+      <mat-form-field appearance="outline" class="input">
+        <mat-label>FirstName</mat-label>
+        <input type="text" matInput placeholder="Enter your FirstName" required [formControl]="name" [(ngModel)]="user.name"/>
+        <mat-error *ngIf="name.invalid"> {{getErrorName()}}</mat-error>
+        <mat-hint>Email</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="emailField"  fxLayout="row" fxLayoutAlign="start center">
+      <mat-form-field appearance="outline" class="emailinput">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput placeholder="Enter your email" required [formControl]="email" [(ngModel)]="user.email"/>
+        <mat-error *ngIf="email.invalid"> {{getErrorEmail()}}</mat-error>
+        <mat-hint>Email</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="field3" fxLayout="row" fxLayoutAlign="end center" >
+      <mat-form-field appearance="outline" class="input">
+        <mat-label>mobile</mat-label>
+        <span matPrefix> +91&nbsp;</span>
+        <input type="text" matInput placeholder="Enter your password" [(ngModel)]="user.number" [formControl]="mobile" required>
+          <mat-error *ngIf="mobile.invalid"> {{phoneNumber()}}</mat-error>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint>mobile</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="field4" fxLayout="row" fxLayoutAlign="start center">
+      <mat-form-field appearance="outline" class="input">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput placeholder="Enter your password" required [formControl]="password" [(ngModel)]="user.password"/>
+        <mat-error *ngIf="password.invalid"> {{getErrorPassword()}}</mat-error>
+        <mat-hint>Password</mat-hint>
+      </mat-form-field>
+    </div>
+  
+     <button mat-raised-button color="primary" style="margin-top: 30px; margin-right: 576px" fxLayout="row" fxLayoutAlign="start center"
+      class="button" routerLink="/login">Login page</button> 
+
+    <div style="margin-top: -41px; margin-left: 549px;" fxLayout="row" fxLayoutAlign="end end"> 
+      <button mat-raised-button color="primary"   (click)="onRegister()"
+        class="button">Register</button>
+    </div>
+    <!-- <button
+      mat-raised-button
+      color="primary"
+      style="margin-left:309px"
+      class="button"
+    >
+      Register
+    </button> -->
+  </mat-card>

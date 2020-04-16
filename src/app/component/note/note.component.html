@@ -1,0 +1,40 @@
+<!-- {{note | json}} -->
+    <div class="container" fxLayout="row"  fxLayoutAlign="center center" >
+        <mat-card (click)="onOpen()" *ngIf="!open" class="matcard" >
+           
+             <input matInput class="searchBar" placeholder="Take a Note..."  fxLayout="row" > 
+            
+            <div  fxLayout="row">
+                <button mat-icon-button style="padding-left: 40px;">
+                <mat-icon matTooltip="New List">check_box</mat-icon>
+                </button>
+                <button mat-icon-button style="margin-right: -58px;">
+                <mat-icon matTooltip="New List">brush</mat-icon>
+                </button>
+                <button mat-icon-button>
+                <mat-icon matTooltip="New List">image</mat-icon>
+                </button>
+                
+            </div>
+        </mat-card>
+
+        <mat-card *ngIf="open" class="matcard1">
+            <br>
+            <div data-text="Take a Note" contenteditable="true" fxLayout="row"  fxLayoutAlign="center center">
+              
+                <textarea id="title"   [formControl] ="title"  [(ngModel)]="note.title" matInput type="text" class="input" placeholder="Title" ></textarea>
+            </div>
+            <br><br>
+            <div data-text="Take a Note" contenteditable="true" fxLayout="row"  fxLayoutAlign="center center">
+               
+                <textarea id="description"   [formControl] ="description" [(ngModel)]="note.description" matInput type="text" class="input" placeholder="Description"></textarea>
+            </div>
+            <br><br>
+             <app-icon></app-icon>
+            
+                <button mat-icon-button (click)="onClose()" style="margin-top: -39px;">
+                    Close
+                </button>
+        </mat-card>    
+    </div>
+  <!-- <app-note-details></app-note-details>  -->

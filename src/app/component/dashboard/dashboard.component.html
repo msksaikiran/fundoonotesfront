@@ -1,0 +1,145 @@
+<div class="backcontainer" fxLayout="column" fxLayoutAlign="center none">
+    <div style=" background-color: whitesmoke;">
+        <mat-toolbar>
+        <mat-toolbar-row>
+          <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+          <img class="image" src="assets/images/keep-512.png" alt="Keep"> 
+          <span><mat-label style="font-family: sans-serif; padding-left: 5px;">{{appName}}</mat-label>
+          </span>
+
+          <div class="searchIcon" fxLayout="row">
+          <button mat-icon-button class="search-icon">
+            <mat-icon matTooltip="Search" (click)="onsearch()">search</mat-icon>
+          </button>
+
+          <input class="searchInput" placeholder="Search.."  (click)="onsearch()" [formControl]="myInput" autocomplete="off" >
+          
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" style="margin-left: 377px" >
+
+          <button mat-icon-button class="refresh" (click)="refresh()">
+            <mat-icon matTooltip="refresh">refresh</mat-icon>
+          </button>
+
+          <div class="list">
+            <button mat-icon-button  *ngIf="list" (click)="changeView()" fxShow="true" fxHide.lt-sm="true">
+              <mat-icon class="icon">grid_view</mat-icon>
+            </button>
+      
+            <button mat-icon-button  *ngIf="grid" (click)="changeView()" fxShow="true" fxHide.lt-sm="true">
+              <mat-icon class="icon">view_module</mat-icon>
+            </button>
+          </div>
+
+          <button mat-icon-button class="settings"  [matMenuTriggerFor]="menu">
+            <mat-icon matTooltip="menu" style="margin-left: -23px;">settings</mat-icon>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+          </button>
+
+          <button mat-icon-button class="apps" [matMenuTriggerFor]="menu ">
+            <mat-icon matTooltip="appearance">apps</mat-icon>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+          </button>
+
+            <button   mat-icon-button  fxShow="true" width="30" [matMenuTriggerFor]="menu3" >
+              <img class="image2" src={{image}} > 
+            </button>   
+
+             <mat-menu #menu3="matMenu" >
+               <div  fxLayout="column" fxLayoutAlign="center center" style="width: 278px;height: 272px;">
+                <br>
+              <img class="image3" src={{image}} (click)="images()"> <br>
+              <mat-icon class="iconcam">add_a_photo</mat-icon>  
+                       
+                    <br><br>
+                    MorramShetty SaiKiran
+                         <br>
+                     <input type="text"  placeholder="msaikiran201@gmail.com" style="border: none;">
+                     <br>
+                    <button mat-menu-item  (click)="account()" style="text-align: center;margin-bottom: -35px;">LogOut</button>
+                  </div>
+              </mat-menu> 
+
+        </div>
+       
+        </mat-toolbar-row>
+      
+       </mat-toolbar>
+    </div>
+   
+   <div class="hiddenMenu" fxLayout="column" fxLayoutAlign="center start"> 
+    
+    <mat-sidenav-container >
+       <mat-sidenav #snav mode="side" class="matsidenav"> 
+
+         <div class="note">
+          <button mat-button class="notebutton" (click)="onNotes()" >
+            
+            <div class="icon">
+              <mat-icon >lightbulb_outline</mat-icon>
+            </div>
+            <span > Notes</span>
+          </button>
+      
+          <button mat-button class="remindbutton" [routerLink]="['remainder']">
+            <div class="icon">
+              <mat-icon>notifications</mat-icon>
+            </div>
+            <span>Reminder</span>
+          </button>
+        </div>
+      
+        <mat-divider></mat-divider>
+        
+        <mat-label class="labelmat">LABELS</mat-label> 
+        <br><br>
+        <app-get-label></app-get-label> 
+        <br><br>
+
+        <diV class="label"> 
+          <button mat-button class="labelbutton" (click)=openDialogLabel()>
+            <div class="icon">
+              <mat-icon>edit</mat-icon>
+            </div>
+            <span >Edit labels</span>
+          </button>
+        </diV>
+  
+        <mat-divider></mat-divider>
+
+        <diV class="note">
+          <button mat-button class="notebutton" (click)="onArchive()">
+            <div class="icon">
+              <mat-icon>archive</mat-icon>
+            </div>
+            <span > Archive</span>
+          </button>
+      
+          <button mat-button class="remindbutton" (click)="onTrash()">
+            <div class="icon">
+              <mat-icon>delete</mat-icon>
+            </div>
+            <span>Trashed</span>
+          </button>   
+        </diV>
+
+        <mat-divider></mat-divider>
+
+       </mat-sidenav>
+
+      <mat-sidenav-content > 
+        <router-outlet></router-outlet>
+         <!-- <app-note></app-note> -->
+     </mat-sidenav-content>
+    
+    </mat-sidenav-container>
+      
+    </div>
+  </div> 

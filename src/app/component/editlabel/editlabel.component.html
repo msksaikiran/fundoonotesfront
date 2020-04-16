@@ -1,0 +1,37 @@
+
+    <mat-card class="matcard2">
+        Edit Labels
+        <br><br>
+        <input  matInput  type="text" class="input" placeholder="Create aNew Label" [formControl]=lableName  [(ngModel)]="label.lableName">
+        
+         <br><br>
+          <div class=button *ngFor="let label of labels">
+          <div fxLayout="row" fxLayoutAlign="center center">  
+
+         <div fxFlex=30>
+          <button mat-icon-button (click)="delete(label)">
+              <mat-icon> delete</mat-icon>
+          </button>
+      </div> 
+
+    
+      <div> 
+       <input type="text" placeholder= {{label.lableName}} style="border:none;width: 218px;">
+      </div>
+    
+     <div fxFlex=30 >
+      <button mat-icon-button (click)="update(label)" >
+          <mat-icon> edit</mat-icon>
+      </button>
+    </div> 
+   </div>
+ </div> 
+ 
+ <mat-divider></mat-divider> 
+        <div class="done" fxLayout="column" fxLayoutAlign="end end">
+          <button  mat-raised-button color="primary"(click)="onClose()" >done</button>
+        </div>
+        
+ </mat-card>
+      
+  

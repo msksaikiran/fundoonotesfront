@@ -1,0 +1,9 @@
+<mat-card class="matcard2">
+    <form (ngSubmit)="upload()" [formGroup]="form">
+        <input ng-model="file_upload" name="file" type="file" (change)="fileChange($event)" #fileInput style="border: none;outline: none;">
+        <button mat-menu-item  type="submit" style="text-align: center;">Upload </button>
+    </form> 
+    
+</mat-card>
+  
+
