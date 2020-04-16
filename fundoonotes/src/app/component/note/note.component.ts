@@ -52,13 +52,8 @@ title=new FormControl(this.note.title);
         if(Response.statusCode===200){
           this.dataservice.changeMessage("createNote")
           console.log(Response);
-          this.snackbar.open(
-            "Note Creation Successfull","undo",
-            {duration:2500}
-          )
-        }
-
-        else{
+          this.snackbar.open("Note Creation Successfull","undo",{duration:2500})
+        }else{
           console.log(Response);
           this.snackbar.open(
             "Note Not unSuccessfull","undo",

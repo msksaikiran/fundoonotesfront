@@ -1,5 +1,5 @@
-<app-note></app-note>
-<app-unpin></app-unpin>  
+<!-- <p>collabarate works!</p> -->
+collaborater
 <br>
  <div fxLayout="row" fxLayoutAlign="center center"  class="1">
    
@@ -8,12 +8,11 @@
      <!-- <div style="margin-top: 10px;">  OTHERS  </div> -->
  <div *ngFor="let note of notes">
 
-    <div *ngIf="note.isArchieved==0 && note.isTrashed==0 && note.isPinned==0">  
+    <!-- <div *ngIf="note.isArchieved==0 && note.isTrashed==0 && note.isPinned==0">   -->
 
       <span>
         
-       <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2"
-       [ngClass]=" direction =='row' ? 'matpad2':'matpad3' ">
+       <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2">
               <br>
 
             <div  (click)="onUpdate(note)" >
@@ -48,9 +47,7 @@
              </div>
         </address>
    </span>
-    </div>
+    <!-- </div> -->
  </div>  
- <br>
- <app-collabarate></app-collabarate>
  </div>
  

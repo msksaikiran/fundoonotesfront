@@ -44,6 +44,7 @@ import { SearchnotePipe } from './pipes/searchnote.pipe';
 import { FileUploadModule } from 'ng2-file-upload';
 import { SearchnotesComponent } from './component/searchnotes/searchnotes.component';
 import { ImageuploadComponent } from './component/imageupload/imageupload.component';
+import { CollabarateComponent } from './component/collabarate/collabarate.component';
 //import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from 'ngx-mat-datetime-picker';
 
 @NgModule({
@@ -69,6 +70,7 @@ import { ImageuploadComponent } from './component/imageupload/imageupload.compon
     SearchnotePipe,
     SearchnotesComponent,
     ImageuploadComponent,
+    CollabarateComponent,
   
     
   ],

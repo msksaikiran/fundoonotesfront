@@ -14,6 +14,7 @@ import { DateReminder } from 'src/app/models/dateReminder';
 import * as _moment from 'moment';
 import { DateTimeAdapter, OWL_DATE_TIME_FORMATS, OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
+import { CollabarateService } from 'src/app/service/collabarate.service';
 
 const moment = (_moment as any).default ? (_moment as any).default : _moment;
 
@@ -53,6 +54,7 @@ export class IconComponent implements OnInit {
   constructor(
     private snackbar: MatSnackBar,
     private noteService: NoteService,
+    private collabrate:CollabarateService,
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
@@ -205,20 +207,26 @@ export class IconComponent implements OnInit {
   labeln: string;
   ln = [];
   getallabels() {
+
+    this.noteService.getRequest("notes/" + this.noteInfo.nid).subscribe(
+      (Response: any) => {
+        console.log("label Note geeting...");
+         
+        // Adding Label to chip
+        this.ln = Response.notes.label;
+        
+      });
+
     this.labelservice.getRequest("user/" + localStorage.getItem("token")).subscribe(
       (Response: any) => {
-          
+         
         this.checkboxlabel = Response.result;
         
-        // console.log(Response.result.lId)
-        // console.log(this.checkboxlabel)
-        // this.ln = localStorage.getItem("labobj");
-        // this.ln = this.labeln;
-        // this.checkboxlabel.forEach(ele => {
-        //   // if (ele.lId == this.labelInfo.lId) {
-        //      console.log("labels are same..............."+ this.labeln)
-        //   // }  
-        // });
+        this.checkboxlabel.forEach(ele => {
+           if (ele.lableName == this.ln.indexOf) {
+             console.log("labels are same..............."+ this.labeln)
+           }  
+        });
         
       }
 
@@ -242,7 +250,7 @@ export class IconComponent implements OnInit {
       if (ele.lId == labels.lId) {
         this.enable = false;
         console.log(this.label)
-        this.dataService.changeMessage("lable")
+       // this.dataService.changeMessage("lable")
         this.snackbar.open("Lable already Exist", "undo",
           { duration: 2500 })
       
@@ -251,7 +259,7 @@ export class IconComponent implements OnInit {
     
     if (this.enable) {
       this.labelservice.postRequest("addlabels/" + localStorage.getItem("token"), this.labelNote).subscribe(
-        (Response: any) => {
+      (Response: any) => {
     
           if (Response.statusCode === 200) {
             this.dataService.changeMessage("lable")
@@ -261,7 +269,7 @@ export class IconComponent implements OnInit {
           }
          
         },
-        (error: any) => {
+      (error: any) => {
           console.error(error);
           console.log(error.error.message);
           this.snackbar.open(error.error.message, "undo", { duration: 2500});
@@ -301,5 +309,21 @@ export class IconComponent implements OnInit {
         this.snackbar.open(error.error.message, "undo", { duration: 2500});
       });
   }
-  
+  col = new FormControl();
+  personadd() {
+    this.token = localStorage.getItem("token");
+    console.log("***********")
+    console.log(this.col.value)
+    console.log(this.noteInfo)
+    this.collabrate.postRequest("add-coll/"+this.token+"?NoteId="+this.noteInfo.nid+"&email=msa@gmail.com","").subscribe(
+        (Response:any)=>{
+          this.snackbar.open("added collabrate sucessfully....", "undo", { duration: 2500});
+          
+        },
+        (error: any) => {
+          console.error(error);
+          console.log(error.error.message);
+          this.snackbar.open(error.error.message, "undo", { duration: 2500});
+        });
+  }
 }

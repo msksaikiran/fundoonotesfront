@@ -7,9 +7,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LabelService {
-  putRequest(arg0: string, label: any) {
-    throw new Error("Method not implemented.");
-  }
+  // putRequest(arg0: string, label: any) {
+  //   throw new Error("Method not implemented.");
+  // }
 
   baseurl = environment.baseUrlLabel;
 
@@ -19,6 +19,9 @@ export class LabelService {
     return this.http.post(this.baseurl + url,data);
   }
 
+  public putRequest(url :any, data: any ):any{
+    return this.http.put(this.baseurl + url,data);
+  }
   public deleteRequest(url :any,data:any):any{
     return this.http.delete(this.baseurl + url,data);
   }

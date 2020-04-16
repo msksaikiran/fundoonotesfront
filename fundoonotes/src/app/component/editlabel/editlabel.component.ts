@@ -44,15 +44,13 @@ export class EditlabelComponent implements OnInit {
     this.labelservice.postRequest("create/"+localStorage.getItem("token"),this.label).subscribe(
       
 
-      (Response:any)=>{
+    (Response:any)=>{
         
-        if(Response.statusCode===200){
-          this.dataService.changeMessage("lable")
-          console.log(Response);
-          this.snackbar.open(
-            "Lable Creation Successfull","undo",
-            {duration:2500}
-          )
+          if(Response.statusCode===200){
+            this.dataService.changeMessage("lable")
+            console.log(Response);
+            this.snackbar.open(
+            "Lable Creation Successfull","undo",{duration:2500} )
         }
 
         else{
@@ -117,29 +115,34 @@ export class EditlabelComponent implements OnInit {
       });
   }
   
-  update(label:any){
-  
-  //   console.log(label )
-  //   this.labelservice.putRequest("update?lableId="+label.la,label).subscribe(
-  //     (Response:any)=>{
-  //       if(Response.statusCode===200){
-  //         this.dataService.changeMessage("Update labels")
-  //         console.log(Response)
+  update(label: any) {
 
-  //         this.snackbar.open(
-  //           "Label Updates Successfull","undo",
-  //           {duration:2500}
-  //         )
-  //       }
-  //       else{
-  //         this.snackbar.open(
-  //           "Label Update UnSuccessfull","undo",
-  //           {duration:2500}
-  //         )
-  //       }
-  //     }
-      
-  //   // )
+  console.log(label);
+    this.label.lableName = label.lableName;
+    this.lid.lId = label.lId;
+    console.log(this.label.lableName)
+    console.log(this.lid.lId)
+  if(label.lableName!=null){
+    console.log(label.lableName)
+    this.labelservice.putRequest("updatelabel/"+localStorage.getItem("token")+"?lid="+this.lid.lId,this.label).subscribe(
+      (Response:any)=>{
+        
+        if(Response.statusCode===200){
+          this.dataService.changeMessage("lable")
+          console.log(Response);
+          this.snackbar.open("Lable Creation Successfull","undo",{duration:2500})
+        }else{
+          console.log(Response);
+          console.log(this.label)
+          this.snackbar.open("label Creation unSuccessfull","undo",{duration:2500})
+        }
+      }
+    )
+    }else{
+    console.log(this.label)
+    this.snackbar.open( "Lable should not be null","undo",
+    {duration:2500})
+  }
 
    }
 }
