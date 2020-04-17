@@ -2,7 +2,7 @@ import { Component, OnInit,Input,ChangeDetectionStrategy } from '@angular/core';
 import { UserService } from "src/app/service/user.service";
 import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog, MatDialogConfig } from '@angular/material';
 import { NoteService } from 'src/app/service/note.service';
 import { DataService } from 'src/app/service/data.service';
 import { Trash } from 'src/app/models/trash';
@@ -14,6 +14,8 @@ import { DateReminder } from 'src/app/models/dateReminder';
 import * as _moment from 'moment';
 import { DateTimeAdapter, OWL_DATE_TIME_FORMATS, OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
+import { CollabarateService } from 'src/app/service/collabarate.service';
+import { CollabarateVerifyComponent } from '../collabarate-verify/collabarate-verify.component';
 
 const moment = (_moment as any).default ? (_moment as any).default : _moment;
 
@@ -50,11 +52,14 @@ export class IconComponent implements OnInit {
   label: Label = new Label();
   labelNote: LabelNote = new LabelNote();
   checkboxlabel = [];
+
   constructor(
     private snackbar: MatSnackBar,
     private noteService: NoteService,
+    private collabrate:CollabarateService,
     private route: ActivatedRoute,
     private router: Router,
+    public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private labelservice: LabelService,
     private dataService: DataService) { }
@@ -205,20 +210,26 @@ export class IconComponent implements OnInit {
   labeln: string;
   ln = [];
   getallabels() {
+
+    this.noteService.getRequest("notes/" + this.noteInfo.nid).subscribe(
+      (Response: any) => {
+        console.log("label Note geeting...");
+         
+        // Adding Label to chip
+        this.ln = Response.notes.label;
+        
+      });
+
     this.labelservice.getRequest("user/" + localStorage.getItem("token")).subscribe(
       (Response: any) => {
-          
+         
         this.checkboxlabel = Response.result;
         
-        // console.log(Response.result.lId)
-        // console.log(this.checkboxlabel)
-        // this.ln = localStorage.getItem("labobj");
-        // this.ln = this.labeln;
-        // this.checkboxlabel.forEach(ele => {
-        //   // if (ele.lId == this.labelInfo.lId) {
-        //      console.log("labels are same..............."+ this.labeln)
-        //   // }  
-        // });
+        this.checkboxlabel.forEach(ele => {
+           if (ele.lableName == this.ln.indexOf) {
+             console.log("labels are same..............."+ this.labeln)
+           }  
+        });
         
       }
 
@@ -242,7 +253,7 @@ export class IconComponent implements OnInit {
       if (ele.lId == labels.lId) {
         this.enable = false;
         console.log(this.label)
-        this.dataService.changeMessage("lable")
+       // this.dataService.changeMessage("lable")
         this.snackbar.open("Lable already Exist", "undo",
           { duration: 2500 })
       
@@ -251,17 +262,16 @@ export class IconComponent implements OnInit {
     
     if (this.enable) {
       this.labelservice.postRequest("addlabels/" + localStorage.getItem("token"), this.labelNote).subscribe(
-        (Response: any) => {
+      (Response: any) => {
     
           if (Response.statusCode === 200) {
             this.dataService.changeMessage("lable")
-            
             console.log(Response);
             this.snackbar.open("Lable Creation Successfull", "undo", { duration: 2500 })
           }
          
         },
-        (error: any) => {
+      (error: any) => {
           console.error(error);
           console.log(error.error.message);
           this.snackbar.open(error.error.message, "undo", { duration: 2500});
@@ -301,5 +311,13 @@ export class IconComponent implements OnInit {
         this.snackbar.open(error.error.message, "undo", { duration: 2500});
       });
   }
-  
+  col = new FormControl();
+  personadd() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data =
+    {
+      'noteid': this.noteInfo.nid
+    };
+    const dialogRef = this.dialog.open(CollabarateVerifyComponent,dialogConfig);
+  }
 }

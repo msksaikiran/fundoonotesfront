@@ -5,10 +5,18 @@
       <mat-icon class=color> add_alert</mat-icon>
     </button>
   
-    <button mat-icon-button (click)="personadd()">
+    <button mat-icon-button  (click)="personadd()">
       <mat-icon class=color> person_add</mat-icon>
     </button>
   
+    <!-- <mat-menu #menu5="matMenu">
+        <span style="margin-left: 10px">Reminder:</span>
+        <br>
+      
+        <input type="text" placeholder="Date Time:" [formControl]="col">
+        <button mat-icon-button color="primary" (click)="personadd()">Add</button>
+      </mat-menu> -->
+
     <button mat-icon-button (click)="colorlens()" [matMenuTriggerFor]="menu1">
       <mat-icon class=color> color_lens</mat-icon>
     </button>
@@ -54,11 +62,13 @@
     <mat-card style="margin-bottom: -8px;margin-left: -11px;">
     <input matInput [(ngModel)]="label.lableName" type="text" style="border: none;" placeholder="Enter lableName" >
     <br><br>
-    <!-- <div *ngFor="let labels of checkboxlabel" fxLayoutGap="20px" fxLayout="column" >
-      <mat-icon style="color: blue;">check_box</mat-icon> {{labels.lableName}}
-    </div> -->
-    <div *ngFor="let labels of checkboxlabel" fxLayoutGap="20px" fxLayout="column" >
-      <mat-checkbox (click)="addlabel(labels)">
+
+    <div *ngFor="let labels of ln" fxLayoutGap="30px" fxLayout="row" style="margin-left:5px">
+       <mat-icon style="color: blue;">check_box</mat-icon>&nbsp;{{labels.lableName}}
+    </div>
+
+    <div *ngFor="let labels of checkboxlabel" fxLayoutGap="10px" fxLayout="column" >
+      <mat-checkbox (click)="addlabel(labels)" >
         {{labels.lableName}}
       </mat-checkbox>
       

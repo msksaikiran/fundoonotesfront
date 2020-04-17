@@ -27,6 +27,7 @@ export class ArchiveComponent implements OnInit {
 
   message:string;
   token: string;
+  
   ngOnInit() {
     this.dataservice.currentMessage.subscribe(
       message=>{;this.message=message,this.getallNotes()   

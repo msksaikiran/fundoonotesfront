@@ -7,6 +7,7 @@ import { DataService } from 'src/app/service/data.service';
 import { NoteService } from 'src/app/service/note.service';
 import { LabelNote } from 'src/app/models/labelNote';
 import { Trash } from 'src/app/models/trash';
+import { UserService } from 'src/app/service/user.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class LabelNoteComponent implements OnInit {
   todayDate: Date = new Date();
   noteId: Trash = new Trash();
   constructor( private snackbar:MatSnackBar,private labelservice:LabelService,private route:ActivatedRoute,private router:Router,
-    private formBuilder:FormBuilder, private dataservice:DataService,private noteService: NoteService) { }
+    private formBuilder:FormBuilder, private dataservice:DataService,private noteService: NoteService, private userservice: UserService,) { }
   ngOnInit() {
     this.dataservice.currentMessage.subscribe(
       message => {
@@ -30,10 +31,18 @@ export class LabelNoteComponent implements OnInit {
         this.message = message, this.getallabels()
       }
     )
+    this.getUser();
   }
 
   reminder: String;
  
+  getUser() {
+    this.userservice.getRequest(localStorage.getItem("token")).subscribe(
+      (Response: any) => {
+        console.log("*********************Users****************************")
+        console.log(Response.collablare)
+      });
+  }
   getallabels(){
     
       this.noteService.getRequest("notes/"+this.labelInfo.nid).subscribe(
@@ -107,5 +116,6 @@ export class LabelNoteComponent implements OnInit {
       
   }
   
+
   }
 

@@ -20,7 +20,7 @@
     <div class="field1" fxLayout="row" fxLayoutAlign="end center" >
       <mat-form-field appearance="outline" class="input">
         <mat-label>LastName</mat-label>
-        <input type="text" matInput placeholder="Enter your LastName" required />
+        <input type="text" id="lastname" matInput placeholder="Enter your LastName" required />
   
         <mat-hint>Enter Name</mat-hint>
       </mat-form-field>
@@ -29,7 +29,7 @@
     <div class="field2" fxLayout="row" fxLayoutAlign="start center" >
       <mat-form-field appearance="outline" class="input">
         <mat-label>FirstName</mat-label>
-        <input type="text" matInput placeholder="Enter your FirstName" required [formControl]="name" [(ngModel)]="user.name"/>
+        <input type="text" id="firstname" matInput placeholder="Enter your FirstName" required [formControl]="name" [(ngModel)]="user.name"/>
         <mat-error *ngIf="name.invalid"> {{getErrorName()}}</mat-error>
         <mat-hint>Email</mat-hint>
       </mat-form-field>
@@ -38,7 +38,7 @@
     <div class="emailField"  fxLayout="row" fxLayoutAlign="start center">
       <mat-form-field appearance="outline" class="emailinput">
         <mat-label>Email</mat-label>
-        <input type="email" matInput placeholder="Enter your email" required [formControl]="email" [(ngModel)]="user.email"/>
+        <input type="email" id="email" matInput placeholder="Enter your email" required [formControl]="email" [(ngModel)]="user.email"/>
         <mat-error *ngIf="email.invalid"> {{getErrorEmail()}}</mat-error>
         <mat-hint>Email</mat-hint>
       </mat-form-field>
@@ -48,7 +48,7 @@
       <mat-form-field appearance="outline" class="input">
         <mat-label>mobile</mat-label>
         <span matPrefix> +91&nbsp;</span>
-        <input type="text" matInput placeholder="Enter your password" [(ngModel)]="user.number" [formControl]="mobile" required>
+        <input type="text" id="phone" matInput placeholder="Enter your password" [(ngModel)]="user.number" [formControl]="mobile" required>
           <mat-error *ngIf="mobile.invalid"> {{phoneNumber()}}</mat-error>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint>mobile</mat-hint>
@@ -58,7 +58,7 @@
     <div class="field4" fxLayout="row" fxLayoutAlign="start center">
       <mat-form-field appearance="outline" class="input">
         <mat-label>Password</mat-label>
-        <input type="password" matInput placeholder="Enter your password" required [formControl]="password" [(ngModel)]="user.password"/>
+        <input type="password" id="password" matInput placeholder="Enter your password" required [formControl]="password" [(ngModel)]="user.password"/>
         <mat-error *ngIf="password.invalid"> {{getErrorPassword()}}</mat-error>
         <mat-hint>Password</mat-hint>
       </mat-form-field>
@@ -68,15 +68,7 @@
       class="button" routerLink="/login">Login page</button> 
 
     <div style="margin-top: -41px; margin-left: 549px;" fxLayout="row" fxLayoutAlign="end end"> 
-      <button mat-raised-button color="primary"   (click)="onRegister()"
+      <button mat-raised-button color="primary"  id="Register" (click)="onRegister()"
         class="button">Register</button>
     </div>
-    <!-- <button
-      mat-raised-button
-      color="primary"
-      style="margin-left:309px"
-      class="button"
-    >
-      Register
-    </button> -->
   </mat-card>

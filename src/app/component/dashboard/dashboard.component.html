@@ -2,7 +2,8 @@
     <div style=" background-color: whitesmoke;">
         <mat-toolbar>
         <mat-toolbar-row>
-          <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+          <button mat-icon-button id="menu" (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+          
           <img class="image" src="assets/images/keep-512.png" alt="Keep"> 
           <span><mat-label style="font-family: sans-serif; padding-left: 5px;">{{appName}}</mat-label>
           </span>
@@ -136,7 +137,6 @@
 
       <mat-sidenav-content > 
         <router-outlet></router-outlet>
-         <!-- <app-note></app-note> -->
      </mat-sidenav-content>
     
     </mat-sidenav-container>
