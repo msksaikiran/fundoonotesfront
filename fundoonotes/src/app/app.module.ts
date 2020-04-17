@@ -44,7 +44,7 @@ import { SearchnotePipe } from './pipes/searchnote.pipe';
 import { FileUploadModule } from 'ng2-file-upload';
 import { SearchnotesComponent } from './component/searchnotes/searchnotes.component';
 import { ImageuploadComponent } from './component/imageupload/imageupload.component';
-import { CollabarateComponent } from './component/collabarate/collabarate.component';
+import { CollabarateVerifyComponent } from './component/collabarate-verify/collabarate-verify.component';
 //import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from 'ngx-mat-datetime-picker';
 
 @NgModule({
@@ -70,7 +70,8 @@ import { CollabarateComponent } from './component/collabarate/collabarate.compon
     SearchnotePipe,
     SearchnotesComponent,
     ImageuploadComponent,
-    CollabarateComponent,
+    //CollabarateComponent,
+    CollabarateVerifyComponent,
   
     
   ],

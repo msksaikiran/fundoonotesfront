@@ -13,6 +13,7 @@ import { LabelNotesdetailsComponent } from './component/label-notesdetails/label
 import { SearchnotesComponent } from './component/searchnotes/searchnotes.component';
 import { ImageuploadComponent } from './component/imageupload/imageupload.component';
 import { NoteDetailsComponent } from './component/note-details/note-details.component';
+import { CollabarateVerifyComponent } from './component/collabarate-verify/collabarate-verify.component';
 const routes: Routes = [
   {
     path:"",
@@ -64,9 +65,13 @@ const routes: Routes = [
       }
     ]
   },
-      {
+    {
         path:"allLabels",
         component:EditlabelComponent
+    },
+     {
+        path: "collabrateNote",
+        component:CollabarateVerifyComponent
       }
     
   

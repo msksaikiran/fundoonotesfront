@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CollabarateComponent } from './collabarate.component';
+import { CollabarateVerifyComponent } from './collabarate-verify.component';
 
-describe('CollabarateComponent', () => {
-  let component: CollabarateComponent;
-  let fixture: ComponentFixture<CollabarateComponent>;
+describe('CollabarateVerifyComponent', () => {
+  let component: CollabarateVerifyComponent;
+  let fixture: ComponentFixture<CollabarateVerifyComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CollabarateComponent ]
+      declarations: [ CollabarateVerifyComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CollabarateComponent);
+    fixture = TestBed.createComponent(CollabarateVerifyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -16,7 +16,7 @@ export class ImageuploadComponent implements OnInit {
     private dataservice: DataService) { }
 
   form: FormGroup;
-file: File;
+  file: File;
   ngOnInit() {
     this.createForm();
   }

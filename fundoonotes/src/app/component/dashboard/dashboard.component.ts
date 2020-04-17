@@ -15,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
 import { Note } from 'src/app/models/note';
 import { ImageuploadComponent } from '../imageupload/imageupload.component';
 import { environment } from 'src/environments/environment';
-//const uploadAPI = "http://localhost:8083/users/uploadProfile/"+localStorage.getItem("token");
+
 
 @Component({
   selector: 'app-dashboard',
@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
   token: string;
   image: string;
   form: FormGroup;
-file: File;
+  file: File;
   
   ngOnInit() {
     this.appName = "FundooNote";
