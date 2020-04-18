@@ -16,6 +16,7 @@ import { DateTimeAdapter, OWL_DATE_TIME_FORMATS, OWL_DATE_TIME_LOCALE } from 'ng
 import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
 import { CollabarateService } from 'src/app/service/collabarate.service';
 import { CollabarateVerifyComponent } from '../collabarate-verify/collabarate-verify.component';
+import { checkServerIdentity } from 'tls';
 
 const moment = (_moment as any).default ? (_moment as any).default : _moment;
 
@@ -51,8 +52,7 @@ export class IconComponent implements OnInit {
   colour: Color = new Color();
   label: Label = new Label();
   labelNote: LabelNote = new LabelNote();
-  checkboxlabel = [];
-
+ 
   constructor(
     private snackbar: MatSnackBar,
     private noteService: NoteService,
@@ -68,7 +68,6 @@ export class IconComponent implements OnInit {
   message: string;
   ngOnInit() {
     
-    // this.getallabels();
     this.dataService.currentMessage.subscribe(
       message => { this.message = message, this.getallabels() });
 
@@ -209,31 +208,31 @@ export class IconComponent implements OnInit {
 
   labeln: string;
   ln = [];
-  getallabels() {
+  checkboxlabel = [];
 
-    this.noteService.getRequest("notes/" + this.noteInfo.nid).subscribe(
+  getallabels() {
+    /**
+     * check Box Label
+     */
+    this.noteService.getRequest("notelabels/" + this.noteInfo.nid).subscribe(
       (Response: any) => {
         console.log("label Note geeting...");
-         
-        // Adding Label to chip
-        this.ln = Response.notes.label;
-        
+        // Adding checked Label 
+        this.ln=Response.notes
       });
 
+    /**
+     * uncheckBox label
+     */
     this.labelservice.getRequest("user/" + localStorage.getItem("token")).subscribe(
       (Response: any) => {
-         
         this.checkboxlabel = Response.result;
-        
-        this.checkboxlabel.forEach(ele => {
-           if (ele.lableName == this.ln.indexOf) {
-             console.log("labels are same..............."+ this.labeln)
-           }  
-        });
-        
-      }
-
-    )
+        this.checkboxlabel = this.checkboxlabel.filter(x=>!this.ln.includes(x))
+        // console.log("*******************##########")
+        // console.log(this.checkboxlabel) 
+      })
+    
+    
   }
   
   
@@ -242,25 +241,12 @@ export class IconComponent implements OnInit {
       
     console.log(labels);
     console.log(labels.lId);
-    this.labelNote.lId = labels.lId;
+    this.labelNote.lname = labels;
     this.labelNote.nId = this.noteInfo.nid;
 
     console.log("LabelNote Obj..");
     console.log(this.labelNote);
 
-    console.log("NoteInfo label  data......")
-    this.noteInfo.label.forEach(ele => {
-      if (ele.lId == labels.lId) {
-        this.enable = false;
-        console.log(this.label)
-       // this.dataService.changeMessage("lable")
-        this.snackbar.open("Lable already Exist", "undo",
-          { duration: 2500 })
-      
-      }
-    });
-    
-    if (this.enable) {
       this.labelservice.postRequest("addlabels/" + localStorage.getItem("token"), this.labelNote).subscribe(
       (Response: any) => {
     
@@ -276,7 +262,7 @@ export class IconComponent implements OnInit {
           console.log(error.error.message);
           this.snackbar.open(error.error.message, "undo", { duration: 2500});
         });
-    }
+   
   }
 
   dateReminder: DateReminder = new DateReminder();

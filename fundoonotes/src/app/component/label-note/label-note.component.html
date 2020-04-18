@@ -1,6 +1,6 @@
 <mat-chip-list >
 
-  <mat-chip class="chip" *ngFor="let labels of label">
+  <mat-chip *ngFor="let labels of label">
       <div *ngIf="labels!=null">
         {{labels.lableName}}
       </div>
@@ -15,20 +15,26 @@
   </mat-chip> 
 </div>
 
+<!-- correct -->
 <div *ngFor="let user of colDetails">
 <div *ngIf="user.email!=null">
-<mat-chip  class="chip" style="border-radius: 100px;">
-  <img class="image2" src={{image+user.profile}}>
+<mat-chip>
+  <span>
+  <img class="image" src={{image+user.profile}}>
+  <address>
+    <mat-icon color=primary matChipRemove (click)="onDel()">cancel</mat-icon>
+   </address>
+  </span>
 </mat-chip>
 </div>
 </div>
  
-<!-- <div *ngFor="let colNotes of colDetails.collablare">
+<div *ngFor="let colNotes of colUserDetails">
   <div *ngIf="noteid==colNotes.nid">
-  <mat-chip class="chip">
-    
-     {{colDetails.name}}dfd
+  <mat-chip>
+     <img class="image" src={{image+UserPrf.profile}}>
   </mat-chip>
   </div>
-  </div> -->
+  </div>
+
 </mat-chip-list>

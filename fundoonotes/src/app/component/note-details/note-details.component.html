@@ -10,13 +10,13 @@
 
     <div *ngIf="note.isArchieved==0 && note.isTrashed==0 && note.isPinned==0">  
 
-      <span>
+      <span id="notestest">
         
        <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2"
        [ngClass]=" direction =='row' ? 'matpad2':'matpad3' ">
               <br>
 
-            <div  (click)="onUpdate(note)" >
+            <div  (click)="onUpdate(note)" id="onclick">
              <form>
                    <div>
                    {{note.title}} 

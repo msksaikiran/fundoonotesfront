@@ -84,6 +84,7 @@ export class NoteDetailsComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data =
     {
+      
       'title': note.title,
       'description': note.description,
       'nid': note.nid,

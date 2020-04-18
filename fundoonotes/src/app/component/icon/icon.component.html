@@ -64,14 +64,13 @@
     <br><br>
 
     <div *ngFor="let labels of ln" fxLayoutGap="30px" fxLayout="row" style="margin-left:5px">
-       <mat-icon style="color: blue;">check_box</mat-icon>&nbsp;{{labels.lableName}}
+       <mat-icon style="color: blue;">check_box</mat-icon>&nbsp;{{labels}}
     </div>
 
     <div *ngFor="let labels of checkboxlabel" fxLayoutGap="10px" fxLayout="column" >
       <mat-checkbox (click)="addlabel(labels)" >
-        {{labels.lableName}}
+        {{labels}}
       </mat-checkbox>
-      
     </div>
   </mat-card>
   </mat-menu>

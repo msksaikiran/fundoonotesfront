@@ -2,9 +2,8 @@
     <mat-card class="matcard2">
         Edit Labels
         <br><br>
-        <input  matInput  type="text" class="input" placeholder="Create aNew Label" [formControl]=lableName  [(ngModel)]="label.lableName">
-        
-         <br><br>
+        <input  matInput  type="text" class="input" placeholder="Create aNew Label" [formControl]=lableName  [(ngModel)]="label.lableName" fxLayout="row" fxLayoutAlign="center center">
+         <br>
           <div class=button *ngFor="let label of labels">
           <div fxLayout="row" fxLayoutAlign="center center">  
 
@@ -14,9 +13,8 @@
           </button>
       </div> 
 
-    
       <div> 
-       <input type="text" placeholder= {{label.lableName}}  [(ngModel)]="label.lableName" style="border:none;width: 218px;outline: none;">
+       <input type="text" placeholder= {{label}}  [(ngModel)]="label.lableName" style="border:none;width: 218px;outline: none;">
       </div>
     
      <div fxFlex=30 >

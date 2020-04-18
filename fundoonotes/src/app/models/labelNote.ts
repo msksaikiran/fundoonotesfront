@@ -1,4 +1,4 @@
 export class LabelNote{
-    lId: number;
+    lname: String;
     nId: number;
 }

@@ -34,9 +34,26 @@ export class NoteupdateComponent implements OnInit {
  noteId = this.data.nid;
 
   ngOnInit() {
-   // console.log(this.data)
+    this.getallNotes();
   }
-
+  
+  notes: [];
+  token: string;
+  getallNotes() {
+    this.token=localStorage.getItem("token");
+      this.noteService.getRequest("users/"+this.token).subscribe(
+        (Response:any)=>{
+          
+          this.notes=Response;
+          console.log(this.notes)
+          
+        },
+        (error: any) => {
+          console.error(error);
+          console.log(error.error.message);
+          this.snackbar.open(error.error.message, "undo", { duration: 2500});
+        });
+  }
   
   onClose() {
     console.log(this.data.nid);

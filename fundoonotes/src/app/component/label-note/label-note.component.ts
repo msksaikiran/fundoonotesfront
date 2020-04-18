@@ -39,31 +39,37 @@ export class LabelNoteComponent implements OnInit {
   reminder: String;
   noteid: Number;
   colDetails = [];
+  colUserDetails = [];
   userName: String;
   image: string;
+  image2: string;
   baseUrl = environment.baseProfileUrl;
+  UserPrf: string;
+
   getUser() {
 
-    // this.userservice.getRequest(localStorage.getItem("token")).subscribe(
-    //   (Response: any) => {
-    //     console.log("*********************Users11****************************")
-    //     //console.log(Response.collablare)
-    //     this.colDetails = Response;
-    //   });
-    
-    this.userservice.getRequest("getuserBynoteid?nid="+this.labelInfo.nid).subscribe(
+    this.userservice.getRequest(localStorage.getItem("token")).subscribe(
       (Response: any) => {
-
+        //console.log("*********************Users11****************************")
+        // console.log(Response)
+        // console.log(this.labelInfo.nid)
+        this.noteid = this.labelInfo.nid;
+        this.UserPrf = Response;
+        this.colUserDetails = Response.note;
+      });
+    
+    this.userservice.getRequest("getuserBynoteid?nid=" + this.labelInfo.nid).subscribe(
+      (Response: any) => {
         console.log(Response)
         this.colDetails = Response;
         this.image = this.baseUrl;
       });
   }
 
-
+  ln: [];
   getallabels(){
     
-      this.noteService.getRequest("notes/"+this.labelInfo.nid).subscribe(
+      this.noteService.getRequest("notesdetails/"+this.labelInfo.nid).subscribe(
         (Response: any) => {
           console.log("label Note geeting...");
           console.log(Response.notes.reminder);
@@ -88,7 +94,7 @@ export class LabelNoteComponent implements OnInit {
     
     console.log(labels);
     console.log(labels.lId);
-    this.labelNote.lId = labels.lId;
+    this.labelNote.lname = labels.lableName;
     this.labelNote.nId = this.labelInfo.nid;
   
     console.log(this.labelInfo)
