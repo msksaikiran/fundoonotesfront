@@ -18,16 +18,15 @@ export class LabelNotesdetailsComponent implements OnInit {
   wrap:string ="wrap";
   direction:string="row";
   view: any;
-
+  lId: String;
   constructor( private snackbar:MatSnackBar,private labelservice:LabelService,private route:ActivatedRoute,private router:Router,
     private formBuilder:FormBuilder, private dataservice:DataService,private viewservice:ViewService) { }
   message:string;
 
   ngOnInit() {
+    this.lId=this.route.snapshot.paramMap.get('p1');
     this.dataservice.currentMessage.subscribe(
       message => { ; this.message = message, this.labelDetails() })
-    
-    //this.labelDetails();
 
       this.viewservice.getView().subscribe(
         (res) => {
@@ -41,9 +40,9 @@ export class LabelNotesdetailsComponent implements OnInit {
 
 
   labelDetails() {
-   console.log(localStorage.getItem("labelNote")+"*************");
+  // console.log(localStorage.getItem("labelNote"));
     
-    this.labelservice.getRequest("getlabelNotes/" + localStorage.getItem("labelNote")).subscribe(
+    this.labelservice.getRequest("getlabelNotes/"+this.lId).subscribe(
       (Response: any) => {
        
         this.label = Response.result;
@@ -53,8 +52,6 @@ export class LabelNotesdetailsComponent implements OnInit {
         console.log(error.error.message);
         this.snackbar.open(error.error.message, "undo", { duration: 2500});
       });
-    
-    //this.dataservice.changeMessage("labelNotes");
    }
 }
 

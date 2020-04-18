@@ -3,7 +3,6 @@
    
     <div  fxLayout="{{direction}} wrap" fxLayoutGap="10px" fxLayout.xs="row" fxLayoutAlign="center center"> 
          
-        <!-- <div style="margin-top: 10px;">  OTHERS  </div> -->
     <div *ngFor="let note of label">
    
        <div *ngIf="note.isArchieved==0 && note.isTrashed==0">  

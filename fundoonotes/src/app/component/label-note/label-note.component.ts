@@ -20,12 +20,14 @@ export class LabelNoteComponent implements OnInit {
 
   @Input() labelInfo: any;
   label = [];
-  message: string
+  message: string;
   todayDate: Date = new Date();
   noteId: Trash = new Trash();
+  
   constructor( private snackbar:MatSnackBar,private labelservice:LabelService,private route:ActivatedRoute,private router:Router,
     private formBuilder:FormBuilder, private dataservice:DataService,private noteService: NoteService, private userservice: UserService,) { }
   ngOnInit() {
+    
     this.getUser();
     this.dataservice.currentMessage.subscribe(
       message => {
@@ -40,14 +42,16 @@ export class LabelNoteComponent implements OnInit {
   noteid: Number;
   colDetails = [];
   colUserDetails = [];
-  userName: String;
   image: string;
-  image2: string;
+  
   baseUrl = environment.baseProfileUrl;
   UserPrf: string;
 
   getUser() {
 
+    /**
+     * Getting the collabrated Notes to this user by other users
+     */
     this.userservice.getRequest(localStorage.getItem("token")).subscribe(
       (Response: any) => {
         //console.log("*********************Users11****************************")
@@ -58,6 +62,9 @@ export class LabelNoteComponent implements OnInit {
         this.colUserDetails = Response.note;
       });
     
+    /**
+     *  getting the collabrate Notedetails
+     */ 
     this.userservice.getRequest("getuserBynoteid?nid=" + this.labelInfo.nid).subscribe(
       (Response: any) => {
         console.log(Response)
@@ -76,7 +83,7 @@ export class LabelNoteComponent implements OnInit {
          
           // Adding reminder to chip
           this.reminder = Response.notes.reminder;
-        // Adding Label to chip
+          // Adding Label to chip
           this.label = Response.notes.label;
           
           console.log(this.label)
@@ -89,6 +96,9 @@ export class LabelNoteComponent implements OnInit {
         });
   }
 
+  /**
+   * Removing  the labels to the notes
+   */
   labelNote: LabelNote = new LabelNote();
   onDelete(labels:any) {
     

@@ -41,26 +41,25 @@ title=new FormControl(this.note.title);
     
   }
   
-  onClose(){
-    this.open=false;
-      console.log(this.note);
-     
-      this.noteService.postRequest("users/"+localStorage.getItem("token"),this.note).subscribe(
+  onClose() {
+    this.open = false;
+    console.log(this.note);
+    if (this.note.title == null || this.note.description == null) {
+      this.snackbar.open("Notes should not be null", "undo", { duration: 2500 })
+    } else {
+      this.noteService.postRequest("users/" + localStorage.getItem("token"), this.note).subscribe(
       
-      (Response:any)=>{
+        (Response: any) => {
         
-        if(Response.statusCode===200){
-          this.dataservice.changeMessage("createNote")
-          console.log(Response);
-          this.snackbar.open("Note Creation Successfull","undo",{duration:2500})
-        }else{
-          console.log(Response);
-          this.snackbar.open(
-            "Note Not unSuccessfull","undo",
-            {duration:2500}
-          )
-        }
-      }
-    )
+          if (Response.statusCode === 200) {
+            this.dataservice.changeMessage("createNote")
+            console.log(Response);
+            this.snackbar.open("Note Creation Successfull", "undo", { duration: 2500 })
+          } else {
+            console.log(Response);
+            this.snackbar.open("Note Not unSuccessfull", "undo", { duration: 2500 })
+          }
+        });
+    }
   }
 }

@@ -28,7 +28,7 @@ export class GetLabelComponent implements OnInit {
   }
   
   getallabels(){
-    this.labelservice.getRequest("user/"+localStorage.getItem("token")).subscribe(
+    this.labelservice.getRequest("details/users/"+localStorage.getItem("token")).subscribe(
     (Response:any)=>{
             
             this.label=Response.result;
@@ -42,7 +42,7 @@ export class GetLabelComponent implements OnInit {
   }
   
   labelDetails(labels: any) {
-    localStorage.setItem("labelNote", labels.lId);
-    this.router.navigate(['dashboard/labelNotes']);
+    //localStorage.setItem("labelNote", labels.lId);
+    this.router.navigate(['dashboard/labelNotes/'+labels.lId]);
    }
 }

@@ -56,7 +56,7 @@ const routes: Routes = [
         component: TrashComponent
       },
       {
-        path: "labelNotes",
+        path: "labelNotes/:p1",
         component: LabelNotesdetailsComponent
       },
       {

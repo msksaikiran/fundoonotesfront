@@ -49,20 +49,18 @@ export class EditlabelComponent implements OnInit {
           if(Response.statusCode===200){
             this.dataService.changeMessage("lable")
             console.log(Response);
-            this.snackbar.open(
-            "Lable Creation Successfull","undo",{duration:2500} )
-        }
-
-        else{
+            this.snackbar.open("Lable Creation Successfull","undo",{duration:2500} )
+        } else{
           console.log(Response);
           console.log(this.label)
-          this.snackbar.open(
-            "label Creation unSuccessfull","undo",
-            {duration:2500}
-          )
+          this.snackbar.open("label Creation unSuccessfull","undo",{duration:2500})
         }
-      }
-    )
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500});
+      });
     }
   else{
     console.log(this.label)
@@ -73,10 +71,11 @@ export class EditlabelComponent implements OnInit {
   }
 
   getallabels(){
-    this.labelservice.getRequest("user/"+localStorage.getItem("token")).subscribe(
+    this.labelservice.getRequest("details/users/"+localStorage.getItem("token")).subscribe(
   (Response:any)=>{
             
-            this.labels=Response.result;
+        this.labels = Response.result;
+        //console.log("************************************************")
             console.log(this.labels)
       },
   (error: any) => {
@@ -90,7 +89,7 @@ export class EditlabelComponent implements OnInit {
    // console.log(label)
     this.lid.lId = label.lId;
     console.log(this.lid)
-    this.labelservice.postRequest("delete/" + localStorage.getItem("token"), this.lid).subscribe(
+    this.labelservice.postRequest("delete/" + localStorage.getItem("token")+"?lid="+label.lId,"").subscribe(
       
   (Response:any)=>{
         if(Response.statusCode===200){
@@ -124,7 +123,7 @@ export class EditlabelComponent implements OnInit {
     console.log(this.lid.lId)
   if(label.lableName!=null){
     console.log(label.lableName)
-    this.labelservice.putRequest("updatelabel/"+localStorage.getItem("token")+"?lid="+this.lid.lId,this.label).subscribe(
+    this.labelservice.putRequest("updatelabel/"+localStorage.getItem("token")+"?lid="+label.lId,this.label).subscribe(
       (Response:any)=>{
         
         if(Response.statusCode===200){
