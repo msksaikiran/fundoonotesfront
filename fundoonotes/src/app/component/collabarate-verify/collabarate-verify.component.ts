@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input, Inject, Output } from '@angular/core';
 import { FormControl, FormBuilder } from '@angular/forms';
 import { MatSnackBar, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { NoteService } from 'src/app/service/note.service';
@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CollabarateService } from 'src/app/service/collabarate.service';
 import { LabelService } from 'src/app/service/label.service';
 import { DataService } from 'src/app/service/data.service';
+import { EventEmitter } from 'protractor';
 
 @Component({
   selector: 'app-collabarate-verify',
@@ -34,11 +35,12 @@ export class CollabarateVerifyComponent implements OnInit {
   token: String;
   noteid = this.data.noteid;
   @Input() noteInfo: any;
-
+  //@Output()
   submit() {
     this.token = localStorage.getItem("token");
     console.log(this.email.value)
     console.log(this.noteid)
+    
     this.collabrate.postRequest("add-coll/"+this.token+"?NoteId="+this.noteid+"&email="+this.email.value,"").subscribe(
         (Response:any)=>{
           this.snackbar.open("added collabrate sucessfully....", "undo", { duration: 2500});

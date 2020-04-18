@@ -8,6 +8,7 @@ import { NoteService } from 'src/app/service/note.service';
 import { LabelNote } from 'src/app/models/labelNote';
 import { Trash } from 'src/app/models/trash';
 import { UserService } from 'src/app/service/user.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -25,24 +26,41 @@ export class LabelNoteComponent implements OnInit {
   constructor( private snackbar:MatSnackBar,private labelservice:LabelService,private route:ActivatedRoute,private router:Router,
     private formBuilder:FormBuilder, private dataservice:DataService,private noteService: NoteService, private userservice: UserService,) { }
   ngOnInit() {
+    this.getUser();
     this.dataservice.currentMessage.subscribe(
       message => {
         console.log(this.labelInfo);
         this.message = message, this.getallabels()
       }
     )
-    this.getUser();
+    
   }
 
   reminder: String;
- 
+  noteid: Number;
+  colDetails = [];
+  userName: String;
+  image: string;
+  baseUrl = environment.baseProfileUrl;
   getUser() {
-    this.userservice.getRequest(localStorage.getItem("token")).subscribe(
+
+    // this.userservice.getRequest(localStorage.getItem("token")).subscribe(
+    //   (Response: any) => {
+    //     console.log("*********************Users11****************************")
+    //     //console.log(Response.collablare)
+    //     this.colDetails = Response;
+    //   });
+    
+    this.userservice.getRequest("getuserBynoteid?nid="+this.labelInfo.nid).subscribe(
       (Response: any) => {
-        console.log("*********************Users****************************")
-        console.log(Response.collablare)
+
+        console.log(Response)
+        this.colDetails = Response;
+        this.image = this.baseUrl;
       });
   }
+
+
   getallabels(){
     
       this.noteService.getRequest("notes/"+this.labelInfo.nid).subscribe(
@@ -53,7 +71,8 @@ export class LabelNoteComponent implements OnInit {
           // Adding reminder to chip
           this.reminder = Response.notes.reminder;
         // Adding Label to chip
-          this.label=Response.notes.label;
+          this.label = Response.notes.label;
+          
           console.log(this.label)
           
         },

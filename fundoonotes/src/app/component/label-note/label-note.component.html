@@ -1,10 +1,12 @@
 <mat-chip-list >
-    <mat-chip class="chip" *ngFor="let labels of label">
+
+  <mat-chip class="chip" *ngFor="let labels of label">
       <div *ngIf="labels!=null">
         {{labels.lableName}}
       </div>
       <mat-icon matChipRemove (click)="onDelete(labels)">cancel</mat-icon>
   </mat-chip>
+
   <div *ngIf="reminder!=null">
    <mat-chip>
     {{reminder | date:'MMMM d'}},
@@ -12,4 +14,21 @@
     <mat-icon matChipRemove (click)="onDeleteRem()">cancel</mat-icon>
   </mat-chip> 
 </div>
+
+<div *ngFor="let user of colDetails">
+<div *ngIf="user.email!=null">
+<mat-chip  class="chip" style="border-radius: 100px;">
+  <img class="image2" src={{image+user.profile}}>
+</mat-chip>
+</div>
+</div>
+ 
+<!-- <div *ngFor="let colNotes of colDetails.collablare">
+  <div *ngIf="noteid==colNotes.nid">
+  <mat-chip class="chip">
+    
+     {{colDetails.name}}dfd
+  </mat-chip>
+  </div>
+  </div> -->
 </mat-chip-list>
