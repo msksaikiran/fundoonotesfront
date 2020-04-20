@@ -122,7 +122,7 @@ export class EditlabelComponent implements OnInit {
     console.log(this.label.lableName)
     console.log(this.lid.lId)
   if(label.lableName!=null){
-    console.log(label.lableName)
+    //console.log(label.lableName)
     this.labelservice.putRequest("updatelabel/"+localStorage.getItem("token")+"?lid="+label.lId,this.label).subscribe(
       (Response:any)=>{
         
@@ -133,7 +133,7 @@ export class EditlabelComponent implements OnInit {
         }else{
           console.log(Response);
           console.log(this.label)
-          this.snackbar.open("label Creation unSuccessfull","undo",{duration:2500})
+          this.snackbar.open("labelName should not be null","undo",{duration:2500})
         }
       }
     )

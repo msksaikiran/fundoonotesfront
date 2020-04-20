@@ -105,7 +105,7 @@
         <br><br>
 
         <diV class="label"> 
-          <button mat-button class="labelbutton" (click)=openDialogLabel()>
+          <button mat-button id="editlabel" class="labelbutton" (click)=openDialogLabel()>
             <div class="icon">
               <mat-icon>edit</mat-icon>
             </div>
@@ -116,7 +116,7 @@
         <mat-divider></mat-divider>
 
         <diV class="note">
-          <button mat-button class="notebutton" (click)="onArchive()">
+          <button mat-button class="notebutton" (click)="onArchive()" id="archive">
             <div class="icon">
               <mat-icon>archive</mat-icon>
             </div>

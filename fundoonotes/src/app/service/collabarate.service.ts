@@ -23,5 +23,7 @@ export class CollabarateService {
   public getRequest(url: any): any {
     return this.http.get(this.baseUrl + url);
   }
-
+  public deleteRequest(url: any): any {
+    return this.http.delete(this.baseUrl + url);
+  }
 }

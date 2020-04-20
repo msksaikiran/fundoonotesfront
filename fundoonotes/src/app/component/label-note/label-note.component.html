@@ -4,7 +4,7 @@
       <div *ngIf="labels!=null">
         {{labels.lableName}}
       </div>
-      <mat-icon matChipRemove (click)="onDelete(labels)">cancel</mat-icon>
+      <mat-icon matChipRemove id="labelChip" (click)="onDelete(labels)">cancel</mat-icon>
   </mat-chip>
 
   <div *ngIf="reminder!=null">
@@ -24,7 +24,7 @@
   <span>
   <img class="image" src={{image+user.profile}}>
   <address>
-    <mat-icon color=primary matChipRemove (click)="onDel()">cancel</mat-icon>
+    <mat-icon color=primary matChipRemove (click)="removeCollabrate(user)">cancel</mat-icon>
    </address>
   </span>
 </mat-chip>

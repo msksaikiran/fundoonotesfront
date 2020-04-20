@@ -9,6 +9,7 @@ import { LabelNote } from 'src/app/models/labelNote';
 import { Trash } from 'src/app/models/trash';
 import { UserService } from 'src/app/service/user.service';
 import { environment } from 'src/environments/environment';
+import { CollabarateService } from 'src/app/service/collabarate.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class LabelNoteComponent implements OnInit {
   todayDate: Date = new Date();
   noteId: Trash = new Trash();
   
-  constructor( private snackbar:MatSnackBar,private labelservice:LabelService,private route:ActivatedRoute,private router:Router,
+  constructor( private snackbar:MatSnackBar,private labelservice:LabelService,private colservice:CollabarateService,private route:ActivatedRoute,private router:Router,
     private formBuilder:FormBuilder, private dataservice:DataService,private noteService: NoteService, private userservice: UserService,) { }
   ngOnInit() {
     
@@ -115,7 +116,7 @@ export class LabelNoteComponent implements OnInit {
             this.dataservice.changeMessage("lable")
             
             console.log(Response);
-            this.snackbar.open("Lable Creation Successfull", "undo", { duration: 2500 })
+            this.snackbar.open("Lable Removed Successfull", "undo", { duration: 2500 })
           }
         },
         (error: any) => {
@@ -139,7 +140,7 @@ export class LabelNoteComponent implements OnInit {
             this.dataservice.changeMessage("lable")
             
             console.log(Response);
-            this.snackbar.open("Lable Creation Successfull", "undo", { duration: 2500 })
+            this.snackbar.open("Reminder removed Successfull", "undo", { duration: 2500 })
           }
          
         },
@@ -151,6 +152,24 @@ export class LabelNoteComponent implements OnInit {
       
   }
   
+  removeCollabrate(user:any) {
+    
+    this.colservice.deleteRequest("delete-coll?NoteId="+this.labelInfo.nid+"&userId="+user.uid).subscribe(
+      (Response: any) => {
+           alert("Removing..."+user.email+" to the Note")
+        if (Response.statusCode === 200) {
+          this.dataservice.changeMessage("lable")
+          
+          console.log(Response);
+          this.snackbar.open("collbrated user Removed Successfull", "undo", { duration: 2500 })
+        }
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500});
+      });
+  }
 
   }
 

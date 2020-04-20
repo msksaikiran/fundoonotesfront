@@ -2,23 +2,23 @@
     <mat-card class="matcard2">
         Edit Labels
         <br><br>
-        <input  matInput  type="text" class="input" placeholder="Create aNew Label" [formControl]=lableName  [(ngModel)]="label.lableName" fxLayout="row" fxLayoutAlign="center center">
+        <input  matInput  type="text" id="createLabel" class="input" placeholder="Create aNew Label" [formControl]=lableName  [(ngModel)]="label.lableName" fxLayout="row" fxLayoutAlign="center center">
          <br>
           <div class=button *ngFor="let label of labels">
           <div fxLayout="row" fxLayoutAlign="center center">  
 
          <div fxFlex=30>
-          <button mat-icon-button (click)="delete(label)">
+          <button mat-icon-button (click)="delete(label)" id="deletelabel">
               <mat-icon> delete</mat-icon>
           </button>
       </div> 
 
       <div> 
-       <input type="text" placeholder= {{label}}  [(ngModel)]="label.lableName" style="border:none;width: 218px;outline: none;">
+       <input type="text" placeholder= {{label}} id="labelName" [(ngModel)]="label.lableName" style="border:none;width: 218px;outline: none;">
       </div>
     
      <div fxFlex=30 >
-      <button mat-icon-button (click)="update(label)" >
+      <button mat-icon-button (click)="update(label)" id="update">
           <mat-icon> edit</mat-icon>
       </button>
     </div> 
@@ -27,7 +27,7 @@
  
  <mat-divider></mat-divider> 
         <div class="done" fxLayout="column" fxLayoutAlign="end end">
-          <button  mat-raised-button color="primary"(click)="onClose()" >done</button>
+          <button  mat-raised-button id="doneLabel" color="primary"(click)="onClose()" >done</button>
         </div>
         
  </mat-card>

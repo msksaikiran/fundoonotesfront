@@ -5,27 +5,19 @@
       <mat-icon class=color> add_alert</mat-icon>
     </button>
   
-    <button mat-icon-button  (click)="personadd()">
+    <button mat-icon-button  (click)="personadd()" id="personadd">
       <mat-icon class=color> person_add</mat-icon>
     </button>
-  
-    <!-- <mat-menu #menu5="matMenu">
-        <span style="margin-left: 10px">Reminder:</span>
-        <br>
-      
-        <input type="text" placeholder="Date Time:" [formControl]="col">
-        <button mat-icon-button color="primary" (click)="personadd()">Add</button>
-      </mat-menu> -->
 
-    <button mat-icon-button (click)="colorlens()" [matMenuTriggerFor]="menu1">
-      <mat-icon class=color> color_lens</mat-icon>
+
+    <button mat-icon-button (click)="colorlens()" [matMenuTriggerFor]="menu1" >
+      <mat-icon class=color id="colour"> color_lens</mat-icon>
     </button>
   
      <mat-menu #menu1="matMenu" >
       <div *ngFor="let colors of  arrayColor" fxLayout="row" style="border-radius: 62px;margin-left: 8px;">
         <div *ngFor="let color of colors">
-  
-          <button [ngStyle]="{'background-color':color.hexcode}" style="width:32px;height: 30px;border-radius: 11px;border: none;" (click)=setColor(color.name)></button>
+          <button id="selectColour" [ngStyle]="{'background-color':color.hexcode}" style="width:32px;height: 30px;border-radius: 11px;border: none;" (click)=setColor(color.name)></button>
         </div>
       </div> 
     </mat-menu> 
@@ -34,11 +26,11 @@
       <mat-icon class=color> insert_photo</mat-icon>
     </button>
   
-    <button  mat-icon-button (click)="archive()">
+    <button  mat-icon-button (click)="archive()" id="archiveNote">
       <mat-icon class=color> archive</mat-icon>
     </button>
   
-    <button  mat-icon-button [matMenuTriggerFor]="menu">
+    <button  mat-icon-button [matMenuTriggerFor]="menu" id="more">
       <mat-icon class=color> more_vert</mat-icon>
     </button>
   
@@ -46,11 +38,11 @@
   <div>
     <mat-menu #menu="matMenu">
       <div class=button style="text-align: center">
-        <button mat-icon-button color="primary" (click)="onDelete()">Delete</button>
+        <button mat-icon-button color="primary" (click)="onDelete()" id="deleteNote">Delete</button>
       </div>
   
       <div class=button>
-        <button mat-menu-item color="primary" [matMenuTriggerFor]="subMenu">Add label</button>
+        <button mat-menu-item color="primary" id="labelNote" [matMenuTriggerFor]="subMenu">Add label</button>
       </div>
     </mat-menu>
   </div>
@@ -68,7 +60,7 @@
     </div>
 
     <div *ngFor="let labels of checkboxlabel" fxLayoutGap="10px" fxLayout="column" >
-      <mat-checkbox (click)="addlabel(labels)" >
+      <mat-checkbox (click)="addlabel(labels)" id="checkbox">
         {{labels}}
       </mat-checkbox>
     </div>

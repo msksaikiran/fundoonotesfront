@@ -228,8 +228,7 @@ export class IconComponent implements OnInit {
       (Response: any) => {
         this.checkboxlabel = Response.result;
         this.checkboxlabel = this.checkboxlabel.filter(x=>!this.ln.includes(x))
-        // console.log("*******************##########")
-        // console.log(this.checkboxlabel) 
+        
       })
     
     
