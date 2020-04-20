@@ -1,13 +1,13 @@
 <div *ngFor="let note of notes">
   <div *ngIf="note.nid==noteId">  
-<mat-card class="matcard2" [ngStyle]="{'background-color':note.color}">
+<mat-card class="matcard2" [ngStyle]="{'background-color':note.colour}">
   <form>
    <div fxLayout="row"  fxLayoutAlign="center center">
-   <input matInput  type="text" placeholder="Edit Title" class="input" [ngStyle]="{'background-color':note.color}" [formControl]="title" [(ngModel)]="note.title" >
+   <input matInput  type="text" placeholder="Edit Title" class="input" [ngStyle]="{'background-color':note.colour}" [formControl]="title" [(ngModel)]="note.title" >
     </div>
     <br><br>
    <div fxLayout="row"  fxLayoutAlign="center center">
-    <input matInput   type="text" class="input" placeholder="Description"  [ngStyle]="{'background-color':note.color}" [formControl]="description" [(ngModel)]="note.description">
+    <input matInput   type="text" class="input" placeholder="Description"  [ngStyle]="{'background-color':note.colour}" [formControl]="description" [(ngModel)]="note.description">
     </div>
     <br><br>
     <app-label-note [labelInfo]=note></app-label-note> 

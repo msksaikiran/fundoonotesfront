@@ -29,7 +29,7 @@ export class NoteupdateComponent implements OnInit {
   }
   
  title=new FormControl(this.data.title);
- color=this.data.color;
+ color=new FormControl(this.data.color);
  description = new FormControl(this.data.description);
  noteId = this.data.nid;
 
@@ -57,8 +57,8 @@ export class NoteupdateComponent implements OnInit {
   
   onClose() {
     console.log(this.data.nid);
-    this.updateNote.title = this.data.title;
-    this.updateNote.description = this.data.description;
+    this.updateNote.title = this.title.value;
+    this.updateNote.description = this.description.value;
     this.updateNote.nid = this.data.nid;
 
     console.log(this.updateNote);

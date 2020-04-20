@@ -127,8 +127,37 @@ export class NoteDetailsComponent implements OnInit {
             console.log(error.error.message);
             this.snackbar.open(error.error.message, "undo", { duration: 25000 });
           });
-        
-    
-      }
+      
+  }
+  
+  unpin(note:any) {
+    this.trash.nid = note.nid;
+    console.log(this.trash);
+    this.token=localStorage.getItem("token");
+    this.noteService.putRequest("unpin/" + this.token, this.trash).subscribe(
+      (Response: any) => {
+      
+        if (Response.statusCode === 200) {
+         
+          this.data.changeMessage('trash')
+          console.log(Response);
+          this.snackbar.open(
+            "Note unpin successfull ", "undo",
+            { duration: 2500 }
+          )
+        }else {
+          console.log(Response);
+          this.snackbar.open(
+            "Note unpin unSuccessfull", "undo",
+            { duration: 2500 }
+          )
+        }
+      },
+      (error: any) => {
+        console.error(error);
+        console.log(error.error.message);
+        this.snackbar.open(error.error.message, "undo", { duration: 2500});
+      });
+  }
 }
 

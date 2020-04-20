@@ -3,9 +3,9 @@
    <div  fxLayout="{{direction}} wrap" fxLayout.xs="row" fxLayoutAlign="center center"> 
  
  <div *ngFor="let note of notes">
-        
+   <span>
     <div *ngIf="note.isPinned==1&&note.isTrashed==0">
-      <span>
+      
        <mat-card [ngStyle]="{'background-color':note.colour}" class="matcard2"
        [ngClass]=" direction =='row' ? 'matpad2':'matpad3' ">
 
@@ -40,9 +40,9 @@
              <app-icon [noteInfo]=note></app-icon>
          </div>
        </address>
-         </span>
-
+         
     </div>
+   </span>
  </div>
  </div>
  </div>
