@@ -9,6 +9,7 @@
           </span>
 
           <div class="searchIcon" fxLayout="row">
+
           <button mat-icon-button class="search-icon">
             <mat-icon matTooltip="Search" (click)="onsearch()">search</mat-icon>
           </button>
@@ -31,6 +32,7 @@
             <button mat-icon-button  *ngIf="grid" (click)="changeView()" fxShow="true" fxHide.lt-sm="true">
               <mat-icon class="icon">view_module</mat-icon>
             </button>
+            
           </div>
 
           <button mat-icon-button class="settings"  [matMenuTriggerFor]="menu">

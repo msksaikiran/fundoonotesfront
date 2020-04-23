@@ -18,38 +18,21 @@ export class AuthGuardService implements CanActivate{
 
     if (this._authService.isAuthenticated()) {
 
-      //validating the token by decoding......
+      //validating the token by decoding.
       try {
         decode(localStorage.getItem('token'));
       } catch (error) {
         console.log("error**************")
         this.snackBar.open("Login Failed Invaid token", "undo", { duration: 25000 });
       }
+      
         return true;
-    }
-    
-    try {
-      decode(localStorage.getItem('token'));
-    } catch (error) {
-      console.log("error**************")
-      this.snackBar.open("Login Failed Invaid token", "undo", { duration: 25000 });
     }
     
     // navigate to login page
     this._router.navigate(['/login']);
-    // you can save redirect url so after authing we can move them back to the page they requested
     return false;
   }
 
-  //data:String
-  // decode() {
-  //   this.data = decode(localStorage.getItem('token'));
-  //   if (user.role === next.data.role) {
-  //     return true;
-  //   }
-  //   console.log("decoded token****************************")
-  //   console.log(this.data)
-  //   return this.data;
-  // }
 }
 

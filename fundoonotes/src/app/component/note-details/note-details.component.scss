@@ -10,7 +10,6 @@
 
 .matpad2
 {
-  // height: 110px;
   height: max-content;
   width: 284px;
 }
@@ -40,28 +39,25 @@
     
     margin-top: 59px;
     margin-left: 14px;
-    // margin-top: 69px;
-    // margin-left: 14px;
-   
+    
 }
 .button{
     margin-left: 273px;
     margin-top: -139px;
-    // margin-left: 481px;
-    // margin-top: -11px;
-    
+    position: sticky;
+   
   }
   
-  address {
-    visibility: hidden;
-    display: block;
+//   address {
+//     visibility: hidden;
+//     display: block;
 
-  }
+//   }
   
-span :hover+address
-{
-     visibility: visible;
-} 
+// span :hover+address
+// {
+//      visibility: visible;
+// } 
 
 .other{
     font-size: large; 
