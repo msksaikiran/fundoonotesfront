@@ -58,8 +58,9 @@ export class DashboardComponent implements OnInit {
     this.httpservice.postRequest("getimageurl/"+localStorage.getItem("token"),"")
       .subscribe((response: any) => {
         console.log(response.obj.profile)
-        this.image = this.baseUrl + response.obj.profile;
-        //localStorage.setItem("image",this.baseUrl+response.obj.profile);
+        if (response.obj.profile != null) {
+          this.image = this.baseUrl + response.obj.profile;
+        }//localStorage.setItem("image",this.baseUrl+response.obj.profile);
       });
      
   }

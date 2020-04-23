@@ -216,7 +216,7 @@ export class IconComponent implements OnInit {
      */
     this.noteService.getRequest("notelabels/" + this.noteInfo.nid).subscribe(
       (Response: any) => {
-        console.log("label Note geeting...");
+        //console.log("labels geeting...");
         // Adding checked Label 
         this.ln=Response.notes
       });

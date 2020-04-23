@@ -2,7 +2,7 @@
 <br>
 <!-- <div class="other">  OTHERS  </div> -->
 
-<div  fxLayout="{{direction}} wrap" fxLayout.xs="row" fxLayoutGap="20px" fxLayoutAlign="start center" style="margin-left: 136px;"> 
+<div  fxLayout="{{direction}} wrap" fxLayoutGap="10px" fxLayoutAlign="start center" style="margin-left: 21px;"> 
   
 <div *ngFor="let note of notes">
 
@@ -55,11 +55,9 @@
  <br>
              <!---------------------------- Unpinned Notes ----------------------------------->
  
-
-  <div  fxLayout="{{direction}} wrap" fxLayoutGap="10px" fxLayout.xs="row" fxLayoutAlign="start center" style="margin-left: 145px;"> 
-    
-    <div class="other" >  OTHERS  </div>
-  <!-- <input type="text" placeholder="OTHERS" class="other" style="outline: none;border: none;"> -->
+  <div class="other" *ngIf="visible==true" >OTHERS  </div>
+  <div  fxLayout="{{direction}} wrap" fxLayoutGap="10px"  fxLayoutAlign="start center" style="margin-left: 21px;"> 
+  
   <div *ngFor="let note of notes">
  
      <div *ngIf="note.isArchieved==0 && note.isTrashed==0 && note.isPinned==0">  
@@ -69,7 +67,6 @@
         <mat-card id="notesHoover" [ngStyle]="{'background-color':note.colour}" class="matcard2"
         [ngClass]=" direction =='row' ? 'matpad2':'matpad3' ">
                <br>
- 
              <div  (click)="onUpdate(note)" id="onclick">
               <form>
                     <div>

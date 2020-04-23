@@ -54,6 +54,7 @@ export class ImageuploadComponent implements OnInit {
         
         // Or errors :-(
         error => console.log(error),
+        
         // tell us if it's finished
         () => {
           console.log("completed")

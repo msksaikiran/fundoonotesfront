@@ -30,6 +30,7 @@ export class NoteDetailsComponent implements OnInit {
   toggle: boolean = false;
 
   trash: Trash = new Trash();
+  visible: boolean;
 
   constructor(private snackbar: MatSnackBar,
     private viewservice: ViewService,
@@ -69,6 +70,12 @@ export class NoteDetailsComponent implements OnInit {
           
           this.notes=Response;
           console.log(this.notes)
+          this.notes.filter((t:any) => {
+            if (t.isPinned==1) {
+              this.visible = true;
+              console.log("pinned")
+            }
+          })
           
         },
         (error: any) => {
@@ -130,7 +137,7 @@ export class NoteDetailsComponent implements OnInit {
       
   }
   
-  unpin(note:any) {
+  unpin(note: any) {
     this.trash.nid = note.nid;
     console.log(this.trash);
     this.token=localStorage.getItem("token");

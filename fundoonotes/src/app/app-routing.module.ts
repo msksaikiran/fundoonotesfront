@@ -14,6 +14,7 @@ import { SearchnotesComponent } from './component/searchnotes/searchnotes.compon
 import { ImageuploadComponent } from './component/imageupload/imageupload.component';
 import { NoteDetailsComponent } from './component/note-details/note-details.component';
 import { CollabarateVerifyComponent } from './component/collabarate-verify/collabarate-verify.component';
+import { AuthGuardService } from 'src/app/service/guards/auth-guard.service';
 const routes: Routes = [
   {
     path:"",
@@ -42,6 +43,7 @@ const routes: Routes = [
   {
     path: "dashboard",
     component: DashboardComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: "archive",

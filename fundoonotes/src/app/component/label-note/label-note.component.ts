@@ -59,8 +59,12 @@ export class LabelNoteComponent implements OnInit {
         // console.log(Response)
         // console.log(this.labelInfo.nid)
         this.noteid = this.labelInfo.nid;
-        this.UserPrf = Response;
-        this.colUserDetails = Response.note;
+        
+        if (Response != null) {
+          console.log("**************")
+          this.UserPrf = Response;
+          this.colUserDetails = Response.note;
+        }
       });
     
     /**
@@ -79,7 +83,7 @@ export class LabelNoteComponent implements OnInit {
     
       this.noteService.getRequest("notesdetails/"+this.labelInfo.nid).subscribe(
         (Response: any) => {
-          console.log("label Note geeting...");
+          //console.log("label Note geeting...");
           console.log(Response.notes.reminder);
          
           // Adding reminder to chip
