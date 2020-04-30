@@ -53,29 +53,29 @@ export class NoteDetailsComponent implements OnInit {
       this.data.currentMessage.subscribe(
         message => {this.message = message,this.getallNotes()});
             
+
         this.viewservice.getView().subscribe(
           (res) => {
                       this.view = res;
                       this.direction = this.view.data;
                       console.log("direction..................."+this.view.data)
                       console.log(this.direction);
-                       
-            });  
+                      
+          });  
+         
   }
+
+  baseUrl = environment.baseProfileUrl;
+  image: String;
 
   getallNotes() {
     this.token=localStorage.getItem("token");
       this.noteService.getRequest("users/"+this.token).subscribe(
         (Response:any)=>{
           
-          this.notes=Response;
+          this.notes = Response;
+         
           console.log(this.notes)
-          this.notes.filter((t:any) => {
-            if (t.isPinned==1) {
-              this.visible = true;
-              console.log("pinned")
-            }
-          })
           
         },
         (error: any) => {
@@ -85,6 +85,7 @@ export class NoteDetailsComponent implements OnInit {
         });
     }
   
+ 
   onUpdate(note: any): void {
     
     console.log(note);

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/service/user.service';
 import { DataService } from 'src/app/service/data.service';
+import { MAT_DIALOG_DATA } from '@angular/material';
+import { NoteService } from 'src/app/service/note.service';
 
 @Component({
   selector: 'app-imageupload',
@@ -13,6 +15,8 @@ export class ImageuploadComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private http: HttpClient, private httpservice: UserService,
+    private noteService: NoteService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private dataservice: DataService) { }
 
   form: FormGroup;
@@ -46,7 +50,7 @@ export class ImageuploadComponent implements OnInit {
     // Add file content to prepare the request
     body.append("file", this.file);
     // Launch post request
-    this.httpservice.postRequest("uploadProfile/" + localStorage.getItem("token"), body)
+    this.noteService.postRequest("uploadProfile?NoteId="+this.noteid,body)
       .subscribe(
         
         // Admire results
@@ -64,4 +68,28 @@ export class ImageuploadComponent implements OnInit {
     );
   }
   
+  noteid = this.data.noteid;
+  uploadimage() {
+    // Instantiate a FormData to store form fields and encode the file
+    let body = new FormData();
+    // Add file content to prepare the request
+    body.append("file", this.file);
+    // Launch post request
+    this.httpservice.postRequest("uploadProfile/" + localStorage.getItem("token"), body)
+      .subscribe(
+        
+        // Admire results
+        (data) => { console.log(data) },
+        
+        // Or errors :-(
+        error => console.log(error),
+        
+        // tell us if it's finished
+        () => {
+          console.log("completed")
+          this.dataservice.changeMessage("uploaded");
+        }
+        
+    );
+  }
 }

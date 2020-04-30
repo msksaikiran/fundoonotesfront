@@ -21,7 +21,7 @@ export class AuthService {
    * @return {boolean}
    */
   isAuthenticated(): boolean {
-    //this.decode();
+    
     return localStorage.getItem('token') != null && !this.isTokenExpired();
   }
 
@@ -32,18 +32,6 @@ export class AuthService {
   }
 
   
- data:String
-  decode() {
-    console.log("decoded token****************************")
-    const user = decode(localStorage.getItem('token'));
-
-    
-    //console.log(this.data);
-    //   (error:any)=>{
-    //   console.log("=========>error======>")
-    // }
-    return this.data;
-  }
 }
 
 

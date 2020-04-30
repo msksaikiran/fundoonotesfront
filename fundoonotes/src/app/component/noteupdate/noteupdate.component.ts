@@ -35,6 +35,7 @@ export class NoteupdateComponent implements OnInit {
 
   ngOnInit() {
     this.getallNotes();
+    this.imageurl();
   }
   
   notes: [];
@@ -86,5 +87,26 @@ export class NoteupdateComponent implements OnInit {
         console.log(error.error.message);
         this.snackbar.open(error.error.message, "undo", { duration: 25000 });
       });
+  }
+
+  noteImage: String;
+
+  imageurl() {
+
+    this.updateNote.nid = this.data.nid;
+    this.noteService.postRequest("getimageurl/"+this.data.nid,"")
+      .subscribe((response: any) => {
+        
+        if (response!= null) {
+          this.noteImage = response.obj;
+        }
+      });
+     
+  }
+
+  deleteimage(note: any) {
+    this.noteService.deleteRequest("removeimage/" + note.nid, "").subscribe((Response: any)=>{
+      
+    });
   }
 }

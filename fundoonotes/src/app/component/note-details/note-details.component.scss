@@ -24,6 +24,7 @@
 .appicons{
     margin-top: 10px;
 }
+
 .textarea1:empty:before
 {
     content: attr(data-text);
@@ -32,32 +33,41 @@
     width:60px;
     height:10px;
 }
+
 .allnotes{
     width: 10px;
 }
+
 .iconBackborder{
     
     margin-top: 59px;
     margin-left: 14px;
     
 }
+
 .button{
     margin-left: 273px;
     margin-top: -139px;
-    position: sticky;
+    position: relative;
    
   }
   
-//   address {
-//     visibility: hidden;
-//     display: block;
+.image2{
+    height: 40px;
+    width: 40px;
+   border-radius: 10px;
+  }
 
-//   }
+address {
+    visibility: hidden;
+    display: block;
+
+  }
   
-// span :hover+address
-// {
-//      visibility: visible;
-// } 
+span :hover+address
+{
+     visibility: visible;
+} 
 
 .other{
     font-size: large; 

@@ -2,7 +2,7 @@
 <br>
 <!-- <div class="other">  OTHERS  </div> -->
 
-<div  fxLayout="{{direction}} wrap" fxLayoutGap="10px" fxLayoutAlign="start center" style="margin-left: 21px;"> 
+<div  fxLayout="{{direction}} wrap" fxLayoutGap="5px" fxLayoutAlign="start center" style="margin-left: 21px;"> 
   
 <div *ngFor="let note of notes">
 
@@ -15,6 +15,11 @@
 
          <div  (click)="onUpdate(note)" id="onclick">
           <form>
+
+            <div *ngIf="note.profile">
+              <app-note-image [noteimage]=note></app-note-image> 
+           </div>
+           <br>
                 <div>
                 {{note.title}} 
                 </div>
@@ -52,24 +57,29 @@
 </div>  
 
 </div>
- <br>
              <!---------------------------- Unpinned Notes ----------------------------------->
  
-  <div class="other" *ngIf="visible==true" >OTHERS  </div>
-  <div  fxLayout="{{direction}} wrap" fxLayoutGap="10px"  fxLayoutAlign="start center" style="margin-left: 21px;"> 
+  <!-- <div class="other" *ngIf="visible==true" >OTHERS  </div> -->
+  <div  fxLayout="{{direction}} wrap" fxLayoutGap="10px"  fxLayoutAlign="start center" > 
   
   <div *ngFor="let note of notes">
  
      <div *ngIf="note.isArchieved==0 && note.isTrashed==0 && note.isPinned==0">  
  
        <span id="notestest">
-         
+
         <mat-card id="notesHoover" [ngStyle]="{'background-color':note.colour}" class="matcard2"
         [ngClass]=" direction =='row' ? 'matpad2':'matpad3' ">
                <br>
              <div  (click)="onUpdate(note)" id="onclickunpin">
               <form>
-                    <div>
+               
+                <div *ngIf="note.profile" fxLayout="row" fxLayoutAlign="start center">
+                  <app-note-image [noteimage]=note></app-note-image> 
+               </div>
+
+                 <br>
+                    <div >
                     {{note.title}} 
                     </div>
                     <br>

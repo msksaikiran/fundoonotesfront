@@ -13,8 +13,15 @@
     {{reminder | date:'shortTime'}}
     <mat-icon matChipRemove (click)="onDeleteRem()">cancel</mat-icon>
   </mat-chip> 
-</div>
+  </div>
 
+  <!-- <div *ngIf="noteImage!=null">
+    <mat-chip>
+     {{reminder | date:'MMMM d'}},
+     {{reminder | date:'shortTime'}}
+     <mat-icon matChipRemove (click)="onDeleteRem()">cancel</mat-icon>
+   </mat-chip> 
+   </div> -->
 
 <!-- Getting the user image to with the my notes collbarted  -->
 <!-- correct -->

@@ -79,6 +79,7 @@ export class LabelNoteComponent implements OnInit {
   }
 
   ln: [];
+  noteImage: String;
   getallabels(){
     
       this.noteService.getRequest("notesdetails/"+this.labelInfo.nid).subscribe(
@@ -90,6 +91,8 @@ export class LabelNoteComponent implements OnInit {
           this.reminder = Response.notes.reminder;
           // Adding Label to chip
           this.label = Response.notes.label;
+          //Notes Images
+          this.noteImage = Response.notes.profile;
           
           console.log(this.label)
           

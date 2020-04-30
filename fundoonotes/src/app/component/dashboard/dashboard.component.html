@@ -79,12 +79,11 @@
    
    <div class="hiddenMenu" fxLayout="column" fxLayoutAlign="center start"> 
     
-    <mat-sidenav-container >
+    <mat-sidenav-container>
        <mat-sidenav #snav mode="side" class="matsidenav"> 
 
          <div class="note">
           <button mat-button class="notebutton" (click)="onNotes()" >
-            
             <div class="icon">
               <mat-icon >lightbulb_outline</mat-icon>
             </div>
@@ -99,13 +98,12 @@
           </button>
         </div>
       
-        <mat-divider></mat-divider>
+        <!-- <mat-divider></mat-divider> -->
         
         <mat-label class="labelmat">LABELS</mat-label> 
         <br><br>
         <app-get-label></app-get-label> 
-        <br><br>
-
+        <br>
         <diV class="label"> 
           <button mat-button id="editlabel" class="labelbutton" (click)=openDialogLabel()>
             <div class="icon">
@@ -115,7 +113,7 @@
           </button>
         </diV>
   
-        <mat-divider></mat-divider>
+        <!-- <mat-divider></mat-divider> -->
 
         <diV class="note">
           <button mat-button class="notebutton" (click)="onArchive()" id="archive">
@@ -133,7 +131,7 @@
           </button>   
         </diV>
 
-        <mat-divider></mat-divider>
+        <!-- <mat-divider></mat-divider> -->
 
        </mat-sidenav>
 

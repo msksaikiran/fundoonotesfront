@@ -21,8 +21,14 @@ export class ArchiveComponent implements OnInit {
   direction:string="row";
   view: any;
 
-  constructor(private snackbar:MatSnackBar,private noteService: NoteService,private dataservice: DataService,
-    private route:ActivatedRoute,private router:Router,private formBuilder:FormBuilder,private viewservice: ViewService,
+  constructor(
+    private snackbar: MatSnackBar,
+    private noteService: NoteService,
+    private dataservice: DataService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private viewservice: ViewService,
     public dialog: MatDialog) { }
 
   message:string;

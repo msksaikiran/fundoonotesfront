@@ -45,6 +45,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { SearchnotesComponent } from './component/searchnotes/searchnotes.component';
 import { ImageuploadComponent } from './component/imageupload/imageupload.component';
 import { CollabarateVerifyComponent } from './component/collabarate-verify/collabarate-verify.component';
+import { NoteImageComponent } from './component/note-image/note-image.component';
 //import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from 'ngx-mat-datetime-picker';
 
 @NgModule({
@@ -72,6 +73,7 @@ import { CollabarateVerifyComponent } from './component/collabarate-verify/colla
     ImageuploadComponent,
     //CollabarateComponent,
     CollabarateVerifyComponent,
+    NoteImageComponent,
   
     
   ],

@@ -1,6 +1,18 @@
 <div *ngFor="let note of notes">
+
   <div *ngIf="note.nid==noteId">  
+
 <mat-card class="matcard2" [ngStyle]="{'background-color':note.colour}">
+ 
+  <div *ngFor="let image of noteImage">
+<div *ngIf="note.profile">
+        <img src={{image}} class="image">
+        <button mat-icon-button  (click)="deleteimage(note)" style="margin-left: 450px;margin-bottom: -26px;margin-top: -12px;">
+          <mat-icon matTooltip="restore_from_trash" >restore_from_trash</mat-icon>
+        </button>
+</div>
+</div>
+
   <form>
    <div fxLayout="row"  fxLayoutAlign="center center">
    <input matInput id="updateTitle" type="text" placeholder="Edit Title" class="input" [ngStyle]="{'background-color':note.colour}" [formControl]="title" [(ngModel)]="note.title" >
@@ -11,14 +23,14 @@
     </div>
     <br><br>
     <app-label-note [labelInfo]=note></app-label-note> 
-   </form>
+   
    <app-icon [noteInfo]=note></app-icon>
+  
+  </form>
 </mat-card>
 
  <div fxLayout="column" fxLayoutAlign="end end"  style="margin-left: 252px;margin-bottom: -15px;">
-
      <button class=close mat-button (click)="onClose()" > close</button>
-
   </div>   
  </div>    
  </div>

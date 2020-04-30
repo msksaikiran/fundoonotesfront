@@ -17,6 +17,7 @@ import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
 import { CollabarateService } from 'src/app/service/collabarate.service';
 import { CollabarateVerifyComponent } from '../collabarate-verify/collabarate-verify.component';
 import { checkServerIdentity } from 'tls';
+import { ImageuploadComponent } from '../imageupload/imageupload.component';
 
 const moment = (_moment as any).default ? (_moment as any).default : _moment;
 
@@ -304,5 +305,15 @@ export class IconComponent implements OnInit {
       'noteid': this.noteInfo.nid
     };
     const dialogRef = this.dialog.open(CollabarateVerifyComponent,dialogConfig);
+  }
+
+  insertphoto() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data =
+    {
+      'noteid': this.noteInfo.nid
+    };
+    //this.router.navigate(['upload'])
+    const dialogRef = this.dialog.open(ImageuploadComponent,dialogConfig);
   }
 }

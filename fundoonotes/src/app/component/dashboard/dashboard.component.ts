@@ -50,17 +50,17 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.appName = "FundooNote";
     //this.image = localStorage.getItem("image");
-    this.profile();
+    this.profileUrl();
   }
   
-  baseUrl = environment.baseProfileUrl;
-  profile() {
+  
+  profileUrl() {
     this.httpservice.postRequest("getimageurl/"+localStorage.getItem("token"),"")
       .subscribe((response: any) => {
         console.log(response.obj.profile)
-        if (response.obj.profile != null) {
-          this.image = this.baseUrl + response.obj.profile;
-        }//localStorage.setItem("image",this.baseUrl+response.obj.profile);
+        if (response.obj!= null) {
+          this.image = response.obj;
+        }
       });
      
   }
