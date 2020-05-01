@@ -4,10 +4,11 @@
 
 <mat-card class="matcard2" [ngStyle]="{'background-color':note.colour}">
  
-  <div *ngFor="let image of noteImage">
+  <div *ngFor="let image of noteImage" >
 <div *ngIf="note.profile">
-        <img src={{image}} class="image">
-        <button mat-icon-button  (click)="deleteimage(note)" style="margin-left: 450px;margin-bottom: -26px;margin-top: -12px;">
+        <img src={{image}} class="image" >
+        <!-- margin-left: 450px;margin-bottom: -26px;margin-top: -12px; -->
+        <button mat-icon-button  (click)="deleteimage(note)" style="margin-left: 513px;margin-bottom: -26px;margin-top: -3%;">
           <mat-icon matTooltip="restore_from_trash" >restore_from_trash</mat-icon>
         </button>
 </div>
