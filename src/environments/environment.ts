@@ -7,7 +7,6 @@ export const environment = {
   baseUrlNote: "http://localhost:8083/notes/",
   baseUrluser: "http://localhost:8083/users/",
   baseUrlLabel: "http://localhost:8083/labels/",
-  baseProfileUrl: "https://msksaikiran.s3.us-east-2.amazonaws.com/",
   baseUrlcollabrate: "http://localhost:8083/collabrate/",
 };
 
